@@ -1,7 +1,7 @@
 [project]
 name = "refcheck"
 version = "0.0.1"
-description = "Local reference-checking prototype (Phase A / Stufe 0-1) — see docs/project-plan.md"
+description = "RefCheck — reference and citation checking for scientific manuscripts. First module of the Manuscript Verification System."
 requires-python = ">=3.11"
 dependencies = [
     "nicegui>=1.4",
