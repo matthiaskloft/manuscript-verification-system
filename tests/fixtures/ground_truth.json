@@ -1,0 +1,1496 @@
+[
+  {
+    "manuscript": "dirichlet_dual_response",
+    "published_doi": "10.1007/s11336-023-09924-7",
+    "preprint_doi": "10.31234/osf.io/h4f8a",
+    "published_pdf": "published_2023_dirichlet_dual_response.pdf",
+    "preprint_pdf": "preprint_2022_dirichlet_dual_response.pdf",
+    "crossref_total_references": 48,
+    "crossref_dois": [
+      "10.1007/978-0-387-89976-3",
+      "10.1007/bf02291114",
+      "10.1007/bf02294232",
+      "10.1007/bf03372160",
+      "10.1007/s11222-013-9416-2",
+      "10.1007/s11222-016-9696-4",
+      "10.1007/s11336-013-9361-1",
+      "10.1016/j.ijar.2013.07.002",
+      "10.1016/j.ins.2016.04.029",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1026/0012-1924/a000161",
+      "10.1026/0012-1924/a000218",
+      "10.1027/1015-5759/a000291",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/h0070922",
+      "10.1037/met0000153",
+      "10.1037/pspp0000096",
+      "10.1111/j.1553-2712.2001.tb01132.x",
+      "10.1111/rssa.12378",
+      "10.1177/0146621605287691",
+      "10.1177/0146621610391649",
+      "10.1177/0146621613497532",
+      "10.1177/014662169802200402",
+      "10.1207/s15327906mbr2903_2",
+      "10.1214/20-ba1221",
+      "10.1348/000711001159573",
+      "10.1509/jmkr.38.2.143.18840",
+      "10.18637/jss.v048.i06",
+      "10.3102/1076998610396895",
+      "10.3102/10769986221108455",
+      "10.3389/fnhum.2019.00086",
+      "10.3389/fpsyg.2020.500039",
+      "10.3758/brm.40.3.699",
+      "10.3758/s13428-021-01635-0",
+      "10.48550/arxiv.1701.02434"
+    ],
+    "openalex_total_referenced_works": 51,
+    "openalex_dois": [
+      "10.1007/978-0-387-89976-3",
+      "10.1007/bf02291114",
+      "10.1007/bf03372160",
+      "10.1007/s11222-013-9416-2",
+      "10.1007/s11222-016-9696-4",
+      "10.1016/j.ijar.2013.07.002",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1016/s0019-9958(61)80061-2",
+      "10.1026/0012-1924/a000218",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/h0070922",
+      "10.1037/pspp0000096",
+      "10.1111/j.1553-2712.2001.tb01132.x",
+      "10.1111/rssa.12378",
+      "10.1214/20-ba1221",
+      "10.1509/jmkr.38.2.143.18840",
+      "10.18637/jss.v048.i06",
+      "10.2307/2291547",
+      "10.2307/2533292",
+      "10.3758/brm.40.3.699"
+    ],
+    "union_dois": [
+      "10.1007/978-0-387-89976-3",
+      "10.1007/bf02291114",
+      "10.1007/bf02294232",
+      "10.1007/bf03372160",
+      "10.1007/s11222-013-9416-2",
+      "10.1007/s11222-016-9696-4",
+      "10.1007/s11336-013-9361-1",
+      "10.1016/j.ijar.2013.07.002",
+      "10.1016/j.ins.2016.04.029",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1016/s0019-9958(61)80061-2",
+      "10.1026/0012-1924/a000161",
+      "10.1026/0012-1924/a000218",
+      "10.1027/1015-5759/a000291",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/h0070922",
+      "10.1037/met0000153",
+      "10.1037/pspp0000096",
+      "10.1111/j.1553-2712.2001.tb01132.x",
+      "10.1111/rssa.12378",
+      "10.1177/0146621605287691",
+      "10.1177/0146621610391649",
+      "10.1177/0146621613497532",
+      "10.1177/014662169802200402",
+      "10.1207/s15327906mbr2903_2",
+      "10.1214/20-ba1221",
+      "10.1348/000711001159573",
+      "10.1509/jmkr.38.2.143.18840",
+      "10.18637/jss.v048.i06",
+      "10.2307/2291547",
+      "10.2307/2533292",
+      "10.3102/1076998610396895",
+      "10.3102/10769986221108455",
+      "10.3389/fnhum.2019.00086",
+      "10.3389/fpsyg.2020.500039",
+      "10.3758/brm.40.3.699",
+      "10.3758/s13428-021-01635-0",
+      "10.48550/arxiv.1701.02434"
+    ],
+    "overlap_dois": [
+      "10.1007/978-0-387-89976-3",
+      "10.1007/bf02291114",
+      "10.1007/bf03372160",
+      "10.1007/s11222-013-9416-2",
+      "10.1007/s11222-016-9696-4",
+      "10.1016/j.ijar.2013.07.002",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1026/0012-1924/a000218",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/h0070922",
+      "10.1037/pspp0000096",
+      "10.1111/j.1553-2712.2001.tb01132.x",
+      "10.1111/rssa.12378",
+      "10.1214/20-ba1221",
+      "10.1509/jmkr.38.2.143.18840",
+      "10.18637/jss.v048.i06",
+      "10.3758/brm.40.3.699"
+    ],
+    "crossref_entries": [
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/h0070922"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1509/jmkr.38.2.143.18840"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3389/fpsyg.2020.500039"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1177/0146621610391649"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11222-016-9696-4"
+      },
+      {
+        "title": "Experimental development of the graphic rating method",
+        "year": "1921",
+        "first_author_surname": "Hayes",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1026/0012-1924/a000218"
+      },
+      {
+        "title": null,
+        "year": "1995",
+        "first_author_surname": "Johnson",
+        "doi": null
+      },
+      {
+        "title": "Stan Development Team. (2021). Stan modeling language users guide and reference manual (Version 2.27). https://mc-stan.org/docs/2_27/reference-manual/index.html",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/brm.40.3.699"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1026/0012-1924/a000161"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.jmva.2009.04.008"
+      },
+      {
+        "title": "A broad-bandwidth, public domain, personality inventory measuring the lower-level facets of several five-factor models",
+        "year": "1999",
+        "first_author_surname": "Goldberg",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.jrp.2014.10.009"
+      },
+      {
+        "title": "Ineshin, D. (2021). Ion.RangeSlider - jQuery range slider. Retrieved May 25, 2021, from http://ionden.com/a/plugins/ion.rangeSlider/index.html",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/978-0-387-89976-3"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.ijar.2013.07.002"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1111/rssa.12378"
+      },
+      {
+        "title": "A technique for the measurement of attitudes",
+        "year": "1932",
+        "first_author_surname": "Likert",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.ins.2016.04.029"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3102/10769986221108455"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/bf02291114"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1177/014662169802200402"
+      },
+      {
+        "title": "Modeling covariance matrices in terms of standard deviations and correlations, with application to shrinkage",
+        "year": "2000",
+        "first_author_surname": "Barnard",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.18637/jss.v048.i06"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/met0000153"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.48550/arxiv.1701.02434"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1207/s15327906mbr2903_2"
+      },
+      {
+        "title": "R Core Team. (2021). R: A language and environment for statistical computing (Version 4.05). https://www.R-project.org/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1177/0146621605287691"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1214/20-ba1221"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3389/fnhum.2019.00086"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11336-013-9361-1"
+      },
+      {
+        "title": "Rasch, G. (1993). Probabilistic models for some intelligence and attainment tests. ERIC.",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/bf02294232"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/bf03372160"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/pspp0000096"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/s13428-021-01635-0"
+      },
+      {
+        "title": "Stan Development Team. (2022). Stan functions reference. https://mc-stan.org/docs/functions-reference/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11222-013-9416-2"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1111/j.1553-2712.2001.tb01132.x"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1177/0146621613497532"
+      },
+      {
+        "title": "Gabry, J. , & \u010ce\u0161novar, R. (2021). CmdStanR: R interface to CmdStan. https://mcstan.org/cmdstanr/index.html",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1348/000711001159573"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3102/1076998610396895"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/0022-3514.80.6.1011"
+      },
+      {
+        "title": null,
+        "year": "2014",
+        "first_author_surname": "Gelman",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1027/1015-5759/a000291"
+      }
+    ]
+  },
+  {
+    "manuscript": "measuring_variability",
+    "published_doi": "10.3758/s13428-024-02394-4",
+    "preprint_doi": "10.31234/osf.io/pa4m3",
+    "published_pdf": "published_2024_measuring_variability.pdf",
+    "preprint_pdf": "preprint_2023_measuring_variability.pdf",
+    "crossref_total_references": 50,
+    "crossref_dois": [
+      "10.1002/9781118838860",
+      "10.1002/acp.1085",
+      "10.1007/978-3-662-61532-4",
+      "10.1007/s11336-013-9361-1",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/j.jmp.2018.11.002",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2009.02.008",
+      "10.1016/j.jrp.2014.06.003",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1017/s1930297500001637",
+      "10.1027/1016-9040.14.2.120",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/0022-3514.90.3.512",
+      "10.1037/0278-7393.30.6.1167",
+      "10.1037/1040-3590.6.4.284",
+      "10.1037/a0016786",
+      "10.1037/a0039517",
+      "10.1037/h0046016",
+      "10.1037/h0064147",
+      "10.1093/ijpor/eds021",
+      "10.1097/00005053-198709000-00004",
+      "10.1109/tfuzz.2014.2310734",
+      "10.1111/j.1467-6494.2011.00714.x",
+      "10.1111/j.1751-9004.2009.00170.x",
+      "10.1177/0146621605287691",
+      "10.1177/0894439315575477",
+      "10.1177/0894439317750089",
+      "10.1177/1094428114553062",
+      "10.1214/20-ba1221",
+      "10.1371/journal.pone.0266096",
+      "10.3102/1076998610396895",
+      "10.31234/osf.io/nc5uq",
+      "10.31234/osf.io/nqseu",
+      "10.3758/brm.40.3.699",
+      "10.3758/s13428-017-0869-7",
+      "10.3758/s13428-021-01635-0",
+      "10.4324/9781315871318",
+      "10.48550/arxiv.1701.02434",
+      "10.7334/psicothema2013.259"
+    ],
+    "openalex_total_referenced_works": 52,
+    "openalex_dois": [
+      "10.1002/9781118838860",
+      "10.1002/acp.1085",
+      "10.1007/978-3-662-61532-4",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2014.06.003",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/0022-3514.90.3.512",
+      "10.1037/1040-3590.6.4.284",
+      "10.1037/14047-013",
+      "10.1037/a0016786",
+      "10.1037/h0046016",
+      "10.1093/ijpor/eds021",
+      "10.1097/00005053-198709000-00004",
+      "10.1111/j.1751-9004.2009.00170.x",
+      "10.1214/20-ba1221",
+      "10.2307/1162101",
+      "10.3758/brm.40.3.699",
+      "10.3758/s13428-017-0869-7",
+      "10.4324/9781315871318",
+      "10.7334/psicothema2013.259"
+    ],
+    "union_dois": [
+      "10.1002/9781118838860",
+      "10.1002/acp.1085",
+      "10.1007/978-3-662-61532-4",
+      "10.1007/s11336-013-9361-1",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/j.jmp.2018.11.002",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2009.02.008",
+      "10.1016/j.jrp.2014.06.003",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1017/s1930297500001637",
+      "10.1027/1016-9040.14.2.120",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/0022-3514.90.3.512",
+      "10.1037/0278-7393.30.6.1167",
+      "10.1037/1040-3590.6.4.284",
+      "10.1037/14047-013",
+      "10.1037/a0016786",
+      "10.1037/a0039517",
+      "10.1037/h0046016",
+      "10.1037/h0064147",
+      "10.1093/ijpor/eds021",
+      "10.1097/00005053-198709000-00004",
+      "10.1109/tfuzz.2014.2310734",
+      "10.1111/j.1467-6494.2011.00714.x",
+      "10.1111/j.1751-9004.2009.00170.x",
+      "10.1177/0146621605287691",
+      "10.1177/0894439315575477",
+      "10.1177/0894439317750089",
+      "10.1177/1094428114553062",
+      "10.1214/20-ba1221",
+      "10.1371/journal.pone.0266096",
+      "10.2307/1162101",
+      "10.3102/1076998610396895",
+      "10.31234/osf.io/nc5uq",
+      "10.31234/osf.io/nqseu",
+      "10.3758/brm.40.3.699",
+      "10.3758/s13428-017-0869-7",
+      "10.3758/s13428-021-01635-0",
+      "10.4324/9781315871318",
+      "10.48550/arxiv.1701.02434",
+      "10.7334/psicothema2013.259"
+    ],
+    "overlap_dois": [
+      "10.1002/9781118838860",
+      "10.1002/acp.1085",
+      "10.1007/978-3-662-61532-4",
+      "10.1016/j.jmva.2009.04.008",
+      "10.1016/j.jrp.2014.06.003",
+      "10.1016/j.jrp.2014.10.009",
+      "10.1037/0022-3514.80.6.1011",
+      "10.1037/0022-3514.90.3.512",
+      "10.1037/1040-3590.6.4.284",
+      "10.1037/a0016786",
+      "10.1037/h0046016",
+      "10.1093/ijpor/eds021",
+      "10.1097/00005053-198709000-00004",
+      "10.1111/j.1751-9004.2009.00170.x",
+      "10.1214/20-ba1221",
+      "10.3758/brm.40.3.699",
+      "10.3758/s13428-017-0869-7",
+      "10.4324/9781315871318",
+      "10.7334/psicothema2013.259"
+    ],
+    "crossref_entries": [
+      {
+        "title": "American Educational Research Association (Ed.). (2011). Standards for educational and psychological testing. American Educational Research Association.",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Andresen, P. K., Schuurman, N. K., & Hamaker, E. (2024). How to measure and model personality traits in everyday life: A qualitative analysis of 300 big five personality items. PsyArXiv. https://doi.org/10.31234/osf.io/nqseu",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.31234/osf.io/nqseu"
+      },
+      {
+        "title": "Anusic, I., Lucas, R. E., & Donnellan, M. B. (2012). Dependability of personality, life satisfaction, and affect in short-term longitudinal data. Journal of Personality, 80(1), 33\u201358. https://doi.org/10.1111/j.1467-6494.2011.00714.x",
+        "year": "2012",
+        "first_author_surname": "I Anusic",
+        "doi": "10.1111/j.1467-6494.2011.00714.x"
+      },
+      {
+        "title": "Baird, B. M., Le, K., & Lucas, R. E. (2006). On the nature of intraindividual personality variability: Reliability, validity, and associations with well-being. Journal of Personality & Social Psychology, 90(3), 512\u2013527. https://doi.org/10.1037/0022-3514.90.3.512",
+        "year": "2006",
+        "first_author_surname": "BM Baird",
+        "doi": "10.1037/0022-3514.90.3.512"
+      },
+      {
+        "title": "Barnard, J., McCulloch, R., & Meng, X. L. (2000). Modeling covariance matrices in terms of standard deviations and correlations, with application to shrinkage. Statistica Sinica, 10(4), 1281\u20131311.",
+        "year": "2000",
+        "first_author_surname": "J Barnard",
+        "doi": null
+      },
+      {
+        "title": "Betancourt, M. (2018). A conceptual introduction to Hamiltonian Monte Carlo. arXiv: https://doi.org/10.48550/arXiv.1701.02434",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.48550/arxiv.1701.02434"
+      },
+      {
+        "title": "Bosch, O. J., Revilla, M., DeCastellarnau, A., & Weber, W. (2019). Measurement reliability, validity, and quality of slider versus radio button scales in an online probability-based panel in norway. Social Science Computer Review, 37(1), 119\u2013132. https://doi.org/10.1177/0894439317750089",
+        "year": "2019",
+        "first_author_surname": "OJ Bosch",
+        "doi": "10.1177/0894439317750089"
+      },
+      {
+        "title": "Campbell, D. T., & Fiske, D. W. (1959). Convergent and discriminant validation by the multitrait-multimethod matrix. Psychological Bulletin, 56(2), 81\u2013105. https://doi.org/10.1037/h0046016",
+        "year": "1959",
+        "first_author_surname": "DT Campbell",
+        "doi": "10.1037/h0046016"
+      },
+      {
+        "title": "Cicchetti, D. V. (1994). Guidelines, criteria, and rules of thumb for evaluating normed and standardized assessment instruments in psychology. Psychological Assessment, 6, 284\u2013290. https://doi.org/10.1037/1040-3590.6.4.284",
+        "year": "1994",
+        "first_author_surname": "DV Cicchetti",
+        "doi": "10.1037/1040-3590.6.4.284"
+      },
+      {
+        "title": "Conner, T. S., Tennen, H., Fleeson, W., & Barrett, L. F. (2009). Experience sampling methods: A modern idiographic approach to personality research. Social and Personality Psychology Compass, 3(3), 292\u2013313. https://doi.org/10.1111/j.1751-9004.2009.00170.x",
+        "year": "2009",
+        "first_author_surname": "TS Conner",
+        "doi": "10.1111/j.1751-9004.2009.00170.x"
+      },
+      {
+        "title": "Csikszentmihalyi, M., & Larson, R. (1987). Validity and reliability of the experience-sampling method. The Journal of Nervous and Mental Disease, 175(9), 526\u2013536. https://journals.lww.com/jonmd/Abstract/1987/09000/Validity_and_Reliability_of_the.4.aspx",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1097/00005053-198709000-00004"
+      },
+      {
+        "title": "Ellerby, Z., Wagner, C., & Broomell, S. B. (2022). Capturing richer information: On establishing the validity of an interval-valued survey response mode. Behavior Research Methods, 54(3), 1240\u20131262. https://doi.org/10.3758/s13428-021-01635-0",
+        "year": "2022",
+        "first_author_surname": "Z Ellerby",
+        "doi": "10.3758/s13428-021-01635-0"
+      },
+      {
+        "title": "Fleeson, W. (2001). Toward a structure- and process-integrated view of personality: Traits as density distributions of states. Journal of Personality and Social Psychology, 80(6), 1011\u20131027. https://doi.org/10.1037/0022-3514.80.6.1011",
+        "year": "2001",
+        "first_author_surname": "W Fleeson",
+        "doi": "10.1037/0022-3514.80.6.1011"
+      },
+      {
+        "title": "Fleeson, W., & Gallagher, P. (2009). The implications of Big Five standing for the distribution of trait manifestation in behavior: Fifteen experience-sampling studies and a meta-analysis. Journal of Personality and Social Psychology, 97(6), 1097\u20131114. https://doi.org/10.1037/a0016786",
+        "year": "2009",
+        "first_author_surname": "W Fleeson",
+        "doi": "10.1037/a0016786"
+      },
+      {
+        "title": "Fleeson, W., & Jayawickreme, E. (2015). Whole trait theory. Journal of Research in Personality, 56, 82\u201392. https://doi.org/10.1016/j.jrp.2014.10.009",
+        "year": "2015",
+        "first_author_surname": "W Fleeson",
+        "doi": "10.1016/j.jrp.2014.10.009"
+      },
+      {
+        "title": "Fleeson, W., & Law, M. K. (2015). Trait enactments as density distributions: The role of actors, situations, and observers in explaining stability and variability. Journal of Personality and Social Psychology, 109(6), 1090\u20131104. https://doi.org/10.1037/a0039517",
+        "year": "2015",
+        "first_author_surname": "W Fleeson",
+        "doi": "10.1037/a0039517"
+      },
+      {
+        "title": "Fleeson, W., & Noftle, E. E. (2009). In favor of the synthetic resolution to the person-situation debate. Journal of Research in Personality, 43(2), 150\u2013154. https://doi.org/10.1016/j.jrp.2009.02.008",
+        "year": "2009",
+        "first_author_surname": "W Fleeson",
+        "doi": "10.1016/j.jrp.2009.02.008"
+      },
+      {
+        "title": "Funke, F. (2016). A web experiment showing negative effects of slider scales compared to visual analogue scales and radio button scales. Social Science Computer Review, 34(2), 244\u2013254. https://doi.org/10.1177/0894439315575477",
+        "year": "2016",
+        "first_author_surname": "F Funke",
+        "doi": "10.1177/0894439315575477"
+      },
+      {
+        "title": "Gnambs, T. (2014). A meta-analysis of dependability coefficients (test-retest reliabilities) for measures of the Big Five. Journal of Research in Personality, 52, 20\u201328. https://doi.org/10.1016/j.jrp.2014.06.003",
+        "year": "2014",
+        "first_author_surname": "T Gnambs",
+        "doi": "10.1016/j.jrp.2014.06.003"
+      },
+      {
+        "title": "Goldberg, L. R. (1999). A broad-bandwidth, public domain, personality inventory measuring the lower-level facets of several five-factor models. Personality Psychology in Europe, 7(1), 7\u201328.",
+        "year": "1999",
+        "first_author_surname": "LR Goldberg",
+        "doi": null
+      },
+      {
+        "title": "Haran, U., Moore, D. A., & Morewedge, C. K. (2010). A simple remedy for overprecision in judgment. Judgment and Decision Making, 5(7), 467\u2013476. https://doi.org/10.1017/S1930297500001637",
+        "year": "2010",
+        "first_author_surname": "U Haran",
+        "doi": "10.1017/s1930297500001637"
+      },
+      {
+        "title": "Hayes, M., & Patterson, D. (1921). Experimental development of the graphic rating method. Psychological Bulletin, 18(2), 98\u201399. https://doi.org/10.1037/h0064147",
+        "year": "1921",
+        "first_author_surname": "M Hayes",
+        "doi": "10.1037/h0064147"
+      },
+      {
+        "title": "Heck, D. W. (2019). Accounting for estimation uncertainty and shrinkage in Bayesian within-subject intervals: A comment on Nathoo, Kilshaw, and Masson (2018). Journal of Mathematical Psychology, 88, 27\u201331. https://doi.org/10.1016/j.jmp.2018.11.002",
+        "year": "2019",
+        "first_author_surname": "DW Heck",
+        "doi": "10.1016/j.jmp.2018.11.002"
+      },
+      {
+        "title": "Heck, D. W., Arnold, N. R., & Arnold, D. (2018). TreeBUGS: An R package for hierarchical multinomial-processing-tree modeling. Behavior Research Methods, 50(1), 264\u2013284. https://doi.org/10.3758/s13428-017-0869-7",
+        "year": "2018",
+        "first_author_surname": "DW Heck",
+        "doi": "10.3758/s13428-017-0869-7"
+      },
+      {
+        "title": "Kloft, M., Hartmann, R., Voss, A., & Heck, D. W. (2023). The Dirichlet dual response model: An item response model for continuous bounded interval responses. Psychometrika. https://doi.org/10.1007/s11336-023-09924-7",
+        "year": "2023",
+        "first_author_surname": "M Kloft",
+        "doi": "10.1007/s11336-023-09924-7"
+      },
+      {
+        "title": "Klumb, P., Elfering, A., & Herre, C. (2009). Ambulatory assessment in industrial/organizational psychology: Fruitful examples and methodological issues. European Psychologist, 14(2). https://doi.org/10.1027/1016-9040.14.2.120",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1027/1016-9040.14.2.120"
+      },
+      {
+        "title": "Leertouwer, I., Schuurman, N. K., & Vermunt, J. (2021). Are retrospective assessments means of people\u2019s experiences? Accounting for interpersonal and intrapersonal variability when comparing retrospective assessment data to ecological momentary assessment data. PsyArXiv:https://doi.org/10.31234/osf.io/nc5uq",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.31234/osf.io/nc5uq"
+      },
+      {
+        "title": "Leiner, D. J. (2019). SoSci Survey [Computer software]. https://www.soscisurvey.de",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Lewandowski, D., Kurowicka, D., & Joe, H. (2009). Generating random correlation matrices based on vines and extended onion method. Journal of Multivariate Analysis, 100(9), 1989\u20132001. https://doi.org/10.1016/j.jmva.2009.04.008",
+        "year": "2009",
+        "first_author_surname": "D Lewandowski",
+        "doi": "10.1016/j.jmva.2009.04.008"
+      },
+      {
+        "title": "Likert, R. (1932). A technique for the measurement of attitudes. Archives of Psychology, 22140, 55\u201355.",
+        "year": "1932",
+        "first_author_surname": "R Likert",
+        "doi": null
+      },
+      {
+        "title": "Lord, F., Novick, M., & Birnbaum, A. (1968). Statistical theories of mental test scores. Addison-Wesley.",
+        "year": "1968",
+        "first_author_surname": "F Lord",
+        "doi": null
+      },
+      {
+        "title": "Miller, K. (Ed.). (2014). Cognitive interviewing methodology. John Wiley & Sons, Inc.",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1002/9781118838860"
+      },
+      {
+        "title": "Moosbrugger, H., & Kelava, A. (Eds.). (2020). Testtheorie und Fragebogenkonstruktion. Springer Berlin Heidelberg. https://doi.org/10.1007/978-3-662-61532-4",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/978-3-662-61532-4"
+      },
+      {
+        "title": "Newsom, J. T. (2015). Longitudinal structural equation modeling: A comprehensive introduction. Routledge, Taylor: Francis Group.",
+        "year": "2015",
+        "first_author_surname": "JT Newsom",
+        "doi": "10.4324/9781315871318"
+      },
+      {
+        "title": "Noel, Y. (2014). A beta unfolding model for continuous bounded responses. Psychometrika, 79(4), 647\u2013674. https://doi.org/10.1007/s11336-013-9361-1",
+        "year": "2014",
+        "first_author_surname": "Y Noel",
+        "doi": "10.1007/s11336-013-9361-1"
+      },
+      {
+        "title": "Noel, Y., & Dauvier, B. (2007). A beta item response model for continuous bounded responses. Applied Psychological Measurement, 31(1), 47\u201373. https://doi.org/10.1177/0146621605287691",
+        "year": "2007",
+        "first_author_surname": "Y Noel",
+        "doi": "10.1177/0146621605287691"
+      },
+      {
+        "title": "Padilla, J.-L., & Ben\u00edtez, I. (2014). Validity evidence based on response processes. Psicothema, (26.1), 136\u2013144. https://doi.org/10.7334/psicothema2013.259",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.7334/psicothema2013.259"
+      },
+      {
+        "title": "R Core Team. (2022). R: A language and environment for statistical computing [Computer Software]. https://www.R-project.org/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Reips, U.-D., & Funke, F. (2008). Interval-level measurement with visual analogue scales in internet-based research: VAS generator. Behavior Research Methods, 40(3), 699\u2013704. https://doi.org/10.3758/BRM.40.3.699",
+        "year": "2008",
+        "first_author_surname": "U-D Reips",
+        "doi": "10.3758/brm.40.3.699"
+      },
+      {
+        "title": "Stan Development Team. (2020). RStan: The R interface to Stan [Computer software]. http://mc-stan.org/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Stan Development Team. (2022). Stan functions reference. https://mc-stan.org/docs/functions-reference/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Taylor, K. S., & Taylor, J. W. (2022). Interval forecasts of weekly incident and cumulative COVID-19 mortality in the United States: A comparison of combining methods (M. Naldi, Ed.). PLOS ONE, 17(3), e0266096. https://doi.org/10.1371/journal.pone.0266096",
+        "year": "2022",
+        "first_author_surname": "KS Taylor",
+        "doi": "10.1371/journal.pone.0266096"
+      },
+      {
+        "title": "Tay, L., Meade, A. W., & Cao, M. (2015). An overview and practical guide to IRT measurement equivalence analysis. Organizational Research Methods, 18(1), 3\u201346. https://doi.org/10.1177/1094428114553062",
+        "year": "2015",
+        "first_author_surname": "L Tay",
+        "doi": "10.1177/1094428114553062"
+      },
+      {
+        "title": "Teigen, K. H., & Jorgensen, M. (2005). When 90% confidence intervals are 50% certain: On the credibility of credible intervals. Applied Cognitive Psychology, 19(4), 455\u2013475. https://doi.org/10.1002/acp.1085",
+        "year": "2005",
+        "first_author_surname": "KH Teigen",
+        "doi": "10.1002/acp.1085"
+      },
+      {
+        "title": "Van Vaerenbergh, Y., & Thomas, T. D. (2013). Response styles in survey research: A literature review of antecedents, consequences, and remedies. International Journal of Public Opinion Research, 25(2), 195\u2013217. https://doi.org/10.1093/ijpor/eds021",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1093/ijpor/eds021"
+      },
+      {
+        "title": "Vehtari, A., Gabry, J., Magnusson, M., Yao, Y., B\u00fcrkner, P.-C., Paananen, T., & Gelman, A. (2022). Loo: Efficient leave-one-out cross-validation and WAIC for Bayesian models. https://mc-stan.org/loo/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Vehtari, A., Gelman, A., Simpson, D., Carpenter, B., & B\u00fcrkner, P.-C. (2021). Rank-normalization, folding, and localization: An improved R-hat for assessing convergence of MCMC (with discussion). Bayesian Analysis, 16(2), 667\u2013718. https://doi.org/10.1214/20-BA1221",
+        "year": "2021",
+        "first_author_surname": "A Vehtari",
+        "doi": "10.1214/20-ba1221"
+      },
+      {
+        "title": "Verkuilen, J., & Smithson, M. (2012). Mixed and mixture regression models for continuous bounded responses using the beta distribution. Journal of Educational and Behavioral Statistics, 37(1), 82\u2013113. https://doi.org/10.3102/1076998610396895",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3102/1076998610396895"
+      },
+      {
+        "title": "Wagner, C., Miller, S., Garibaldi, J. M., Anderson, D. T., & Havens, T. C. (2015). From interval-valued data to general type-2 fuzzy sets. IEEE Transactions on Fuzzy Systems, 23(2), 248\u2013269. https://doi.org/10.1109/TFUZZ.2014.2310734",
+        "year": "2015",
+        "first_author_surname": "C Wagner",
+        "doi": "10.1109/tfuzz.2014.2310734"
+      },
+      {
+        "title": "Winman, A., Hansson, P., & Juslin, P. (2004). Subjective probability intervals: How to reduce overconfidence by interval evaluation. Journal of Experimental Psychology Learning, Memory & Cognition, 30(6), 1167\u20131175. https://doi.org/10.1037/0278-7393.30.6.1167",
+        "year": "2004",
+        "first_author_surname": "A Winman",
+        "doi": "10.1037/0278-7393.30.6.1167"
+      }
+    ]
+  },
+  {
+    "manuscript": "discriminant_validity",
+    "published_doi": "10.1177/00131644241283400",
+    "preprint_doi": "10.31234/osf.io/esvxk",
+    "published_pdf": "published_2025_discriminant_validity.pdf",
+    "preprint_pdf": null,
+    "crossref_total_references": 32,
+    "crossref_dois": [
+      "10.1002/9781118838860",
+      "10.1007/bf02287965",
+      "10.1007/s10584-016-1859-y",
+      "10.1007/s11166-015-9207-6",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/0749-5978(85)90007-x",
+      "10.1016/j.ijforecast.2019.04.015",
+      "10.1016/j.paid.2020.110071",
+      "10.1023/a:1023866030544",
+      "10.1037/0022-3514.90.3.512",
+      "10.1037/0278-7393.30.2.299",
+      "10.1037/1076-898x.10.1.25",
+      "10.1037/h0064147",
+      "10.1037/met0000083",
+      "10.1037/met0000464",
+      "10.1109/fuzz-ieee55066.2022.9882802",
+      "10.1109/tfuzz.2014.2310734",
+      "10.1111/bmsp.12272",
+      "10.1111/j.1539-6924.2009.01337.x",
+      "10.17505/jpor.2022.24855",
+      "10.18637/jss.v048.i02",
+      "10.3102/1076998610396895",
+      "10.3758/s13428-021-01635-0",
+      "10.3758/s13428-024-02394-4"
+    ],
+    "openalex_total_referenced_works": 0,
+    "openalex_dois": [],
+    "union_dois": [
+      "10.1002/9781118838860",
+      "10.1007/bf02287965",
+      "10.1007/s10584-016-1859-y",
+      "10.1007/s11166-015-9207-6",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/0749-5978(85)90007-x",
+      "10.1016/j.ijforecast.2019.04.015",
+      "10.1016/j.paid.2020.110071",
+      "10.1023/a:1023866030544",
+      "10.1037/0022-3514.90.3.512",
+      "10.1037/0278-7393.30.2.299",
+      "10.1037/1076-898x.10.1.25",
+      "10.1037/h0064147",
+      "10.1037/met0000083",
+      "10.1037/met0000464",
+      "10.1109/fuzz-ieee55066.2022.9882802",
+      "10.1109/tfuzz.2014.2310734",
+      "10.1111/bmsp.12272",
+      "10.1111/j.1539-6924.2009.01337.x",
+      "10.17505/jpor.2022.24855",
+      "10.18637/jss.v048.i02",
+      "10.3102/1076998610396895",
+      "10.3758/s13428-021-01635-0",
+      "10.3758/s13428-024-02394-4"
+    ],
+    "overlap_dois": [],
+    "crossref_entries": [
+      {
+        "title": "American Educational Research Association. (Ed.). (2011). Standards for educational and psychological testing.",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Baird B. M. Le K. Lucas R. E. (2006). On the nature of intraindividual personality variability: Reliability validity and associations with well-being. Journal of Personality & Social Psychology 90(3) 512\u2013527. https://doi.org/10.1037/0022-3514.90.3.512",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/0022-3514.90.3.512"
+      },
+      {
+        "title": "Budescu D. V. Wallsten T. S. (1985). Consistency in interpretation of probabilistic phrases. Organizational Behavior and Human Decision Processes 36(3) 391\u2013405. https://doi.org/10.1016/0749-5978(85)90007-X",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/0749-5978(85)90007-x"
+      },
+      {
+        "title": "Cubitt R. P. Navarro-Martinez D. Starmer C. (2015). On preference imprecision. Journal of Risk and Uncertainty 50(1) 1\u201334. https://doi.org/10.1007/s11166-015-9207-6",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11166-015-9207-6"
+      },
+      {
+        "title": "Eid M. Geiser C. Koch T. Heene M. (2017). Anomalous results in G-factor models: Explanations and alternatives. Psychological Methods 22(3) 541\u2013562. https://doi.org/10.1037/met0000083",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/met0000083"
+      },
+      {
+        "title": "Ellerby Z. Wagner C. (2022). Does permitting uncertain estimates help or hinder the wisdom of crowds? In 2022 IEEE International Conference on Fuzzy Systems (FUZZ-IEEE) (pp. 1\u20137). Institute of Electrical and Electronics Engineers. https://doi.org/10.1109/FUZZ-IEEE55066.2022.9882802",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1109/fuzz-ieee55066.2022.9882802"
+      },
+      {
+        "title": "Ellerby Z. Wagner C. Broomell S. B. (2022). Capturing richer information: On establishing the validity of an interval-valued survey response mode. Behavior Research Methods 54(3) 1240\u20131262. https://doi.org/10.3758/s13428-021-01635-0",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/s13428-021-01635-0"
+      },
+      {
+        "title": "Ellison W. D. Trahan A. C. Pinzon J. C. Gillespie M. E. Simmons L. M. King K. Y. (2020). For whom and for what is experience sampling more accurate than retrospective report? Personality and Individual Differences 163 110071. https://doi.org/10.1016/j.paid.2020.110071",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.paid.2020.110071"
+      },
+      {
+        "title": "Gersen L. (2024). Leongersen/noUiSlider [Software]. https://github.com/leongersen/noUiSlider",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "A broad-bandwidth, public domain, personality inventory measuring the lower-level facets of several five-factor models",
+        "year": "1999",
+        "first_author_surname": "Goldberg L. R.",
+        "doi": null
+      },
+      {
+        "title": "Grushka-Cockayne Y. Jose V. R. R. (2020). Combining prediction intervals in the M4 competition. International Journal of Forecasting 36(1) 178\u2013185. https://doi.org/10.1016/j.ijforecast.2019.04.015",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.ijforecast.2019.04.015"
+      },
+      {
+        "title": "Harris A. J. L. Por H.-H. Broomell S. B. (2017). Anchoring climate change communications. Climatic Change 140(3) 387\u2013398. https://doi.org/10.1007/s10584-016-1859-y",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s10584-016-1859-y"
+      },
+      {
+        "title": "Hayes M. Patterson D. (1921). Experimental development of the graphic rating method. Psychological Bulletin 18(2) 98\u201399. https://doi.org/10.1037/h0064147",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/h0064147"
+      },
+      {
+        "title": "Holzinger K. J. Swineford F. (1937). The Bi-factor method. Psychometrika 2(1) 41\u201354. https://doi.org/10.1007/BF02287965",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/bf02287965"
+      },
+      {
+        "title": "Karelitz T. M. Budescu D. V. (2004). You say \u201cprobable\u201d and I say \u201clikely\u201d: Improving interpersonal communication with verbal probability phrases. Journal of Experimental Psychology: Applied 10(1) 25\u201341. https://doi.org/10.1037/1076-898X.10.1.25",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/1076-898x.10.1.25"
+      },
+      {
+        "title": "Kloft M. Hartmann R. Voss A. Heck D. W. (2023). The Dirichlet dual response model: An item response model for continuous bounded interval responses. Psychometrika 88 888\u2013916. https://doi.org/10.1007/s11336-023-09924-7",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11336-023-09924-7"
+      },
+      {
+        "title": "Kloft M. Snijder J.-P. Heck D. W. (2024). Measuring the variability of personality traits with interval responses: Psychometric properties of the dual-range slider response format. Behavior Research Methods 56 3469\u20133486. https://doi.org/10.3758/s13428-024-02394-4",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/s13428-024-02394-4"
+      },
+      {
+        "title": "Leertouwer I. Schuurman N. K. Vermunt J. K. (2022). Are retrospective assessments means of people\u2019s experiences? Accounting for interpersonal and intrapersonal variability when comparing retrospective assessment data to ecological momentary assessment data. Journal for Person-Oriented Research 8(2) 52\u201370. https://doi.org/10.17505/jpor.2022.24855",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.17505/jpor.2022.24855"
+      },
+      {
+        "title": "A technique for the measurement of attitudes",
+        "year": "1932",
+        "first_author_surname": "Likert R.",
+        "doi": null
+      },
+      {
+        "title": "Mart\u00edn-Fern\u00e1ndez J. A. Barcel\u00f3-Vidal C. Pawlowsky-Glahn V. (2003). Dealing with zeros and missing values in compositional data sets using nonparametric imputation. Mathematical Geology 35(3) 253\u2013278. https://doi.org/10.1023/A:1023866030544",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1023/a:1023866030544"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1002/9781118838860"
+      },
+      {
+        "title": "R Core Team. (2023). R: A language and environment for statistical computing (Version 4.3.2) [Software]. https://www.R-project.org/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Revelle W. (2024). Psych: Procedures for psychological, psychometric, and personality research [Manual]. Northwestern University.",
+        "year": "2024",
+        "first_author_surname": "Revelle W.",
+        "doi": null
+      },
+      {
+        "title": "Rosseel Y. (2012). Lavaan: An R package for structural equation modeling. Journal of Statistical Software 48(2) 1\u201336. https://doi.org/10.18637/jss.v048.i02",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.18637/jss.v048.i02"
+      },
+      {
+        "title": "Schumann M., Marschall J., Hildebrandt-Heene S., Nolting H.-D. (2022). Analyse der Arbeitsunf\u00e4higkeitsdaten: Risiko Psyche: Wie Depressionen, \u00c4ngste und Stress das Herz belasten [Analysis of incapacity for work data: Psyche risk: How depression, anxiety, and stress put a strain on the heart] (Storm A., Ed.). medhochzwei.",
+        "year": "2022",
+        "first_author_surname": "Schumann M.",
+        "doi": null
+      },
+      {
+        "title": "Smithson M. Broomell S. B. (2024). Compositional data analysis tutorial: Psychological methods. Psychological Methods 29(2) 362\u2013378. https://doi.org/10.1037/met0000464",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/met0000464"
+      },
+      {
+        "title": "Soll J. B. Klayman J. (2004). Overconfidence in interval estimates. Journal of Experimental Psychology: Learning Memory & Cognition 30(2) 299\u2013314. https://doi.org/10.1037/0278-7393.30.2.299",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/0278-7393.30.2.299"
+      },
+      {
+        "title": "Speirs-Bridge A. Fidler F. McBride M. Flander L. Cumming G. Burgman M. (2010). Reducing overconfidence in the interval judgments of experts. Risk Analysis 30(3) 512\u2013523. https://doi.org/10.1111/j.1539-6924.2009.01337.x",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1111/j.1539-6924.2009.01337.x"
+      },
+      {
+        "title": "Statistisches Bundesamt Deutschland. (2024). Statistisches Bundesamt Deutschland\u2014GENESIS-online. https://www-genesis.destatis.de/genesis//online?operation=table&code=23211-0001&bypass=true&levelindex=0&levelid=1708638020325#abreadcrumb",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Ulitzsch E. Yildirim-Erbasli S. N. Gorgun G. Bulut O. (2022). An explanatory mixture IRT model for careless and insufficient effort responding in self-report measures. British Journal of Mathematical and Statistical Psychology 75(3) 668\u2013698. https://doi.org/10.1111/bmsp.12272",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1111/bmsp.12272"
+      },
+      {
+        "title": "Verkuilen J. Smithson M. (2012). Mixed and mixture regression models for continuous bounded responses using the beta distribution. Journal of Educational and Behavioral Statistics 37(1) 82\u2013113. https://doi.org/10.3102/1076998610396895",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3102/1076998610396895"
+      },
+      {
+        "title": "Wagner C. Miller S. Garibaldi J. M. Anderson D. T. Havens T. C. (2015). From interval-valued data to general type-2 fuzzy sets. IEEE Transactions on Fuzzy Systems 23(2) 248\u2013269. https://doi.org/10.1109/TFUZZ.2014.2310734",
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1109/tfuzz.2014.2310734"
+      }
+    ]
+  },
+  {
+    "manuscript": "interval_consensus_model",
+    "published_doi": "10.1017/psy.2025.10058",
+    "preprint_doi": "10.31234/osf.io/dzvw2_v2",
+    "published_pdf": "published_2025_interval_consensus_model.pdf",
+    "preprint_pdf": "preprint_2025_interval_consensus_model.pdf",
+    "crossref_total_references": 43,
+    "crossref_dois": [
+      "10.1007/bf02294195",
+      "10.1007/s10584-016-1859-y",
+      "10.1007/s11336-013-9382-9",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/j.cageo.2020.104621",
+      "10.1016/j.jbusres.2014.08.012",
+      "10.1016/j.jmp.2012.06.002",
+      "10.1016/j.jmp.2014.06.001",
+      "10.1016/j.jmp.2022.102742",
+      "10.1017/s1930297500003910",
+      "10.1023/a:1023866030544",
+      "10.1037/met0000464",
+      "10.1037/met0000695",
+      "10.1109/fuzz-ieee.2016.7737959",
+      "10.1177/00131644241283400",
+      "10.1214/20-ba1221",
+      "10.1287/deca.2016.0340",
+      "10.1371/journal.pone.0175163",
+      "10.1525/aa.1986.88.2.02a00020",
+      "10.20982/tqmp.16.4.p248",
+      "10.32614/cran.package.intervalpsych",
+      "10.3758/s13428-017-0869-7",
+      "10.3758/s13428-021-01635-0",
+      "10.3758/s13428-024-02394-4",
+      "10.48550/arxiv.1701.02434",
+      "10.5127/jep.057316"
+    ],
+    "openalex_total_referenced_works": 25,
+    "openalex_dois": [
+      "10.1007/bf02294195",
+      "10.1007/s10584-016-1859-y",
+      "10.1007/s11336-013-9382-9",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/j.cageo.2020.104621",
+      "10.1016/j.jbusres.2014.08.012",
+      "10.1016/j.jmp.2012.06.002",
+      "10.1016/j.jmp.2014.06.001",
+      "10.1016/j.jmp.2022.102742",
+      "10.1017/s1930297500003910",
+      "10.1023/a:1023866030544",
+      "10.1037/met0000464",
+      "10.1037/met0000695",
+      "10.1109/fuzz-ieee.2016.7737959",
+      "10.1177/00131644241283400",
+      "10.1214/20-ba1221",
+      "10.1287/deca.2016.0340",
+      "10.1371/journal.pone.0175163",
+      "10.1525/aa.1986.88.2.02a00020",
+      "10.20982/tqmp.16.4.p248",
+      "10.3758/s13428-017-0869-7",
+      "10.3758/s13428-024-02394-4",
+      "10.5127/jep.057316"
+    ],
+    "union_dois": [
+      "10.1007/bf02294195",
+      "10.1007/s10584-016-1859-y",
+      "10.1007/s11336-013-9382-9",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/j.cageo.2020.104621",
+      "10.1016/j.jbusres.2014.08.012",
+      "10.1016/j.jmp.2012.06.002",
+      "10.1016/j.jmp.2014.06.001",
+      "10.1016/j.jmp.2022.102742",
+      "10.1017/s1930297500003910",
+      "10.1023/a:1023866030544",
+      "10.1037/met0000464",
+      "10.1037/met0000695",
+      "10.1109/fuzz-ieee.2016.7737959",
+      "10.1177/00131644241283400",
+      "10.1214/20-ba1221",
+      "10.1287/deca.2016.0340",
+      "10.1371/journal.pone.0175163",
+      "10.1525/aa.1986.88.2.02a00020",
+      "10.20982/tqmp.16.4.p248",
+      "10.32614/cran.package.intervalpsych",
+      "10.3758/s13428-017-0869-7",
+      "10.3758/s13428-021-01635-0",
+      "10.3758/s13428-024-02394-4",
+      "10.48550/arxiv.1701.02434",
+      "10.5127/jep.057316"
+    ],
+    "overlap_dois": [
+      "10.1007/bf02294195",
+      "10.1007/s10584-016-1859-y",
+      "10.1007/s11336-013-9382-9",
+      "10.1007/s11336-023-09924-7",
+      "10.1016/j.cageo.2020.104621",
+      "10.1016/j.jbusres.2014.08.012",
+      "10.1016/j.jmp.2012.06.002",
+      "10.1016/j.jmp.2014.06.001",
+      "10.1016/j.jmp.2022.102742",
+      "10.1017/s1930297500003910",
+      "10.1023/a:1023866030544",
+      "10.1037/met0000464",
+      "10.1037/met0000695",
+      "10.1109/fuzz-ieee.2016.7737959",
+      "10.1177/00131644241283400",
+      "10.1214/20-ba1221",
+      "10.1287/deca.2016.0340",
+      "10.1371/journal.pone.0175163",
+      "10.1525/aa.1986.88.2.02a00020",
+      "10.20982/tqmp.16.4.p248",
+      "10.3758/s13428-017-0869-7",
+      "10.3758/s13428-024-02394-4",
+      "10.5127/jep.057316"
+    ],
+    "crossref_entries": [
+      {
+        "title": "Google. (2025). Gemini 2.5. [Large language model]. https://gemini.google.com/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "You say \u201cprobable\u201d and I say \u201clikely\u201d: Improving interpersonal communication with verbal probability phrases",
+        "year": "2004",
+        "first_author_surname": "Karelitz",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/s13428-021-01635-0"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.48550/arxiv.1701.02434"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11336-013-9382-9"
+      },
+      {
+        "title": "Anthropic. (2025a). Claude opus 4.1. [Large language model]. https://claude.ai",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Gabry, J. , & Mahr, T. (2024). Bayesplot: Plotting for Bayesian models. (Version 1.11.1) [Software R package]. https://mc-stan.org/bayesplot/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Stan Development Team. (2023). Stan modeling language users guide and reference manual. (Version 2.33) [Software]. https://mc-stan.org",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1214/20-ba1221"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.5127/jep.057316"
+      },
+      {
+        "title": "R Core Team. (2023). R: A language and environment for statistical computing. (Version 4.4.1) [Software]. Vienna, Austria. https://www.R-project.org/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1017/s1930297500003910"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1023/a:1023866030544"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.20982/tqmp.16.4.p248"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/s13428-017-0869-7"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.jmp.2014.06.001"
+      },
+      {
+        "title": "Gabry, J. , \u010ce\u0161novar, R. , & Johnson, A. (2023). CmdStanR: R interface to \u2018cmdstan\u2019. (Version 0.8.1) [Software R package]. https://mc-stan.org/cmdstanr/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": "Stan Development Team. (2024). RStan: R interface to stan. January 24, 2024. https://mc-stan.org/rstan/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1525/aa.1986.88.2.02a00020"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.32614/cran.package.intervalpsych"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s11336-023-09924-7"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.jmp.2022.102742"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/s10584-016-1859-y"
+      },
+      {
+        "title": "DeepL, S. E. (2025). DeepL translator. [Online translation service]. https://www.deepl.com",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1177/00131644241283400"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.3758/s13428-024-02394-4"
+      },
+      {
+        "title": "Bradley, M. M. , & Lang, P. J. (1999). Affective norms for English words (ANEW): Instruction manual and affective ratings. (tech. rep.) Technical report C-1, The Center for Research in Psychophysiology, University of Florida.",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/met0000695"
+      },
+      {
+        "title": "Anthropic. (2025b). Claude sonnet 4. [Large language model]. https://claude.ai",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1109/fuzz-ieee.2016.7737959"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1007/bf02294195"
+      },
+      {
+        "title": "Gersen, L. (2024). Leongersen/noUiSlider. [Software]. https://github.com/leongersen/noUiSlider",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.jbusres.2014.08.012"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1037/met0000464"
+      },
+      {
+        "title": null,
+        "year": "2020",
+        "first_author_surname": "Ellerby",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1287/deca.2016.0340"
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1371/journal.pone.0175163"
+      },
+      {
+        "title": "OpenAI. (2025). ChatGPT-5. [Large language model]. https://chat.openai.com/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.jmp.2012.06.002"
+      },
+      {
+        "title": null,
+        "year": "2004",
+        "first_author_surname": "Surowiecki",
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": "2015",
+        "first_author_surname": "Kruschke",
+        "doi": null
+      },
+      {
+        "title": "B\u00fcrkner, P.-C. , Gabry, J. , Kay, M. , & Vehtari, A. (2023). Posterior: Tools for working with posterior distributions. (Version 1.5.0) [Software R package]. https://mc-stan.org/posterior/",
+        "year": null,
+        "first_author_surname": null,
+        "doi": null
+      },
+      {
+        "title": null,
+        "year": null,
+        "first_author_surname": null,
+        "doi": "10.1016/j.cageo.2020.104621"
+      }
+    ]
+  }
+]

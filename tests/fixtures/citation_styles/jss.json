@@ -1,0 +1,30 @@
+{
+  "style": "jss",
+  "display_name": "JSS",
+  "applies_to": "Journal of Statistical Software style: 'Surname II (YYYY)' author-year with no comma after the surname.",
+  "confusable_with": [
+    "apa7",
+    "elsevier"
+  ],
+  "cases": [
+    {
+      "id": "jss-author-year-no-comma",
+      "layer": "split",
+      "variant": "JSS (Surname II (YYYY))",
+      "round": "corpus baseline",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the APA author-start pattern being tightened until it no longer matches 'Surname II (YYYY)'"
+      },
+      "text": "Alexandrov T, Decker J, Bischoff FR (2009). Metabolomic and proteomic\ncompass for plant metabolism. Bioinformatics.\nCook R (1977). Detection of influential observation in linear regression. Technometrics 19, 15-18.",
+      "expect": {
+        "count": 2,
+        "entry_starts": {
+          "0": "Alexandrov T",
+          "1": "Cook R"
+        }
+      }
+    }
+  ]
+}

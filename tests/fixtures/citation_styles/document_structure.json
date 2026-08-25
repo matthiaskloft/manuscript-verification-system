@@ -1,0 +1,202 @@
+{
+  "style": "document_structure",
+  "display_name": "Document structure (style-independent)",
+  "applies_to": "Bibliography section boundaries: where the reference list starts and stops, independent of the citation style inside it.",
+  "confusable_with": [
+    "apa7",
+    "vancouver"
+  ],
+  "cases": [
+    {
+      "id": "section-stops-at-real-appendix",
+      "layer": "section",
+      "variant": "Section boundary, appendix heading",
+      "round": "#37 feature",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "section": "Doe, J. (2020). A title.\nAppendix B Additional analyses\nSupporting material"
+        }
+      },
+      "text": "References\nDoe, J. (2020). A title.\nAppendix B Additional analyses\nSupporting material",
+      "expect": {
+        "section_equals": "Doe, J. (2020). A title."
+      }
+    },
+    {
+      "id": "section-stops-at-received-metadata",
+      "layer": "section",
+      "variant": "Section boundary, submission metadata",
+      "round": "#37 feature",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "section": "Doe, J. (2020). A title.\nManuscript received: March 5, 2020"
+        }
+      },
+      "text": "References\nDoe, J. (2020). A title.\nManuscript received: March 5, 2020",
+      "expect": {
+        "section_equals": "Doe, J. (2020). A title."
+      }
+    },
+    {
+      "id": "section-stops-after-doi-final-entry",
+      "layer": "section",
+      "variant": "Section boundary after a DOI-final entry",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "section": "Doe, J. (2020). A title. https://doi.org/10.1000/xyz123\nAppendix A. Supplementary analyses\nSupporting material here."
+        }
+      },
+      "note": "The last entry has no closing period, so a completed-entry rule cannot require punctuation alone.",
+      "text": "References\nDoe, J. (2020). A title. https://doi.org/10.1000/xyz123\nAppendix A. Supplementary analyses\nSupporting material here.",
+      "expect": {
+        "section_equals": "Doe, J. (2020). A title. https://doi.org/10.1000/xyz123"
+      }
+    },
+    {
+      "id": "section-keeps-wrapped-received-line",
+      "layer": "section",
+      "variant": "Wrapped title beginning \"Received\"",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the 'Received' stop-heading rule truncating the bibliography at a wrapped title that begins with that word"
+      },
+      "text": "References\nDoe, J. (2020). A title about\nReceived signal strength fingerprints\nin buildings. Journal, 1, 1-10.\nRoe, R. (2019). Another title.",
+      "expect": {
+        "section_contains": [
+          "in buildings. Journal, 1, 1-10.",
+          "Roe, R. (2019)."
+        ]
+      }
+    },
+    {
+      "id": "section-keeps-wrapped-appendix-line",
+      "layer": "section",
+      "variant": "Wrapped title beginning \"Appendix\"",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the appendix stop-heading rule truncating the bibliography at a wrapped title that begins with 'Appendix'"
+      },
+      "text": "References\nUnited States Congress. Hearings before the committee,\nAppendix to the Hearings, Volume XXVI\nWashington. 1946.\nRoe, R. (2019). Another title.",
+      "expect": {
+        "section_contains": [
+          "Appendix to the Hearings",
+          "Roe, R. (2019)."
+        ]
+      }
+    },
+    {
+      "id": "section-keeps-reference-beginning-with-appendices",
+      "layer": "section",
+      "variant": "Reference opening with \"Appendices\"",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the appendix stop-heading rule cutting a reference whose own title opens with 'Appendices'"
+      },
+      "text": "References\nDoe, J. (2020). A title.\nAppendices in applied statistics: a review of reporting practice. Journal, 2, 1-9.\nRoe, R. (2019). Another title.",
+      "expect": {
+        "section_contains": [
+          "Appendices in applied statistics",
+          "Roe, R. (2019)."
+        ]
+      }
+    },
+    {
+      "id": "structure-running-header-repeats-the-heading",
+      "layer": "normalize",
+      "variant": "Running header repeating the word 'References'",
+      "round": "review round 5 (C2)",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "c88371b",
+        "observed_then": {
+          "error": "NoBibliographySectionError: No bibliography/references heading found in the document."
+        }
+      },
+      "note": "Two defenses contradicted each other: find_bibliography_section takes the first 'References' so a repeated running header cannot move the section start, but _drop_repeated_isolated_lines ran first and deleted every copy including the real heading, so there was no section left to find.",
+      "text": "Introduction\n\nSome body text about the study.\n\nReferences\n\nDoe, J. (2020). A first article title. Journal of Examples, 1(1), 1-10.\n\nReferences\n\nRoe, R. (2019). A second article title. Journal of Methods, 2(1), 20-30.\n\nReferences\n\nYoung, Y. (2018). A third article title. Journal of Things, 3(1), 40-50.",
+      "expect": {
+        "normalized_contains": [
+          "References"
+        ],
+        "count": 3,
+        "entry_starts": {
+          "0": "Doe, J.",
+          "1": "Roe, R.",
+          "2": "Young, Y."
+        }
+      }
+    },
+    {
+      "id": "bulleted-entry-split-by-mid-entry-break",
+      "layer": "normalize",
+      "variant": "Bulleted bibliography, entry split across a wrap/page break into two bullets",
+      "round": "parser diagnostic on Siepe et al. 2024",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "16acfcc",
+        "observed_then": {
+          "normalized_contains": {},
+          "normalized_excludes": {},
+          "count": 5,
+          "entry_starts": {
+            "1": "word. J",
+            "2": "Roe, R. ("
+          }
+        }
+      },
+      "note": "pymupdf4llm renders a bulleted bibliography as one list item per entry, but a wrap or page break falling mid-entry can make it emit the continuation as its own separate bullet: once with a dangling hyphen wrap, once where the break falls right after a title-ending period (indistinguishable from a finished entry by punctuation alone) with a page-number/running-header pair sitting between the two bullets in the source PDF (already stripped by the earlier normalize passes by the time this one runs). Neither continuation carries its own author-start marker or year, unlike a real next entry.",
+      "text": "References\n\n- Doe, J. (2020). A title that wraps across a break in the middle of a –\n\n- word. Journal of Examples, 1(1), 1-10.\n\n- Roe, R. (2021). A second reference ending in a normal sentence.\n\n- Continuing without its own author or year. Journal of Methods, 3(2), 100-120. https://doi.org/10.1234/example\n\n- Young, Y. (2022). A third, real entry. Journal of Cases, 4(1), 1-5.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "1": "Roe, R.",
+          "2": "Young, Y."
+        },
+        "entry_contains": {
+          "0": "word. Journal of Examples",
+          "1": "Journal of Methods"
+        }
+      }
+    },
+    {
+      "id": "bulleted-entry-split-by-and-prefixed-last-author",
+      "layer": "normalize",
+      "variant": "Bulleted bibliography, many-author entry split across a wrap/page break right before its last author's 'and Surname, I.'",
+      "round": "parser diagnostic on a user-supplied preprint",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "b3ede7a",
+        "observed_then": {
+          "count": 3,
+          "entry_starts": {
+            "1": "and Young, Y."
+          }
+        }
+      },
+      "note": "APA_AUTHOR_START_RE's optional particle prefix (added for 'van der Veen, D.'-style surnames) also matches the literal conjunction 'and' introducing a wrapped list's last author ('and Young, Y.'), so the merge heuristic's has_own_evidence check mistook the continuation bullet for a genuine new entry and refused to merge it back, even though it also carried its own DOI (continuation evidence).",
+      "text": "References\n\n- Doe, J., Roe, R., Foe, F., Poe, P., Coe, C., Moe, M., Zoe, Z., …\n\n- and Young, Y. Comparing methods for something interesting. Journal of Examples , 5(2):e0012345, 2024. doi:10.1234/example.0012345.\n\n- Horn, J. L. A rationale and test for something else. Journal of Methods , 3 (2):1-10, 1965. doi:10.1234/other.",
+      "expect": {
+        "count": 2,
+        "entry_starts": {
+          "1": "Horn, J. L."
+        },
+        "entry_contains": {
+          "0": "and Young, Y. Comparing methods"
+        }
+      }
+    }
+  ]
+}

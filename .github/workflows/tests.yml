@@ -1,0 +1,43 @@
+name: tests
+
+# The extraction tiers are heuristic: a change made to recover one PDF's reference
+# list routinely mis-splits another style, and the failure is silent (a merged or
+# dropped reference, not an exception). The suite is where that gets caught, so it
+# runs on every push and pull request.
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor from pyproject's requires-python, and the newest release the
+        # project is expected to run on.
+        python-version: ["3.11", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install project and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run tests
+        # No test reaches the network: the extraction suite works on synthetic
+        # fixtures, and the API clients are stubbed. A failure here is a real one.
+        run: python -m pytest -q

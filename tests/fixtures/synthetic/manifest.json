@@ -1,0 +1,3136 @@
+{
+  "documents": [
+    {
+      "broad_field": "social_behavioral",
+      "style": "apa7",
+      "pdf": "synthetic_social_behavioral_apa7_clean.pdf",
+      "entries": [
+        {
+          "key": "kahneman1979prospect",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Daniel",
+              "family": "Kahneman"
+            },
+            {
+              "given": "Amos",
+              "family": "Tversky"
+            }
+          ],
+          "year": "1979",
+          "title": "Prospect theory: An analysis of decision under risk",
+          "doi": "10.2307/1914185",
+          "journal": "Econometrica",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "lord1968statistical",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Frederic M.",
+              "family": "Lord"
+            },
+            {
+              "given": "Melvin R.",
+              "family": "Novick"
+            }
+          ],
+          "year": "1968",
+          "title": "Statistical theories of mental test scores",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "psychometrics"
+        },
+        {
+          "key": "bandura1977selfefficacy",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Albert",
+              "family": "Bandura"
+            }
+          ],
+          "year": "1977",
+          "title": "Self-efficacy: Toward a unifying theory of behavioral change",
+          "doi": "10.1037/0033-295X.84.2.191",
+          "journal": "Psychological Review",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "milgram1963behavioral",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Stanley",
+              "family": "Milgram"
+            }
+          ],
+          "year": "1963",
+          "title": "Behavioral study of obedience",
+          "doi": "10.1037/h0040525",
+          "journal": "Journal of Abnormal and Social Psychology",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "festinger1957cognitive",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Leon",
+              "family": "Festinger"
+            }
+          ],
+          "year": "1957",
+          "title": "A Theory of Cognitive Dissonance",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "ainsworth1978patterns",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Mary D. Salter",
+              "family": "Ainsworth"
+            },
+            {
+              "given": "Mary C.",
+              "family": "Blehar"
+            },
+            {
+              "given": "Everett",
+              "family": "Waters"
+            },
+            {
+              "given": "Sally",
+              "family": "Wall"
+            }
+          ],
+          "year": "1978",
+          "title": "Patterns of Attachment: A Psychological Study of the Strange Situation",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "developmental psychology"
+        },
+        {
+          "key": "deciryan2000what",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Edward L.",
+              "family": "Deci"
+            },
+            {
+              "given": "Richard M.",
+              "family": "Ryan"
+            }
+          ],
+          "year": "2000",
+          "title": "The \"what\" and \"why\" of goal pursuits: Human needs and the self-determination of behavior",
+          "doi": "10.1207/S15327965PLI1104_01",
+          "journal": "Psychological Inquiry",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "cronbach1951coefficient",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Lee J.",
+              "family": "Cronbach"
+            }
+          ],
+          "year": "1951",
+          "title": "Coefficient alpha and the internal structure of tests",
+          "doi": "10.1007/BF02310555",
+          "journal": "Psychometrika",
+          "field_of_study": "psychometrics"
+        },
+        {
+          "key": "granovetter1973strength",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Mark S.",
+              "family": "Granovetter"
+            }
+          ],
+          "year": "1973",
+          "title": "The strength of weak ties",
+          "doi": "10.1086/225469",
+          "journal": "American Journal of Sociology",
+          "field_of_study": "sociology"
+        },
+        {
+          "key": "rosenthaljacobson1968pygmalion",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Robert",
+              "family": "Rosenthal"
+            },
+            {
+              "given": "Lenore",
+              "family": "Jacobson"
+            }
+          ],
+          "year": "1968",
+          "title": "Pygmalion in the Classroom: Teacher Expectation and Pupils' Intellectual Development",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "education"
+        },
+        {
+          "key": "asch1956studies",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Solomon E.",
+              "family": "Asch"
+            }
+          ],
+          "year": "1956",
+          "title": "Studies of independence and conformity: I. A minority of one against a unanimous majority",
+          "doi": "10.1037/h0093718",
+          "journal": "Psychological Monographs: General and Applied",
+          "field_of_study": "social psychology"
+        },
+        {
+          "key": "rosenberg1965society",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Morris",
+              "family": "Rosenberg"
+            }
+          ],
+          "year": "1965",
+          "title": "Society and the Adolescent Self-Image",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "sociology"
+        },
+        {
+          "key": "rotter1966generalized",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Julian B.",
+              "family": "Rotter"
+            }
+          ],
+          "year": "1966",
+          "title": "Generalized expectancies for internal versus external control of reinforcement",
+          "doi": "10.1037/h0092976",
+          "journal": "Psychological Monographs: General and Applied",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "ekmanfriesen1971constants",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Paul",
+              "family": "Ekman"
+            },
+            {
+              "given": "Wallace V.",
+              "family": "Friesen"
+            }
+          ],
+          "year": "1971",
+          "title": "Constants across cultures in the face and emotion",
+          "doi": "10.1037/h0030377",
+          "journal": "Journal of Personality and Social Psychology",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "baumeisterleary1995need",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Roy F.",
+              "family": "Baumeister"
+            },
+            {
+              "given": "Mark R.",
+              "family": "Leary"
+            }
+          ],
+          "year": "1995",
+          "title": "The need to belong: Desire for interpersonal attachments as a fundamental human motivation",
+          "doi": "10.1037/0033-2909.117.3.497",
+          "journal": "Psychological Bulletin",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "bowlby1969attachment",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "John",
+              "family": "Bowlby"
+            }
+          ],
+          "year": "1969",
+          "title": "Attachment and Loss, Volume 1: Attachment",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "developmental psychology"
+        },
+        {
+          "key": "piaget1952origins",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Jean",
+              "family": "Piaget"
+            }
+          ],
+          "year": "1952",
+          "title": "The Origins of Intelligence in Children",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "developmental psychology"
+        },
+        {
+          "key": "vygotsky1978mind",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Lev S.",
+              "family": "Vygotsky"
+            }
+          ],
+          "year": "1978",
+          "title": "Mind in Society: The Development of Higher Psychological Processes",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "developmental psychology"
+        },
+        {
+          "key": "sherif1936psychology",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Muzafer",
+              "family": "Sherif"
+            }
+          ],
+          "year": "1936",
+          "title": "The Psychology of Social Norms",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "social psychology"
+        },
+        {
+          "key": "bem1972selfperception",
+          "entry_type": "incollection",
+          "authors": [
+            {
+              "given": "Daryl J.",
+              "family": "Bem"
+            }
+          ],
+          "year": "1972",
+          "title": "Self-perception theory",
+          "doi": "10.1016/S0065-2601(08)60024-6",
+          "journal": null,
+          "field_of_study": "social psychology"
+        },
+        {
+          "key": "schwartz1992universals",
+          "entry_type": "incollection",
+          "authors": [
+            {
+              "given": "Shalom H.",
+              "family": "Schwartz"
+            }
+          ],
+          "year": "1992",
+          "title": "Universals in the content and structure of values: Theoretical advances and empirical tests in 20 countries",
+          "doi": "10.1016/S0065-2601(08)60281-6",
+          "journal": null,
+          "field_of_study": "social psychology"
+        },
+        {
+          "key": "durkheim1951suicide",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "\u00c9mile",
+              "family": "Durkheim"
+            }
+          ],
+          "year": "1951",
+          "title": "Suicide: A Study in Sociology",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "sociology"
+        },
+        {
+          "key": "weber1930protestant",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Max",
+              "family": "Weber"
+            }
+          ],
+          "year": "1930",
+          "title": "The Protestant Ethic and the Spirit of Capitalism",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "sociology"
+        },
+        {
+          "key": "becker1968crime",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Gary S.",
+              "family": "Becker"
+            }
+          ],
+          "year": "1968",
+          "title": "Crime and punishment: An economic approach",
+          "doi": "10.1086/259394",
+          "journal": "Journal of Political Economy",
+          "field_of_study": "economics"
+        },
+        {
+          "key": "thalersunstein2008nudge",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Richard H.",
+              "family": "Thaler"
+            },
+            {
+              "given": "Cass R.",
+              "family": "Sunstein"
+            }
+          ],
+          "year": "2008",
+          "title": "Nudge: Improving Decisions About Health, Wealth, and Happiness",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "behavioral economics"
+        },
+        {
+          "key": "ariely2008predictably",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Dan",
+              "family": "Ariely"
+            }
+          ],
+          "year": "2008",
+          "title": "Predictably Irrational: The Hidden Forces That Shape Our Decisions",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "behavioral economics"
+        },
+        {
+          "key": "diener1984subjective",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Ed",
+              "family": "Diener"
+            }
+          ],
+          "year": "1984",
+          "title": "Subjective well-being",
+          "doi": "10.1037/0033-2909.95.3.542",
+          "journal": "Psychological Bulletin",
+          "field_of_study": "psychology"
+        },
+        {
+          "key": "ross1977intuitive",
+          "entry_type": "incollection",
+          "authors": [
+            {
+              "given": "Lee",
+              "family": "Ross"
+            }
+          ],
+          "year": "1977",
+          "title": "The intuitive psychologist and his shortcomings: Distortions in the attribution process",
+          "doi": "10.1016/S0065-2601(08)60357-3",
+          "journal": null,
+          "field_of_study": "social psychology"
+        },
+        {
+          "key": "tajfelturner1979integrative",
+          "entry_type": "incollection",
+          "authors": [
+            {
+              "given": "Henri",
+              "family": "Tajfel"
+            },
+            {
+              "given": "John C.",
+              "family": "Turner"
+            }
+          ],
+          "year": "1979",
+          "title": "An integrative theory of intergroup conflict",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "social psychology"
+        },
+        {
+          "key": "markuskitayama1991culture",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Hazel Rose",
+              "family": "Markus"
+            },
+            {
+              "given": "Shinobu",
+              "family": "Kitayama"
+            }
+          ],
+          "year": "1991",
+          "title": "Culture and the self: Implications for cognition, emotion, and motivation",
+          "doi": "10.1037/0033-295X.98.2.224",
+          "journal": "Psychological Review",
+          "field_of_study": "cultural psychology"
+        }
+      ],
+      "cited": [
+        {
+          "key": "kahneman1979prospect",
+          "section": "introduction",
+          "form": "narrative",
+          "narrative": true,
+          "position": 1,
+          "marker": 0
+        },
+        {
+          "key": "lord1968statistical",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 2,
+          "marker": 1
+        },
+        {
+          "key": "bandura1977selfefficacy",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 3,
+          "marker": 2
+        },
+        {
+          "key": "milgram1963behavioral",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 4,
+          "marker": 3
+        },
+        {
+          "key": "festinger1957cognitive",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 5,
+          "marker": 3
+        },
+        {
+          "key": "ainsworth1978patterns",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 6,
+          "marker": 4
+        },
+        {
+          "key": "deciryan2000what",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 7,
+          "marker": 5
+        },
+        {
+          "key": "cronbach1951coefficient",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 8,
+          "marker": 6
+        },
+        {
+          "key": "granovetter1973strength",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 9,
+          "marker": 6
+        },
+        {
+          "key": "rosenthaljacobson1968pygmalion",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 10,
+          "marker": 7
+        },
+        {
+          "key": "asch1956studies",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 11,
+          "marker": 8
+        },
+        {
+          "key": "rosenberg1965society",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 12,
+          "marker": 9
+        },
+        {
+          "key": "rotter1966generalized",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 13,
+          "marker": 9
+        },
+        {
+          "key": "ekmanfriesen1971constants",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 14,
+          "marker": 10
+        },
+        {
+          "key": "baumeisterleary1995need",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 15,
+          "marker": 11
+        },
+        {
+          "key": "bowlby1969attachment",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 16,
+          "marker": 12
+        },
+        {
+          "key": "piaget1952origins",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 17,
+          "marker": 12
+        },
+        {
+          "key": "vygotsky1978mind",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 18,
+          "marker": 13
+        },
+        {
+          "key": "sherif1936psychology",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 19,
+          "marker": 14
+        },
+        {
+          "key": "bem1972selfperception",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 20,
+          "marker": 15
+        },
+        {
+          "key": "schwartz1992universals",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 21,
+          "marker": 15
+        },
+        {
+          "key": "durkheim1951suicide",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 22,
+          "marker": 16
+        },
+        {
+          "key": "weber1930protestant",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 23,
+          "marker": 17
+        },
+        {
+          "key": "becker1968crime",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 24,
+          "marker": 18
+        },
+        {
+          "key": "thalersunstein2008nudge",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 25,
+          "marker": 18
+        },
+        {
+          "key": "ariely2008predictably",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 26,
+          "marker": 19
+        },
+        {
+          "key": "diener1984subjective",
+          "section": "discussion",
+          "form": "locator",
+          "narrative": false,
+          "position": 27,
+          "marker": 20
+        },
+        {
+          "key": "ross1977intuitive",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 28,
+          "marker": 21
+        },
+        {
+          "key": "tajfelturner1979integrative",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 29,
+          "marker": 21
+        },
+        {
+          "key": "markuskitayama1991culture",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 30,
+          "marker": 22
+        }
+      ]
+    },
+    {
+      "broad_field": "humanities_theology",
+      "style": "chicago-authordate",
+      "pdf": "synthetic_humanities_theology_chicago_authordate_clean.pdf",
+      "entries": [
+        {
+          "key": "foucault1977discipline",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Michel",
+              "family": "Foucault"
+            }
+          ],
+          "year": "1977",
+          "title": "Discipline and Punish: The Birth of the Prison",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "kuhn1962structure",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Thomas S.",
+              "family": "Kuhn"
+            }
+          ],
+          "year": "1962",
+          "title": "The Structure of Scientific Revolutions",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "history and philosophy of science"
+        },
+        {
+          "key": "said1978orientalism",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Edward W.",
+              "family": "Said"
+            }
+          ],
+          "year": "1978",
+          "title": "Orientalism",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "literary criticism"
+        },
+        {
+          "key": "barth1956churchdogmatics",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Karl",
+              "family": "Barth"
+            }
+          ],
+          "year": "1956",
+          "title": "Church Dogmatics, Volume IV.1: The Doctrine of Reconciliation",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        },
+        {
+          "key": "gadamer1975truth",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Hans-Georg",
+              "family": "Gadamer"
+            }
+          ],
+          "year": "1975",
+          "title": "Truth and Method",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophical hermeneutics"
+        },
+        {
+          "key": "arendt1958human",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Hannah",
+              "family": "Arendt"
+            }
+          ],
+          "year": "1958",
+          "title": "The Human Condition",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "political philosophy"
+        },
+        {
+          "key": "derrida1976grammatology",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Jacques",
+              "family": "Derrida"
+            }
+          ],
+          "year": "1976",
+          "title": "Of Grammatology",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "eliade1959sacred",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Mircea",
+              "family": "Eliade"
+            }
+          ],
+          "year": "1959",
+          "title": "The Sacred and the Profane: The Nature of Religion",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "religious studies"
+        },
+        {
+          "key": "ricoeur1969symbolism",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Paul",
+              "family": "Ricoeur"
+            }
+          ],
+          "year": "1969",
+          "title": "The Symbolism of Evil",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy of religion"
+        },
+        {
+          "key": "bloom1973anxiety",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Harold",
+              "family": "Bloom"
+            }
+          ],
+          "year": "1973",
+          "title": "The Anxiety of Influence: A Theory of Poetry",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "literary theory"
+        },
+        {
+          "key": "augustine1961confessions",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "",
+              "family": "Augustine"
+            }
+          ],
+          "year": "1961",
+          "title": "Confessions",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        },
+        {
+          "key": "nietzsche1967genealogy",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Friedrich",
+              "family": "Nietzsche"
+            }
+          ],
+          "year": "1967",
+          "title": "On the Genealogy of Morals",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "heidegger1962being",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Martin",
+              "family": "Heidegger"
+            }
+          ],
+          "year": "1962",
+          "title": "Being and Time",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "habermas1984theory",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "J\u00fcrgen",
+              "family": "Habermas"
+            }
+          ],
+          "year": "1984",
+          "title": "The Theory of Communicative Action, Volume 1: Reason and the Rationalization of Society",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "bultmann1958jesus",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Rudolf",
+              "family": "Bultmann"
+            }
+          ],
+          "year": "1958",
+          "title": "Jesus Christ and Mythology",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        },
+        {
+          "key": "tillich1951systematic",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Paul",
+              "family": "Tillich"
+            }
+          ],
+          "year": "1951",
+          "title": "Systematic Theology, Volume 1",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        },
+        {
+          "key": "niebuhr1932moral",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Reinhold",
+              "family": "Niebuhr"
+            }
+          ],
+          "year": "1932",
+          "title": "Moral Man and Immoral Society: A Study in Ethics and Politics",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        },
+        {
+          "key": "buber1970iandthou",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Martin",
+              "family": "Buber"
+            }
+          ],
+          "year": "1970",
+          "title": "I and Thou",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy of religion"
+        },
+        {
+          "key": "levinas1969totality",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Emmanuel",
+              "family": "Levinas"
+            }
+          ],
+          "year": "1969",
+          "title": "Totality and Infinity: An Essay on Exteriority",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "ricoeur1970freud",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Paul",
+              "family": "Ricoeur"
+            }
+          ],
+          "year": "1970",
+          "title": "Freud and Philosophy: An Essay on Interpretation",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "white1973metahistory",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Hayden",
+              "family": "White"
+            }
+          ],
+          "year": "1973",
+          "title": "Metahistory: The Historical Imagination in Nineteenth-Century Europe",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "history"
+        },
+        {
+          "key": "benjamin1968workofart",
+          "entry_type": "incollection",
+          "authors": [
+            {
+              "given": "Walter",
+              "family": "Benjamin"
+            }
+          ],
+          "year": "1968",
+          "title": "The work of art in the age of mechanical reproduction",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "adornohorkheimer2002dialectic",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Theodor W.",
+              "family": "Adorno"
+            },
+            {
+              "given": "Max",
+              "family": "Horkheimer"
+            }
+          ],
+          "year": "2002",
+          "title": "Dialectic of Enlightenment: Philosophical Fragments",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "butler1990gender",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Judith",
+              "family": "Butler"
+            }
+          ],
+          "year": "1990",
+          "title": "Gender Trouble: Feminism and the Subversion of Identity",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "gender studies"
+        },
+        {
+          "key": "debeauvoir2011secondsex",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Simone",
+              "family": "de Beauvoir"
+            }
+          ],
+          "year": "2011",
+          "title": "The Second Sex",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy"
+        },
+        {
+          "key": "barthes1977deathauthor",
+          "entry_type": "incollection",
+          "authors": [
+            {
+              "given": "Roland",
+              "family": "Barthes"
+            }
+          ],
+          "year": "1977",
+          "title": "The death of the author",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "literary theory"
+        },
+        {
+          "key": "eco1989openwork",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Umberto",
+              "family": "Eco"
+            }
+          ],
+          "year": "1989",
+          "title": "The Open Work",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "literary theory"
+        },
+        {
+          "key": "otto1958idea",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Rudolf",
+              "family": "Otto"
+            }
+          ],
+          "year": "1958",
+          "title": "The Idea of the Holy",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "philosophy of religion"
+        },
+        {
+          "key": "schleiermacher1988onreligion",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Friedrich",
+              "family": "Schleiermacher"
+            }
+          ],
+          "year": "1988",
+          "title": "On Religion: Speeches to Its Cultured Despisers",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        },
+        {
+          "key": "aquinas1981summa",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Thomas",
+              "family": "Aquinas"
+            }
+          ],
+          "year": "1981",
+          "title": "Summa Theologica",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "theology"
+        }
+      ],
+      "cited": [
+        {
+          "key": "foucault1977discipline",
+          "section": "introduction",
+          "form": "narrative",
+          "narrative": true,
+          "position": 1,
+          "marker": 0
+        },
+        {
+          "key": "kuhn1962structure",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 2,
+          "marker": 1
+        },
+        {
+          "key": "said1978orientalism",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 3,
+          "marker": 2
+        },
+        {
+          "key": "barth1956churchdogmatics",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 4,
+          "marker": 3
+        },
+        {
+          "key": "gadamer1975truth",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 5,
+          "marker": 3
+        },
+        {
+          "key": "arendt1958human",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 6,
+          "marker": 4
+        },
+        {
+          "key": "derrida1976grammatology",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 7,
+          "marker": 5
+        },
+        {
+          "key": "eliade1959sacred",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 8,
+          "marker": 6
+        },
+        {
+          "key": "ricoeur1969symbolism",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 9,
+          "marker": 6
+        },
+        {
+          "key": "bloom1973anxiety",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 10,
+          "marker": 7
+        },
+        {
+          "key": "augustine1961confessions",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 11,
+          "marker": 8
+        },
+        {
+          "key": "nietzsche1967genealogy",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 12,
+          "marker": 9
+        },
+        {
+          "key": "heidegger1962being",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 13,
+          "marker": 9
+        },
+        {
+          "key": "habermas1984theory",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 14,
+          "marker": 10
+        },
+        {
+          "key": "bultmann1958jesus",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 15,
+          "marker": 11
+        },
+        {
+          "key": "tillich1951systematic",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 16,
+          "marker": 12
+        },
+        {
+          "key": "niebuhr1932moral",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 17,
+          "marker": 12
+        },
+        {
+          "key": "buber1970iandthou",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 18,
+          "marker": 13
+        },
+        {
+          "key": "levinas1969totality",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 19,
+          "marker": 14
+        },
+        {
+          "key": "ricoeur1970freud",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 20,
+          "marker": 15
+        },
+        {
+          "key": "white1973metahistory",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 21,
+          "marker": 15
+        },
+        {
+          "key": "benjamin1968workofart",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 22,
+          "marker": 16
+        },
+        {
+          "key": "adornohorkheimer2002dialectic",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 23,
+          "marker": 17
+        },
+        {
+          "key": "butler1990gender",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 24,
+          "marker": 18
+        },
+        {
+          "key": "debeauvoir2011secondsex",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 25,
+          "marker": 18
+        },
+        {
+          "key": "barthes1977deathauthor",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 26,
+          "marker": 19
+        },
+        {
+          "key": "eco1989openwork",
+          "section": "discussion",
+          "form": "locator",
+          "narrative": false,
+          "position": 27,
+          "marker": 20
+        },
+        {
+          "key": "otto1958idea",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 28,
+          "marker": 21
+        },
+        {
+          "key": "schleiermacher1988onreligion",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 29,
+          "marker": 21
+        },
+        {
+          "key": "aquinas1981summa",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 30,
+          "marker": 22
+        }
+      ]
+    },
+    {
+      "broad_field": "medicine_life_sciences",
+      "style": "vancouver",
+      "pdf": "synthetic_medicine_life_sciences_vancouver_clean.pdf",
+      "entries": [
+        {
+          "key": "dollhill1950smoking",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Richard",
+              "family": "Doll"
+            },
+            {
+              "given": "A. Bradford",
+              "family": "Hill"
+            }
+          ],
+          "year": "1950",
+          "title": "Smoking and carcinoma of the lung",
+          "doi": "10.1136/bmj.2.4682.739",
+          "journal": "British Medical Journal",
+          "field_of_study": "medicine"
+        },
+        {
+          "key": "watsoncrick1953molecular",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "James D.",
+              "family": "Watson"
+            },
+            {
+              "given": "Francis H. C.",
+              "family": "Crick"
+            }
+          ],
+          "year": "1953",
+          "title": "Molecular structure of nucleic acids: A structure for deoxyribose nucleic acid",
+          "doi": "10.1038/171737a0",
+          "journal": "Nature",
+          "field_of_study": "molecular biology"
+        },
+        {
+          "key": "yusuf2004interheart",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Salim",
+              "family": "Yusuf"
+            },
+            {
+              "given": "Steven",
+              "family": "Hawken"
+            },
+            {
+              "given": "Stephanie",
+              "family": "Ounpuu"
+            }
+          ],
+          "year": "2004",
+          "title": "Effect of potentially modifiable risk factors associated with myocardial infarction in 52 countries (the INTERHEART study): Case-control study",
+          "doi": "10.1016/S0140-6736(04)17018-9",
+          "journal": "The Lancet",
+          "field_of_study": "epidemiology"
+        },
+        {
+          "key": "mckhann1984clinical",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Guy",
+              "family": "McKhann"
+            },
+            {
+              "given": "David",
+              "family": "Drachman"
+            },
+            {
+              "given": "Marshal",
+              "family": "Folstein"
+            }
+          ],
+          "year": "1984",
+          "title": "Clinical diagnosis of Alzheimer's disease",
+          "doi": "10.1212/WNL.34.7.939",
+          "journal": "Neurology",
+          "field_of_study": "neurology"
+        },
+        {
+          "key": "barker1990fetal",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "David J. P.",
+              "family": "Barker"
+            }
+          ],
+          "year": "1990",
+          "title": "The fetal and infant origins of adult disease",
+          "doi": "10.1136/bmj.301.6761.1111",
+          "journal": "British Medical Journal",
+          "field_of_study": "epidemiology"
+        },
+        {
+          "key": "marshallwarren1984unidentified",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Barry J.",
+              "family": "Marshall"
+            },
+            {
+              "given": "J. Robin",
+              "family": "Warren"
+            }
+          ],
+          "year": "1984",
+          "title": "Unidentified curved bacilli in the stomach of patients with gastritis and peptic ulceration",
+          "doi": "10.1016/S0140-6736(84)91816-6",
+          "journal": "The Lancet",
+          "field_of_study": "microbiology"
+        },
+        {
+          "key": "fleming1929antibacterial",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Alexander",
+              "family": "Fleming"
+            }
+          ],
+          "year": "1929",
+          "title": "On the antibacterial action of cultures of a penicillium, with special reference to their use in the isolation of B. influenzae",
+          "doi": null,
+          "journal": "British Journal of Experimental Pathology",
+          "field_of_study": "microbiology"
+        },
+        {
+          "key": "enders1949cultivation",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "John F.",
+              "family": "Enders"
+            },
+            {
+              "given": "Thomas H.",
+              "family": "Weller"
+            },
+            {
+              "given": "Frederick C.",
+              "family": "Robbins"
+            }
+          ],
+          "year": "1949",
+          "title": "Cultivation of the Lansing strain of poliomyelitis virus in cultures of various human embryonic tissues",
+          "doi": "10.1126/science.109.2822.85",
+          "journal": "Science",
+          "field_of_study": "virology"
+        },
+        {
+          "key": "dawber1951epidemiological",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Thomas R.",
+              "family": "Dawber"
+            },
+            {
+              "given": "Gilcin F.",
+              "family": "Meadors"
+            },
+            {
+              "given": "Felix E.",
+              "family": "Moore"
+            }
+          ],
+          "year": "1951",
+          "title": "Epidemiological approaches to heart disease: The Framingham Study",
+          "doi": null,
+          "journal": "American Journal of Public Health",
+          "field_of_study": "epidemiology"
+        },
+        {
+          "key": "who2019report",
+          "entry_type": "misc",
+          "authors": [
+            {
+              "given": "",
+              "family": "{World Health Organization}"
+            }
+          ],
+          "year": "2019",
+          "title": "WHO report on the global tobacco epidemic, 2019",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "public health"
+        },
+        {
+          "key": "snow1855mode",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "John",
+              "family": "Snow"
+            }
+          ],
+          "year": "1855",
+          "title": "On the Mode of Communication of Cholera",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "epidemiology"
+        },
+        {
+          "key": "jenner1798inquiry",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Edward",
+              "family": "Jenner"
+            }
+          ],
+          "year": "1798",
+          "title": "An Inquiry into the Causes and Effects of the Variolae Vaccinae",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "immunology"
+        },
+        {
+          "key": "selye1936syndrome",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Hans",
+              "family": "Selye"
+            }
+          ],
+          "year": "1936",
+          "title": "A syndrome produced by diverse nocuous agents",
+          "doi": "10.1038/138032a0",
+          "journal": "Nature",
+          "field_of_study": "physiology"
+        },
+        {
+          "key": "zinkernageldoherty1974restriction",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Rolf M.",
+              "family": "Zinkernagel"
+            },
+            {
+              "given": "Peter C.",
+              "family": "Doherty"
+            }
+          ],
+          "year": "1974",
+          "title": "Restriction of in vitro T cell-mediated cytotoxicity in lymphocytic choriomeningitis within a syngeneic or semiallogeneic system",
+          "doi": "10.1038/248701a0",
+          "journal": "Nature",
+          "field_of_study": "immunology"
+        },
+        {
+          "key": "prusiner1982novel",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Stanley B.",
+              "family": "Prusiner"
+            }
+          ],
+          "year": "1982",
+          "title": "Novel proteinaceous infectious particles cause scrapie",
+          "doi": "10.1126/science.6801762",
+          "journal": "Science",
+          "field_of_study": "neurology"
+        },
+        {
+          "key": "blalocktaussig1945surgical",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Alfred",
+              "family": "Blalock"
+            },
+            {
+              "given": "Helen B.",
+              "family": "Taussig"
+            }
+          ],
+          "year": "1945",
+          "title": "The surgical treatment of malformations of the heart in which there is pulmonary stenosis or pulmonary atresia",
+          "doi": "10.1001/jama.1945.02860200029009",
+          "journal": "JAMA",
+          "field_of_study": "cardiology"
+        },
+        {
+          "key": "farber1948temporary",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Sidney",
+              "family": "Farber"
+            },
+            {
+              "given": "Louis K.",
+              "family": "Diamond"
+            },
+            {
+              "given": "Robert D.",
+              "family": "Mercer"
+            }
+          ],
+          "year": "1948",
+          "title": "Temporary remissions in acute leukemia in children produced by folic acid antagonist, 4-aminopteroyl-glutamic acid (aminopterin)",
+          "doi": "10.1056/NEJM194806032382301",
+          "journal": "New England Journal of Medicine",
+          "field_of_study": "oncology"
+        },
+        {
+          "key": "osler1892principles",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "William",
+              "family": "Osler"
+            }
+          ],
+          "year": "1892",
+          "title": "The Principles and Practice of Medicine",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "internal medicine"
+        },
+        {
+          "key": "bantingbest1922internal",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Frederick G.",
+              "family": "Banting"
+            },
+            {
+              "given": "Charles H.",
+              "family": "Best"
+            }
+          ],
+          "year": "1922",
+          "title": "The internal secretion of the pancreas",
+          "doi": null,
+          "journal": "Journal of Laboratory and Clinical Medicine",
+          "field_of_study": "endocrinology"
+        },
+        {
+          "key": "reed1900etiology",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Walter",
+              "family": "Reed"
+            },
+            {
+              "given": "James",
+              "family": "Carroll"
+            },
+            {
+              "given": "Aristides",
+              "family": "Agramonte"
+            },
+            {
+              "given": "Jesse W.",
+              "family": "Lazear"
+            }
+          ],
+          "year": "1900",
+          "title": "The etiology of yellow fever: A preliminary note",
+          "doi": null,
+          "journal": "Public Health Papers and Reports",
+          "field_of_study": "virology"
+        },
+        {
+          "key": "papanicolaoutraut1941diagnostic",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "George N.",
+              "family": "Papanicolaou"
+            },
+            {
+              "given": "Herbert F.",
+              "family": "Traut"
+            }
+          ],
+          "year": "1941",
+          "title": "The diagnostic value of vaginal smears in carcinoma of the uterus",
+          "doi": null,
+          "journal": "American Journal of Obstetrics and Gynecology",
+          "field_of_study": "oncology"
+        },
+        {
+          "key": "barnard1967operation",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Christiaan N.",
+              "family": "Barnard"
+            }
+          ],
+          "year": "1967",
+          "title": "The operation: A human cardiac transplant",
+          "doi": null,
+          "journal": "South African Medical Journal",
+          "field_of_study": "cardiology"
+        },
+        {
+          "key": "mullis1990unusual",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Kary B.",
+              "family": "Mullis"
+            }
+          ],
+          "year": "1990",
+          "title": "The unusual origin of the polymerase chain reaction",
+          "doi": null,
+          "journal": "Scientific American",
+          "field_of_study": "molecular biology"
+        },
+        {
+          "key": "lister1867antiseptic",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Joseph",
+              "family": "Lister"
+            }
+          ],
+          "year": "1867",
+          "title": "On the antiseptic principle in the practice of surgery",
+          "doi": null,
+          "journal": "The Lancet",
+          "field_of_study": "surgery"
+        },
+        {
+          "key": "gregg1941congenital",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Norman M.",
+              "family": "Gregg"
+            }
+          ],
+          "year": "1941",
+          "title": "Congenital cataract following German measles in the mother",
+          "doi": null,
+          "journal": "Transactions of the Ophthalmological Society of Australia",
+          "field_of_study": "ophthalmology"
+        },
+        {
+          "key": "cushing1932basophil",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Harvey",
+              "family": "Cushing"
+            }
+          ],
+          "year": "1932",
+          "title": "The basophil adenomas of the pituitary body and their clinical manifestations",
+          "doi": null,
+          "journal": "Bulletin of the Johns Hopkins Hospital",
+          "field_of_study": "endocrinology"
+        },
+        {
+          "key": "salk1955studies",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Jonas E.",
+              "family": "Salk"
+            }
+          ],
+          "year": "1955",
+          "title": "Studies in human subjects on active immunization against poliomyelitis",
+          "doi": null,
+          "journal": "American Journal of Public Health",
+          "field_of_study": "virology"
+        },
+        {
+          "key": "koch1882aetiologie",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Robert",
+              "family": "Koch"
+            }
+          ],
+          "year": "1882",
+          "title": "Die \u00c4tiologie der Tuberculose",
+          "doi": null,
+          "journal": "Berliner Klinische Wochenschrift",
+          "field_of_study": "microbiology"
+        },
+        {
+          "key": "rontgen1895ueber",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Wilhelm C.",
+              "family": "R\u00f6ntgen"
+            }
+          ],
+          "year": "1895",
+          "title": "\u00dcber eine neue Art von Strahlen",
+          "doi": null,
+          "journal": "Sitzungsberichte der W\u00fcrzburger Physikalisch-Medicinischen Gesellschaft",
+          "field_of_study": "radiology"
+        },
+        {
+          "key": "harvey1628exercitatio",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "William",
+              "family": "Harvey"
+            }
+          ],
+          "year": "1628",
+          "title": "Exercitatio Anatomica de Motu Cordis et Sanguinis in Animalibus",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "anatomy"
+        }
+      ],
+      "cited": [
+        {
+          "key": "dollhill1950smoking",
+          "section": "introduction",
+          "form": "narrative",
+          "narrative": true,
+          "position": 1,
+          "marker": 0
+        },
+        {
+          "key": "watsoncrick1953molecular",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 2,
+          "marker": 1
+        },
+        {
+          "key": "yusuf2004interheart",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 3,
+          "marker": 2
+        },
+        {
+          "key": "mckhann1984clinical",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 4,
+          "marker": 3
+        },
+        {
+          "key": "barker1990fetal",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 5,
+          "marker": 3
+        },
+        {
+          "key": "marshallwarren1984unidentified",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 6,
+          "marker": 4
+        },
+        {
+          "key": "fleming1929antibacterial",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 7,
+          "marker": 5
+        },
+        {
+          "key": "enders1949cultivation",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 8,
+          "marker": 6
+        },
+        {
+          "key": "dawber1951epidemiological",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 9,
+          "marker": 6
+        },
+        {
+          "key": "who2019report",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 10,
+          "marker": 7
+        },
+        {
+          "key": "snow1855mode",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 11,
+          "marker": 8
+        },
+        {
+          "key": "jenner1798inquiry",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 12,
+          "marker": 9
+        },
+        {
+          "key": "selye1936syndrome",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 13,
+          "marker": 9
+        },
+        {
+          "key": "zinkernageldoherty1974restriction",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 14,
+          "marker": 10
+        },
+        {
+          "key": "prusiner1982novel",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 15,
+          "marker": 11
+        },
+        {
+          "key": "blalocktaussig1945surgical",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 16,
+          "marker": 12
+        },
+        {
+          "key": "farber1948temporary",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 17,
+          "marker": 12
+        },
+        {
+          "key": "osler1892principles",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 18,
+          "marker": 13
+        },
+        {
+          "key": "bantingbest1922internal",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 19,
+          "marker": 14
+        },
+        {
+          "key": "reed1900etiology",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 20,
+          "marker": 15
+        },
+        {
+          "key": "papanicolaoutraut1941diagnostic",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 21,
+          "marker": 15
+        },
+        {
+          "key": "barnard1967operation",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 22,
+          "marker": 16
+        },
+        {
+          "key": "mullis1990unusual",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 23,
+          "marker": 17
+        },
+        {
+          "key": "lister1867antiseptic",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 24,
+          "marker": 18
+        },
+        {
+          "key": "gregg1941congenital",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 25,
+          "marker": 18
+        },
+        {
+          "key": "cushing1932basophil",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 26,
+          "marker": 19
+        },
+        {
+          "key": "salk1955studies",
+          "section": "discussion",
+          "form": "locator",
+          "narrative": false,
+          "position": 27,
+          "marker": 20
+        },
+        {
+          "key": "koch1882aetiologie",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 28,
+          "marker": 21
+        },
+        {
+          "key": "rontgen1895ueber",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 29,
+          "marker": 21
+        },
+        {
+          "key": "harvey1628exercitatio",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 30,
+          "marker": 22
+        }
+      ]
+    },
+    {
+      "broad_field": "cs_engineering",
+      "style": "ieee",
+      "pdf": "synthetic_cs_engineering_ieee_clean.pdf",
+      "entries": [
+        {
+          "key": "shannon1948mathematical",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Claude E.",
+              "family": "Shannon"
+            }
+          ],
+          "year": "1948",
+          "title": "A mathematical theory of communication",
+          "doi": "10.1002/j.1538-7305.1948.tb01338.x",
+          "journal": "Bell System Technical Journal",
+          "field_of_study": "information theory"
+        },
+        {
+          "key": "vaswani2017attention",
+          "entry_type": "inproceedings",
+          "authors": [
+            {
+              "given": "Ashish",
+              "family": "Vaswani"
+            },
+            {
+              "given": "Noam",
+              "family": "Shazeer"
+            },
+            {
+              "given": "Niki",
+              "family": "Parmar"
+            },
+            {
+              "given": "Jakob",
+              "family": "Uszkoreit"
+            },
+            {
+              "given": "Llion",
+              "family": "Jones"
+            },
+            {
+              "given": "Aidan N.",
+              "family": "Gomez"
+            },
+            {
+              "given": "Lukasz",
+              "family": "Kaiser"
+            },
+            {
+              "given": "Illia",
+              "family": "Polosukhin"
+            }
+          ],
+          "year": "2017",
+          "title": "Attention is all you need",
+          "doi": "10.48550/arXiv.1706.03762",
+          "journal": null,
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "rcoreteam2024r",
+          "entry_type": "misc",
+          "authors": [
+            {
+              "given": "",
+              "family": "{R Core Team}"
+            }
+          ],
+          "year": "2024",
+          "title": "R: A language and environment for statistical computing",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "statistical computing"
+        },
+        {
+          "key": "turing1950computing",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Alan M.",
+              "family": "Turing"
+            }
+          ],
+          "year": "1950",
+          "title": "Computing machinery and intelligence",
+          "doi": "10.1093/mind/LIX.236.433",
+          "journal": "Mind",
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "codd1970relational",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Edgar F.",
+              "family": "Codd"
+            }
+          ],
+          "year": "1970",
+          "title": "A relational model of data for large shared data banks",
+          "doi": "10.1145/362384.362685",
+          "journal": "Communications of the ACM",
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "lamport1978time",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Leslie",
+              "family": "Lamport"
+            }
+          ],
+          "year": "1978",
+          "title": "Time, clocks, and the ordering of events in a distributed system",
+          "doi": "10.1145/359545.359563",
+          "journal": "Communications of the ACM",
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "rivest1978method",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Ronald L.",
+              "family": "Rivest"
+            },
+            {
+              "given": "Adi",
+              "family": "Shamir"
+            },
+            {
+              "given": "Leonard",
+              "family": "Adleman"
+            }
+          ],
+          "year": "1978",
+          "title": "A method for obtaining digital signatures and public-key cryptosystems",
+          "doi": "10.1145/359340.359342",
+          "journal": "Communications of the ACM",
+          "field_of_study": "cryptography"
+        },
+        {
+          "key": "lecun1998gradient",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Yann",
+              "family": "LeCun"
+            },
+            {
+              "given": "L\u00e9on",
+              "family": "Bottou"
+            },
+            {
+              "given": "Yoshua",
+              "family": "Bengio"
+            },
+            {
+              "given": "Patrick",
+              "family": "Haffner"
+            }
+          ],
+          "year": "1998",
+          "title": "Gradient-based learning applied to document recognition",
+          "doi": "10.1109/5.726791",
+          "journal": "Proceedings of the IEEE",
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "diffiehellman1976new",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Whitfield",
+              "family": "Diffie"
+            },
+            {
+              "given": "Martin E.",
+              "family": "Hellman"
+            }
+          ],
+          "year": "1976",
+          "title": "New directions in cryptography",
+          "doi": "10.1109/TIT.1976.1055638",
+          "journal": "IEEE Transactions on Information Theory",
+          "field_of_study": "cryptography"
+        },
+        {
+          "key": "krizhevsky2012imagenet",
+          "entry_type": "inproceedings",
+          "authors": [
+            {
+              "given": "Alex",
+              "family": "Krizhevsky"
+            },
+            {
+              "given": "Ilya",
+              "family": "Sutskever"
+            },
+            {
+              "given": "Geoffrey E.",
+              "family": "Hinton"
+            }
+          ],
+          "year": "2012",
+          "title": "ImageNet classification with deep convolutional neural networks",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "machine learning"
+        },
+        {
+          "key": "dijkstra1968goto",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Edsger W.",
+              "family": "Dijkstra"
+            }
+          ],
+          "year": "1968",
+          "title": "Go to statement considered harmful",
+          "doi": "10.1145/362929.362947",
+          "journal": "Communications of the ACM",
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "knuth1968art",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Donald E.",
+              "family": "Knuth"
+            }
+          ],
+          "year": "1968",
+          "title": "The Art of Computer Programming, Volume 1: Fundamental Algorithms",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "church1936unsolvable",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Alonzo",
+              "family": "Church"
+            }
+          ],
+          "year": "1936",
+          "title": "An unsolvable problem of elementary number theory",
+          "doi": "10.2307/2371045",
+          "journal": "American Journal of Mathematics",
+          "field_of_study": "theoretical computer science"
+        },
+        {
+          "key": "vonneumann1945firstdraft",
+          "entry_type": "misc",
+          "authors": [
+            {
+              "given": "John",
+              "family": "von Neumann"
+            }
+          ],
+          "year": "1945",
+          "title": "First Draft of a Report on the EDVAC",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "bernerslee1994worldwideweb",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Tim",
+              "family": "Berners-Lee"
+            },
+            {
+              "given": "Robert",
+              "family": "Cailliau"
+            },
+            {
+              "given": "Ari",
+              "family": "Luotonen"
+            },
+            {
+              "given": "Henrik Frystyk",
+              "family": "Nielsen"
+            },
+            {
+              "given": "Arthur",
+              "family": "Secret"
+            }
+          ],
+          "year": "1994",
+          "title": "The World-Wide Web",
+          "doi": "10.1145/179606.179671",
+          "journal": "Communications of the ACM",
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "cerfkahn1974protocol",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Vinton G.",
+              "family": "Cerf"
+            },
+            {
+              "given": "Robert E.",
+              "family": "Kahn"
+            }
+          ],
+          "year": "1974",
+          "title": "A protocol for packet network intercommunication",
+          "doi": "10.1109/TCOM.1974.1092259",
+          "journal": "IEEE Transactions on Communications",
+          "field_of_study": "computer networking"
+        },
+        {
+          "key": "metropolis1953equation",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Nicholas",
+              "family": "Metropolis"
+            },
+            {
+              "given": "Arianna W.",
+              "family": "Rosenbluth"
+            },
+            {
+              "given": "Marshall N.",
+              "family": "Rosenbluth"
+            },
+            {
+              "given": "Augusta H.",
+              "family": "Teller"
+            },
+            {
+              "given": "Edward",
+              "family": "Teller"
+            }
+          ],
+          "year": "1953",
+          "title": "Equation of state calculations by fast computing machines",
+          "doi": "10.1063/1.1699114",
+          "journal": "The Journal of Chemical Physics",
+          "field_of_study": "computational physics"
+        },
+        {
+          "key": "hopcrofttarjan1973efficient",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "John E.",
+              "family": "Hopcroft"
+            },
+            {
+              "given": "Robert E.",
+              "family": "Tarjan"
+            }
+          ],
+          "year": "1973",
+          "title": "Efficient algorithms for graph manipulation",
+          "doi": "10.1145/362248.362272",
+          "journal": "Communications of the ACM",
+          "field_of_study": "theoretical computer science"
+        },
+        {
+          "key": "cormen2009introduction",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Thomas H.",
+              "family": "Cormen"
+            },
+            {
+              "given": "Charles E.",
+              "family": "Leiserson"
+            },
+            {
+              "given": "Ronald L.",
+              "family": "Rivest"
+            },
+            {
+              "given": "Clifford",
+              "family": "Stein"
+            }
+          ],
+          "year": "2009",
+          "title": "Introduction to Algorithms",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "hopper1952education",
+          "entry_type": "inproceedings",
+          "authors": [
+            {
+              "given": "Grace M.",
+              "family": "Hopper"
+            }
+          ],
+          "year": "1952",
+          "title": "The education of a computer",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "computer science"
+        },
+        {
+          "key": "engelbart1968research",
+          "entry_type": "inproceedings",
+          "authors": [
+            {
+              "given": "Douglas C.",
+              "family": "Engelbart"
+            }
+          ],
+          "year": "1968",
+          "title": "A research center for augmenting human intellect",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "human-computer interaction"
+        },
+        {
+          "key": "ritchiethompson1974unix",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Dennis M.",
+              "family": "Ritchie"
+            },
+            {
+              "given": "Ken",
+              "family": "Thompson"
+            }
+          ],
+          "year": "1974",
+          "title": "The UNIX time-sharing system",
+          "doi": "10.1145/361011.361061",
+          "journal": "Communications of the ACM",
+          "field_of_study": "operating systems"
+        },
+        {
+          "key": "backus1978can",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "John",
+              "family": "Backus"
+            }
+          ],
+          "year": "1978",
+          "title": "Can programming be liberated from the von Neumann style? A functional style and its algebra of programs",
+          "doi": "10.1145/359576.359579",
+          "journal": "Communications of the ACM",
+          "field_of_study": "programming languages"
+        },
+        {
+          "key": "mccarthy1960recursive",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "John",
+              "family": "McCarthy"
+            }
+          ],
+          "year": "1960",
+          "title": "Recursive functions of symbolic expressions and their computation by machine, Part I",
+          "doi": "10.1145/367177.367199",
+          "journal": "Communications of the ACM",
+          "field_of_study": "programming languages"
+        },
+        {
+          "key": "minskypapert1969perceptrons",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Marvin",
+              "family": "Minsky"
+            },
+            {
+              "given": "Seymour",
+              "family": "Papert"
+            }
+          ],
+          "year": "1969",
+          "title": "Perceptrons: An Introduction to Computational Geometry",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "machine learning"
+        },
+        {
+          "key": "rumelhart1986learning",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "David E.",
+              "family": "Rumelhart"
+            },
+            {
+              "given": "Geoffrey E.",
+              "family": "Hinton"
+            },
+            {
+              "given": "Ronald J.",
+              "family": "Williams"
+            }
+          ],
+          "year": "1986",
+          "title": "Learning representations by back-propagating errors",
+          "doi": "10.1038/323533a0",
+          "journal": "Nature",
+          "field_of_study": "machine learning"
+        },
+        {
+          "key": "hochreiterschmidhuber1997long",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Sepp",
+              "family": "Hochreiter"
+            },
+            {
+              "given": "J\u00fcrgen",
+              "family": "Schmidhuber"
+            }
+          ],
+          "year": "1997",
+          "title": "Long short-term memory",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "journal": "Neural Computation",
+          "field_of_study": "machine learning"
+        },
+        {
+          "key": "goodfellow2014generative",
+          "entry_type": "inproceedings",
+          "authors": [
+            {
+              "given": "Ian J.",
+              "family": "Goodfellow"
+            },
+            {
+              "given": "Jean",
+              "family": "Pouget-Abadie"
+            },
+            {
+              "given": "Mehdi",
+              "family": "Mirza"
+            },
+            {
+              "given": "Bing",
+              "family": "Xu"
+            },
+            {
+              "given": "David",
+              "family": "Warde-Farley"
+            },
+            {
+              "given": "Sherjil",
+              "family": "Ozair"
+            },
+            {
+              "given": "Aaron",
+              "family": "Courville"
+            },
+            {
+              "given": "Yoshua",
+              "family": "Bengio"
+            }
+          ],
+          "year": "2014",
+          "title": "Generative adversarial networks",
+          "doi": "10.48550/arXiv.1406.2661",
+          "journal": null,
+          "field_of_study": "machine learning"
+        },
+        {
+          "key": "pagebrin1999pagerank",
+          "entry_type": "misc",
+          "authors": [
+            {
+              "given": "Lawrence",
+              "family": "Page"
+            },
+            {
+              "given": "Sergey",
+              "family": "Brin"
+            },
+            {
+              "given": "Rajeev",
+              "family": "Motwani"
+            },
+            {
+              "given": "Terry",
+              "family": "Winograd"
+            }
+          ],
+          "year": "1999",
+          "title": "The PageRank citation ranking: Bringing order to the web",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "information retrieval"
+        },
+        {
+          "key": "tanenbaum1981computer",
+          "entry_type": "book",
+          "authors": [
+            {
+              "given": "Andrew S.",
+              "family": "Tanenbaum"
+            }
+          ],
+          "year": "1981",
+          "title": "Computer Networks",
+          "doi": null,
+          "journal": null,
+          "field_of_study": "computer networking"
+        }
+      ],
+      "cited": [
+        {
+          "key": "shannon1948mathematical",
+          "section": "introduction",
+          "form": "narrative",
+          "narrative": true,
+          "position": 1,
+          "marker": 0
+        },
+        {
+          "key": "vaswani2017attention",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 2,
+          "marker": 1
+        },
+        {
+          "key": "rcoreteam2024r",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 3,
+          "marker": 2
+        },
+        {
+          "key": "turing1950computing",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 4,
+          "marker": 3
+        },
+        {
+          "key": "codd1970relational",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 5,
+          "marker": 3
+        },
+        {
+          "key": "lamport1978time",
+          "section": "introduction",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 6,
+          "marker": 4
+        },
+        {
+          "key": "rivest1978method",
+          "section": "introduction",
+          "form": "locator",
+          "narrative": false,
+          "position": 7,
+          "marker": 5
+        },
+        {
+          "key": "lecun1998gradient",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 8,
+          "marker": 6
+        },
+        {
+          "key": "diffiehellman1976new",
+          "section": "introduction",
+          "form": "grouped",
+          "narrative": false,
+          "position": 9,
+          "marker": 6
+        },
+        {
+          "key": "krizhevsky2012imagenet",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 10,
+          "marker": 7
+        },
+        {
+          "key": "dijkstra1968goto",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 11,
+          "marker": 8
+        },
+        {
+          "key": "knuth1968art",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 12,
+          "marker": 9
+        },
+        {
+          "key": "church1936unsolvable",
+          "section": "method",
+          "form": "grouped",
+          "narrative": false,
+          "position": 13,
+          "marker": 9
+        },
+        {
+          "key": "vonneumann1945firstdraft",
+          "section": "method",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 14,
+          "marker": 10
+        },
+        {
+          "key": "bernerslee1994worldwideweb",
+          "section": "method",
+          "form": "locator",
+          "narrative": false,
+          "position": 15,
+          "marker": 11
+        },
+        {
+          "key": "cerfkahn1974protocol",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 16,
+          "marker": 12
+        },
+        {
+          "key": "metropolis1953equation",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 17,
+          "marker": 12
+        },
+        {
+          "key": "hopcrofttarjan1973efficient",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 18,
+          "marker": 13
+        },
+        {
+          "key": "cormen2009introduction",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 19,
+          "marker": 14
+        },
+        {
+          "key": "hopper1952education",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 20,
+          "marker": 15
+        },
+        {
+          "key": "engelbart1968research",
+          "section": "results",
+          "form": "grouped",
+          "narrative": false,
+          "position": 21,
+          "marker": 15
+        },
+        {
+          "key": "ritchiethompson1974unix",
+          "section": "results",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 22,
+          "marker": 16
+        },
+        {
+          "key": "backus1978can",
+          "section": "results",
+          "form": "locator",
+          "narrative": false,
+          "position": 23,
+          "marker": 17
+        },
+        {
+          "key": "mccarthy1960recursive",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 24,
+          "marker": 18
+        },
+        {
+          "key": "minskypapert1969perceptrons",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 25,
+          "marker": 18
+        },
+        {
+          "key": "rumelhart1986learning",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 26,
+          "marker": 19
+        },
+        {
+          "key": "hochreiterschmidhuber1997long",
+          "section": "discussion",
+          "form": "locator",
+          "narrative": false,
+          "position": 27,
+          "marker": 20
+        },
+        {
+          "key": "goodfellow2014generative",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 28,
+          "marker": 21
+        },
+        {
+          "key": "pagebrin1999pagerank",
+          "section": "discussion",
+          "form": "grouped",
+          "narrative": false,
+          "position": 29,
+          "marker": 21
+        },
+        {
+          "key": "tanenbaum1981computer",
+          "section": "discussion",
+          "form": "parenthetical",
+          "narrative": false,
+          "position": 30,
+          "marker": 22
+        }
+      ]
+    },
+    {
+      "broad_field": "other",
+      "style": "apa7",
+      "pdf": "synthetic_other_apa7_clean.pdf",
+      "entries": [
+        {
+          "key": "higgs1964broken",
+          "entry_type": "article",
+          "authors": [
+            {
+              "given": "Peter W.",
+              "family": "Higgs"
+            }
+          ],
+          "year": "1964",
+          "title": "Broken symmetries and the masses of gauge bosons",
+          "doi": "10.1103/PhysRevLett.13.508",
+          "journal": "Physical Review Letters",
+          "field_of_study": "physics"
+        }
+      ],
+      "cited": [
+        {
+          "key": "higgs1964broken",
+          "section": "introduction",
+          "form": "narrative",
+          "narrative": true,
+          "position": 1,
+          "marker": 0
+        }
+      ]
+    }
+  ]
+}

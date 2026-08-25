@@ -1,0 +1,123 @@
+{
+  "style": "german_apa",
+  "display_name": "German APA",
+  "applies_to": "German-language APA: edition and volume markers ('1. Aufl.'), German connectors, German retrieval dates.",
+  "confusable_with": [
+    "apa7",
+    "vancouver",
+    "numbered"
+  ],
+  "cases": [
+    {
+      "id": "german-editions-intact",
+      "layer": "split",
+      "variant": "German APA with edition numbers",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "inline-number recovery shredding German edition markers ('(1. Aufl.)', 'Vol. 1. Theoretical models')"
+      },
+      "note": "\"(1. Aufl.)\" / \"(2. Aufl.)\" are an ascending inline number run in intact text.",
+      "text": "Müller, K. (2019). Einführung in die Statistik (1. Aufl.). Springer.\n\nSchmidt, H. (2020). Grundlagen der Psychologie (2. Aufl.). Beltz.\n\nWeber, L. (2021). Methoden der Forschung. Hogrefe.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "0": "Müller, K.",
+          "2": "Weber, L."
+        }
+      }
+    },
+    {
+      "id": "german-four-editions-intact",
+      "layer": "split",
+      "variant": "German APA, four editions",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "inline-number recovery firing once a document contains enough edition markers to look like a numbered run"
+      },
+      "text": "Müller, K. (2019). Einführung in die Statistik (1. Aufl.). Springer.\n\nSchmidt, H. (2020). Grundlagen der Psychologie (2. Aufl.). Beltz.\n\nWeber, L. (2021). Methoden der Forschung (3. Aufl.). Hogrefe.\n\nFischer, M. (2022). Angewandte Statistik (4. Aufl.). Springer.",
+      "expect": {
+        "count": 4,
+        "entry_starts": {
+          "3": "Fischer, M."
+        }
+      }
+    },
+    {
+      "id": "german-partly-flattened-editions",
+      "layer": "split",
+      "variant": "German APA, one stuck block, five editions",
+      "round": "round 4",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 4,
+          "entry_starts": {
+            "1": "Schmidt, H.",
+            "2": "Fischer, ",
+            "4": null
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "Recovery legitimately runs here, so the numbered pass must split at entries rather than at the ascending edition markers.",
+      "text": "Müller, K. (2019). Einführung in die Statistik (1. Aufl.). Springer.\n\nSchmidt, H. (2020). Grundlagen der Psychologie (2. Aufl.). Beltz. Weber, L. (2021). Methoden der Forschung (3. Aufl.). Hogrefe.\n\nFischer, M. (2022). Angewandte Statistik (4. Aufl.). Springer.\n\nBecker, T. (2023). Empirische Sozialforschung (5. Aufl.). Beltz.",
+      "expect": {
+        "count": 5,
+        "entry_starts": {
+          "1": "Schmidt, H.",
+          "2": "Weber, L.",
+          "4": "Becker, T."
+        }
+      }
+    },
+    {
+      "id": "german-retrieval-dates",
+      "layer": "split",
+      "variant": "German APA with retrieval dates",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "inline-number recovery splitting on a German retrieval date ('am 1. Januar 2021')"
+      },
+      "text": "Müller, K. (2019). Ein Titel. Zeitschrift, 1, 1-10. Abgerufen am 3. März 2021 von https://example.org\n\nSchmidt, H. (2020). Ein zweiter Titel. Zeitschrift, 2, 11-20. Abgerufen am 4. April 2022 von https://example.org",
+      "expect": {
+        "count": 2,
+        "entry_starts": {
+          "1": "Schmidt, H."
+        }
+      }
+    },
+    {
+      "id": "german-numbered-flattened",
+      "layer": "split",
+      "variant": "German numbered, flattened",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "0": "1. Müller",
+            "2": null
+          },
+          "entry_contains": {}
+        }
+      },
+      "text": "1. Müller K. Ein Titel. Zeitschrift. 2019. 2. Schmidt H. Ein zweiter Titel. Zeitschrift. 2020. 3. Weber L. Ein dritter Titel. Zeitschrift. 2021.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "0": "Müller K.",
+          "2": "Weber L."
+        }
+      }
+    }
+  ]
+}

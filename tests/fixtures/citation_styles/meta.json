@@ -1,0 +1,37 @@
+{
+  "purpose": "Cross-style regression corpus for the reference parser. Every case is a citation style or structure that a previous parser change broke and a later one repaired. A fix motivated by one style has to leave all the others intact, which is the failure mode this corpus exists to catch: each improvement round so far regressed a style other than the one it was fixing.",
+  "layout": "One file per citation style (apa7.json, german_apa.json, vancouver.json, ieee.json, jss.json, elsevier.json), plus numbered.json for behaviour that does not depend on the style and document_structure.json for section boundaries. Splitting by style is not filing: as the parser becomes style-aware, each file is the owned test set for one style's gates, and 'confusable_with' names the other files that must be re-run when those gates change. A single corpus file could not express either.",
+  "provenance": "Independently authored synthetic reference text. Author names, titles, journals, DOIs and URLs are invented; no entry is copied from a real bibliography, a library PDF, or any third-party parser's fixtures (see docs/clean-room-development-policy.md). Real author surnames that occur in a style's canonical form (e.g. Vancouver examples) are used only as name-shaped tokens with invented works.",
+  "maintenance": "When a parser improvement round recovers a new case, add it to the file for its style with the round that produced it, the behaviour that must hold, and a 'reproduces' block (see below). Do not delete a case to make a change pass — a case that must change is a deliberate behaviour decision to state in the commit message.",
+  "reproduces": {
+    "rule": "Every case declares which failure it recreates. A case that passes both before and after the change it was added for proves nothing, and a corpus full of those looks like coverage while providing none. 'kind' is either 'recovery' or 'guard' and the two carry different evidence.",
+    "recovery": "The case failed on a real parser before its fix. 'broken_at' is the commit where it failed and 'observed_then' is the wrong output measured there, not a description of it. scripts/check_corpus_reproduces.py re-runs the case against that commit and fails if it passes — so a recovery case that never reproduced its failure cannot survive review.",
+    "guard": "The case was already correct at 'passed_at' and exists because some other fix would break it. 'protects_against' names that fix. A guard with nothing to name is a case nobody can justify keeping, so the field is required rather than optional.",
+    "adding_a_case": "Write the case, run scripts/check_corpus_reproduces.py against the pre-fix commit, and record what it actually printed. If the case passes there it is not a recovery case; either it is a guard (say what it guards) or the failure being claimed is somewhere else.",
+    "guard_cases_must_fire": "A guard's 'protects_against' is a claim that can be tested: neutralize the guard and the case must fail. Where that has been done, the entry says so and gives the numbers. Two guards in tier0.py are known live-in-principle but currently unproven, and are recorded here rather than covered by a case that would pass either way — the newline branch of _ENTRY_BOUNDARY_BEFORE_RE (no input found where the recovery path is the winner over multi-line text) and the _MAX_ENTRY_LINES fallback in _entries_from_year_gated_starts (its one proven input, an undated reference list, is now handled by the date-slot signal instead). Both are safety nets for entries that never show a date at all."
+  },
+  "synthetic_documents": {
+    "note": "Base layer of the corpus: the project's synthetic manuscript PDFs under tests/fixtures/synthetic, whose manifest lists every reference's real title independently of the parser. All 121 references across the four styles currently land inside a single extracted entry; the counts below are the measured boundaries that must not drift. An entry count above the golden count is a known over-split recorded here rather than hidden by a tolerance. These are test fixtures only — the demo manuscripts bundled under src/refcheck/assets are separate documents with their own manifest and no bearing on these baselines.",
+    "synthetic_social_behavioral_apa7_clean.pdf": {
+      "entry_count": 30,
+      "golden_count": 30
+    },
+    "synthetic_humanities_theology_chicago_authordate_clean.pdf": {
+      "entry_count": 31,
+      "golden_count": 30,
+      "note": "One long-standing over-split: every reference is still recovered whole, so the extra entry is a fragment rather than a lost reference. Lowering this to 30 is an improvement; raising it is a regression."
+    },
+    "synthetic_medicine_life_sciences_vancouver_clean.pdf": {
+      "entry_count": 30,
+      "golden_count": 30
+    },
+    "synthetic_cs_engineering_ieee_clean.pdf": {
+      "entry_count": 30,
+      "golden_count": 30
+    },
+    "synthetic_other_apa7_clean.pdf": {
+      "entry_count": 1,
+      "golden_count": 1
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Improve Reference Parser"
+  short_description: "Diagnose PDF reference parsing failures"
+  default_prompt: "Use $improve-reference-parser to diagnose unmatched references in a PDF and improve the parser with regression tests."

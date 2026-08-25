@@ -1,0 +1,58 @@
+{
+  "style": "vancouver",
+  "display_name": "Vancouver",
+  "family": "numbered",
+  "applies_to": "Numeric markers keyed to a numbered reference list, written in parentheses rather than brackets by many biomedical journals. The parenthesised form is only searched for when the bibliography's own evidence says the document is numbered and shows no author-date evidence — '(1)' is also how the world numbers equations, list items and figure panels.",
+  "cases": [
+    {
+      "id": "vancouver-paren-numeral",
+      "note": "The reason this style needs its own file: the same marker that is unambiguous in brackets is ambiguous in parentheses.",
+      "families": ["numbered"],
+      "text": "The original trial reported a smaller effect (3).",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "(3)", "number": 3}
+        ]
+      }
+    },
+    {
+      "id": "vancouver-paren-group",
+      "note": "Grouping works the same in parentheses as in brackets once the family is licensed.",
+      "families": ["numbered"],
+      "text": "Two later trials agreed (3, 5).",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "(3, 5)", "number": 3},
+          {"family": "numbered", "marker": "(3, 5)", "number": 5}
+        ]
+      }
+    },
+    {
+      "id": "vancouver-paren-numeral-needs-numbered-evidence",
+      "note": "The same text with no family restriction — what a document whose bibliography shows author-date evidence, or none at all, would get. Detecting '(3)' there would turn every numbered list item and equation into an orphaned citation.",
+      "text": "The original trial reported a smaller effect (3).",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "vancouver-equation-reference",
+      "note": "'see Eq. (1)' is the collision the parenthesised form exists to survive. The cue sits outside the parentheses, so the content alone cannot distinguish it.",
+      "families": ["numbered"],
+      "text": "Substituting into Eq. (1) gives the closed form.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "vancouver-degrees-of-freedom",
+      "note": "'t(28)' is a test statistic's degrees of freedom. A citation marker never touches the preceding word, which is the whole discriminator here.",
+      "families": ["numbered"],
+      "text": "The difference was reliable, t(28) = 2.1.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "vancouver-figure-panel-reference",
+      "note": "A parenthesised cross-reference with a word in it never parses as a numeric group, but the case is here because the numbered family is the one that would otherwise reach for it.",
+      "families": ["numbered"],
+      "text": "The distribution is shown in (Figure 2).",
+      "expect": {"citations": []}
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "style": "vancouver",
+  "display_name": "Vancouver",
+  "applies_to": "Numbered medical style: 'N.' markers, 'Surname II' author form, 'YYYY;vol(issue):pages' locators, no parenthesised year.",
+  "confusable_with": [
+    "ieee",
+    "numbered",
+    "german_apa"
+  ],
+  "cases": [
+    {
+      "id": "vancouver-flattened-across-blank-line",
+      "layer": "split",
+      "variant": "Vancouver, flattened, one surviving blank line",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 2,
+          "entry_starts": {
+            "0": "1. Dol",
+            "5": null
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "Vancouver writes the year as \"1954;228:1451-5\", never \"(1954)\", so parenthesised years cannot be the only evidence of flattening.",
+      "text": "1. Doll R, Hill AB. The mortality of doctors. BMJ. 1954;228:1451-5. 2. Wynder EL. Tobacco and health. NEJM. 1961;264:1235-40. 3. Peto R. Smoking and death. BMJ. 1994;309:937-9.\n\n4. Able A. A fourth study. Lancet. 2001;357:1191-4. 5. Baker B. A fifth study. JAMA. 2005;293:2362-6. 6. Chen C. A sixth study. BMJ. 2010;341:c4444.",
+      "expect": {
+        "count": 6,
+        "entry_starts": {
+          "0": "Doll R",
+          "5": "Chen C"
+        }
+      }
+    },
+    {
+      "id": "vancouver-numbered-in-title-decoy",
+      "layer": "split",
+      "variant": "Vancouver, line-numbered, in-title number",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the numbered heuristic anchoring on a number that occurs inside a title rather than at an entry start"
+      },
+      "note": "Entry 4 contains \"Chapter 5.\", continuing the 1..4 run. A heuristic finding one more entry is not therefore better.",
+      "text": "1. Able A. First title. Journal. 2018.\n2. Baker B. Second title. Journal. 2019.\n3. Chen C. Third title. Journal. 2020.\n4. Rothman KJ. Modern Epidemiology, Chapter 5. Precision and statistics. Lippincott; 2008.",
+      "expect": {
+        "count": 4,
+        "entry_starts": {
+          "3": "Rothman KJ."
+        },
+        "entry_contains": {
+          "3": "Precision and statistics"
+        }
+      }
+    },
+    {
+      "id": "vancouver-numbered-missing-first-marker",
+      "layer": "split",
+      "variant": "Vancouver, numbered run starting at 2",
+      "round": "round 1",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the numbered heuristic being tightened to require a run starting at 1, which a page-break merge can swallow"
+      },
+      "note": "A page-break merge upstream can absorb the \"1.\" marker.",
+      "text": "2. Roe R. Second title. Journal. 2019.\n3. Young Y. Third title. Journal. 2020.\n4. Able A. Fourth title. Journal. 2021.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "0": "Roe R."
+        }
+      }
+    },
+    {
+      "id": "vancouver-two-entry-fragment",
+      "layer": "split",
+      "variant": "Vancouver, two-entry numbered tail",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "requiring a long numbered run, which would leave a short numbered tail unsplit"
+      },
+      "text": "14. Doll R. The mortality of doctors. BMJ. 1954.\n15. Wynder EL. Tobacco and health. NEJM. 1961.",
+      "expect": {
+        "count": 2,
+        "entry_starts": {
+          "1": "Wynder EL."
+        }
+      }
+    },
+    {
+      "id": "title-year-ending-a-title",
+      "layer": "title",
+      "variant": "Vancouver, title ending in a year",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the Elsevier comma-year rule consuming a title that legitimately ends in a year"
+      },
+      "note": "Not an author-year block: what follows the year is journal metadata, so no title is better than a wrong one.",
+      "raw": "GBD 2019 Collaborators. Global burden of 369 diseases, 2019. Lancet 396, 1204-1222.",
+      "expect": {
+        "title": null
+      }
+    },
+    {
+      "id": "title-vancouver-particle-authors",
+      "layer": "title",
+      "variant": "Vancouver with name particles",
+      "round": "#37 feature",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "title": null
+        }
+      },
+      "raw": "van der Berg J, de Vries AB. A study of reporting practice. Journal of Examples. 2019;12:1-9.",
+      "expect": {
+        "title": "A study of reporting practice"
+      }
+    },
+    {
+      "id": "vancouver-stray-digit-before-numbered-run",
+      "layer": "split",
+      "variant": "Vancouver, numbered run starting at 2, preceded by a wrapped page range",
+      "round": "review round 5 (C3)",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "bc81013",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "0": "Smith J, Jones A.",
+            "1": null,
+            "2": null,
+            "3": null
+          }
+        }
+      },
+      "note": "The first entry's '1.' marker was absorbed by a page-break merge and its page range wrapped, leaving '246.' on its own line. The heuristic anchored its fallback run on the first candidate rather than the best one, so it tried a run from 246, found one wordless line, and gave up on the whole block.",
+      "text": "Smith J, Jones A. A study of things. Journal of Examples. 2019;12:240-\n246.\n2. Roe R. Another study. Journal of Methods. 2020;13:10-20.\n3. Young Y. A third study. Journal of Things. 2021;14:30-40.\n4. Baker B. A fourth study. Journal of Data. 2022;15:50-60.",
+      "expect": {
+        "count": 4,
+        "entry_starts": {
+          "0": "Smith J, Jones A.",
+          "1": "Roe R.",
+          "2": "Young Y.",
+          "3": "Baker B."
+        }
+      }
+    }
+  ]
+}

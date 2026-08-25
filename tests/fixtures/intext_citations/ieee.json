@@ -1,0 +1,121 @@
+{
+  "style": "ieee",
+  "display_name": "IEEE",
+  "family": "numbered",
+  "applies_to": "Bracketed numeric markers keyed to a numbered reference list: '[1]', '[2, 4, 7]', '[4]-[6]'. Bracketed markers are detected in every document, unlike parenthesised numerals — a bracketed integer group has almost no competing meaning in prose.",
+  "cases": [
+    {
+      "id": "ieee-single-marker",
+      "note": "The plain case.",
+      "text": "An earlier architecture achieved the same throughput [1].",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[1]", "number": 1}
+        ]
+      }
+    },
+    {
+      "id": "ieee-grouped-list",
+      "note": "One marker, three references, one span — the numbered family's version of the author-date grouping case.",
+      "text": "Several designs share this property [2, 4, 7].",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[2, 4, 7]", "number": 2},
+          {"family": "numbered", "marker": "[2, 4, 7]", "number": 4},
+          {"family": "numbered", "marker": "[2, 4, 7]", "number": 7}
+        ]
+      }
+    },
+    {
+      "id": "ieee-range-expands",
+      "note": "A range names every reference in it. Leaving it as an endpoint pair would mark the references between them unused, which is a reported finding, not a silent gap.",
+      "text": "The surveyed systems [4-6] all use the same encoding.",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[4-6]", "number": 4},
+          {"family": "numbered", "marker": "[4-6]", "number": 5},
+          {"family": "numbered", "marker": "[4-6]", "number": 6}
+        ]
+      }
+    },
+    {
+      "id": "ieee-adjacent-markers",
+      "note": "Two markers, not one group: each keeps its own span, so a reviewer sent to either lands on that marker rather than on the pair.",
+      "text": "Earlier results [1], [2] agree on the bound.",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[1]", "number": 1},
+          {"family": "numbered", "marker": "[2]", "number": 2}
+        ]
+      }
+    },
+    {
+      "id": "ieee-semicolon-separated-group",
+      "note": "Some journals separate a group with semicolons. Same marker, same split.",
+      "text": "Two follow-up studies [7; 8] repeated the measurement.",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[7; 8]", "number": 7},
+          {"family": "numbered", "marker": "[7; 8]", "number": 8}
+        ]
+      }
+    },
+    {
+      "id": "ieee-marker-at-start-of-wrapped-line",
+      "note": "Extraction wraps lines wherever the source PDF did, so a real marker lands at the start of a line routinely. This is why the notes-list exclusion is paragraph-initial rather than line-initial.",
+      "text": "The effect was first reported in\n[12], and confirmed later.",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[12]", "number": 12}
+        ]
+      }
+    },
+    {
+      "id": "ieee-notes-list-entries-are-not-citations",
+      "note": "An endnotes section sits after the bibliography and so survives into the body text the artifact keeps. Every note opens with the marker shape this family looks for; counting them would invent a second occurrence of every cited reference.",
+      "text": "The measurement is described elsewhere [3].\n\n[1] Details of the calibration procedure.\n\n[2] The apparatus was replaced mid-study.",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[3]", "number": 3}
+        ]
+      }
+    },
+    {
+      "id": "ieee-repeated-number-in-one-group",
+      "note": "A group naming the same reference twice is a typo, not two citations. Deduplicating inside the group keeps 'cited N times' honest without hiding the marker.",
+      "text": "The same source is listed twice here [5, 5].",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[5, 5]", "number": 5}
+        ]
+      }
+    },
+    {
+      "id": "ieee-page-locator-inside-the-brackets",
+      "note": "Where the numbered family puts a locator: inside the marker, not after it. The whole span is digits-and-separators plus a page reference, so a group test that does not account for the locator rejects the marker outright — this manuscript would lose every citation it gave a page number to, which is the highest-cost failure the module has.",
+      "text": "The argument is put most directly in one passage [3, p. 14].",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[3, p. 14]", "number": 3}
+        ]
+      }
+    },
+    {
+      "id": "ieee-section-locator-in-a-group",
+      "note": "The same shape with a section locator and a multi-reference group, so the locator is dropped without taking the second reference with it.",
+      "text": "Both treatments are given there [7, 8, Sec. 2].",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[7, 8, Sec. 2]", "number": 7},
+          {"family": "numbered", "marker": "[7, 8, Sec. 2]", "number": 8}
+        ]
+      }
+    },
+    {
+      "id": "ieee-locator-without-a-reference-is-not-a-marker",
+      "note": "The counterpart that keeps the locator allowance from becoming a hole: dropping the locator has to leave a reference behind, or there is nothing to cite.",
+      "text": "The passage quoted above [p. 14] makes the point.",
+      "expect": {"citations": []}
+    }
+  ]
+}

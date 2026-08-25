@@ -1,0 +1,163 @@
+{
+  "style": "exclusions",
+  "display_name": "Cross-style exclusions",
+  "family": "none",
+  "applies_to": "Constructs that share a citation marker's shape but are not citations, regardless of the document's style. These carry more weight than the detection cases: a missed marker costs a check that isn't run, while a spurious one is displayed to a reviewer as an orphaned citation — a reported authoring error that isn't there.",
+  "cases": [
+    {
+      "id": "exclusion-p-value",
+      "note": "A comparison operator is the cheapest near-perfect discriminator available: no citation marker contains one.",
+      "text": "The difference reached significance (p < .05) in both samples.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-descriptive-statistics",
+      "note": "Reported descriptives, the most common parenthetical in a quantitative manuscript.",
+      "text": "Scores were higher in the treatment arm (M = 3.2, SD = 0.4).",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-confidence-interval-decimal-bounds",
+      "note": "The interval brackets sit inside the parentheses. Decimal bounds cannot parse as a numeric group anyway, but the percent sign rejects the whole span first.",
+      "text": "The estimate was imprecise (95% CI [0.2, 0.5]).",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-confidence-interval-integer-bounds",
+      "note": "The case the decimal one does not cover: an interval whose bounds are whole numbers is character-for-character a grouped numeric marker, so only the preceding cue separates them.",
+      "families": ["numbered"],
+      "text": "The count difference was 95% CI [2, 5] across sites.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-figure-crossref",
+      "note": "An English cross-reference. As an author component 'Figure' is structurally a one-word surname.",
+      "text": "The trend is clearest in (Figure 2) of the appendix.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-tabelle-crossref",
+      "note": "The German counterpart, present for the same reason the German marker forms are.",
+      "text": "Die Werte stehen in (Tabelle 3) am Ende.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-english-month",
+      "note": "A month plus a year is a date in prose and satisfies every structural test for a one-word surname plus a year.",
+      "text": "Data collection ran until (October 2021) at the second site.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-bare-year",
+      "note": "A parenthesised year with nothing before it names no author, so it can be matched to no reference. Emitting it would produce an orphaned citation for every parenthetical date in the manuscript.",
+      "text": "The policy changed that year (2020) across all regions.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-decimal-group-in-brackets",
+      "note": "Brackets are the numbered family's strongest signal, which is exactly why the content has to be integers and separators and nothing else.",
+      "families": ["numbered"],
+      "text": "Observed values fell in [0.2, 0.5] overall.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-year-range-historical-period",
+      "note": "A narrative marker's trailing group absorbs a locator, and a year range looks exactly like one. Every case here is a capitalised word in front of a parenthesised span whose first number is year-shaped.",
+      "text": "The Second World War (1939-1945) reshaped the discipline.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-year-range-lifespan",
+      "note": "The same shape with an en dash and a person's name in front, which is where it is most convincing.",
+      "text": "Beethoven (1770–1827) is the standard example.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-year-range-funding-period",
+      "note": "The form a grant or programme period takes in a methods or acknowledgements section.",
+      "text": "The Framework Programme (2014-2020) funded the first wave.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-english-season",
+      "note": "A season plus a year is a data collection window and is structurally identical to the month case.",
+      "text": "Recruitment ran through (Fall 2020) at the second site.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-german-determiner-noun",
+      "note": "German capitalises every common noun, so the structural test that keeps English prose out does not apply. The article in front is the discriminator.",
+      "text": "Die Befragung (2020) zeigte einen deutlichen Effekt.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-german-determiner-with-adjective",
+      "note": "The same construct with the adjectives a noun phrase carries, which sit between the article and the noun.",
+      "text": "Die zweite Welle (2021) fiel schwächer aus.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-german-determiner-does-not-suppress-a-real-marker",
+      "note": "The counterpart: an article earlier in the sentence must not suppress a genuine German narrative marker, whose author is not the word the article introduces. The author component keeps the preposition, because 'von' is also a surname particle and the two are not separable here — the module states that authors is the run as written and leaves surname splitting to fuzzy matching.",
+      "text": "Die Ergebnisse von Müller (2020) bestätigen das Muster.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "von Müller (2020)", "authors": "von Müller", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "exclusion-english-article-still-allows-a-narrative-marker",
+      "note": "English \"the\" is deliberately not a cue: this is ordinary phrasing for a real citation, and treating the article as a discriminator would cost it.",
+      "text": "The Doe et al. (2020) study reported the same effect.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe et al. (2020)", "authors": "Doe et al.", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "exclusion-bracketed-range-of-values",
+      "note": "The integer-bounded interval case again, with the cue word a manuscript uses when it is not reporting a confidence interval.",
+      "families": ["numbered"],
+      "text": "Observed counts fell in the range [1, 10] across sites.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-bracketed-response-scale",
+      "note": "A response scale's endpoints, the other place integer bounds appear in brackets.",
+      "families": ["numbered"],
+      "text": "Items used a scale from [1, 7] with verbal anchors.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-between-two-brackets-is-two-citations",
+      "note": "The limit of the interval cue: \"between\" is not a cue word, because comparing two numbered references reads exactly this way.",
+      "families": ["numbered"],
+      "text": "Differences between [3] and [4] were negligible.",
+      "expect": {
+        "citations": [
+          {"family": "numbered", "marker": "[3]", "number": 3},
+          {"family": "numbered", "marker": "[4]", "number": 4}
+        ]
+      }
+    },
+    {
+      "id": "exclusion-enumeration-after-a-colon",
+      "note": "An in-sentence enumeration in a numbered document writes its items as Vancouver markers. Only the colon separates the first item from a citation; the later items are a stated limit of the module, so this case pins the part that is actually decidable.",
+      "families": ["numbered"],
+      "text": "We tested one hypothesis: (1) that exposure increases recall.",
+      "expect": {"citations": []}
+    },
+    {
+      "id": "exclusion-percentage-does-not-suppress-a-real-marker",
+      "note": "The counterpart to the statistics cases: the exclusion is scoped to the parentheses it fires in, so a percentage elsewhere in the sentence must not suppress a genuine marker.",
+      "text": "Uptake rose by 40% in the second wave (Doe, 2020).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe, 2020)", "authors": "Doe", "year": "2020"}
+        ]
+      }
+    }
+  ]
+}

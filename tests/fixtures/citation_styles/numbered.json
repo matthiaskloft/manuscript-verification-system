@@ -1,0 +1,37 @@
+{
+  "style": "numbered",
+  "display_name": "Numbered (style-agnostic)",
+  "applies_to": "Numbered reference lists whose behaviour does not depend on which journal style produced them.",
+  "confusable_with": [
+    "vancouver",
+    "ieee",
+    "german_apa"
+  ],
+  "cases": [
+    {
+      "id": "numbered-leading-heading-fragment",
+      "layer": "split",
+      "variant": "Numbered, flattened, leftover heading",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "0": "Referen"
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "\"References\" is the one thing that legitimately precedes the first entry and is not itself a reference.",
+      "text": "References 1. Doll R. First. BMJ. 1954. 2. Wynder EL. Second. NEJM. 1961. 3. Peto R. Third. BMJ. 1994.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "0": "Doll R."
+        }
+      }
+    }
+  ]
+}

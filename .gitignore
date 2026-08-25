@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Real PDFs used as local benchmark fixtures — even CC-licensed preprints
+# shouldn't be committed as binary blobs; keep them local-only.
+tests/fixtures/local_pdfs/
+
+# LaTeX build byproducts for the synthetic benchmark (scripts/build_synthetic_benchmark.py
+# regenerates these deterministically) — only the .pdf and manifest.json are committed.
+tests/fixtures/synthetic/*.aux
+tests/fixtures/synthetic/*.bbl
+tests/fixtures/synthetic/*.bcf
+tests/fixtures/synthetic/*.blg
+tests/fixtures/synthetic/*.log
+tests/fixtures/synthetic/*.run.xml
+tests/fixtures/synthetic/corruption_variants/*.aux
+tests/fixtures/synthetic/corruption_variants/*.bbl
+tests/fixtures/synthetic/corruption_variants/*.bcf
+tests/fixtures/synthetic/corruption_variants/*.blg
+tests/fixtures/synthetic/corruption_variants/*.log
+tests/fixtures/synthetic/corruption_variants/*.run.xml
+
+# Private planning repo (competitive analysis, benchmark planning). Its own git
+# repo with its own remote; never part of this one.
+private/

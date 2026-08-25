@@ -1,0 +1,29 @@
+{
+  "style": "ieee",
+  "display_name": "IEEE",
+  "applies_to": "Bracket-numbered engineering style: '[N]' markers, quoted titles.",
+  "confusable_with": [
+    "vancouver",
+    "numbered"
+  ],
+  "cases": [
+    {
+      "id": "ieee-bracket-numbered",
+      "layer": "split",
+      "variant": "IEEE bracket-numbered",
+      "round": "corpus baseline",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "changes to the numbered heuristics breaking the unambiguous bracket-marker case they are built on"
+      },
+      "text": "[1] A. Able, \"A first paper,\" Journal of Examples, vol. 1, no. 1, pp. 1-10, 2018.\n[2] B. Baker, \"A second paper,\" Journal of Methods, vol. 2, no. 2, pp. 11-20, 2019.\n[3] C. Chen, \"A third paper,\" Journal of Results, vol. 3, no. 3, pp. 21-30, 2020.",
+      "expect": {
+        "count": 3,
+        "entry_contains": {
+          "2": "A third paper"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "style": "chicago_authordate",
+  "display_name": "Chicago author-date",
+  "family": "author-date",
+  "applies_to": "The Chicago author-date convention, whose parenthetical marker has no comma between author and year. Only the punctuation differs from APA, but the chunk parser splits on the date rather than on the comma precisely so that this needs no separate code path.",
+  "cases": [
+    {
+      "id": "chicago-no-comma-parenthetical",
+      "note": "The distinguishing case for this style. A parser that looked for 'author comma year' would find nothing at all in a Chicago manuscript.",
+      "text": "The periodisation has been questioned (Doe 2020).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe 2020)", "authors": "Doe", "year": "2020"}
+        ]
+      }
+    },
+    {
+      "id": "chicago-grouped-no-comma",
+      "note": "Grouping is still on the semicolon, so the same split works with or without the internal comma.",
+      "text": "Two readings of the source survive (Doe 2020; Roe 2019).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe 2020; Roe 2019)", "authors": "Doe", "year": "2020"},
+          {"family": "author-date", "marker": "(Doe 2020; Roe 2019)", "authors": "Roe", "year": "2019"}
+        ]
+      }
+    },
+    {
+      "id": "chicago-narrative",
+      "note": "Narrative position is identical across the author-date styles — the comma only ever sits inside the parentheses.",
+      "text": "Doe (2020) dates the manuscript a century later.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe (2020)", "authors": "Doe", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "chicago-particle-surname-no-comma",
+      "note": "A particle surname with no comma before the year: the two features that each need their own allowance, in one marker.",
+      "text": "An earlier edition disagrees (van der Veen 2018).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(van der Veen 2018)", "authors": "van der Veen", "year": "2018"}
+        ]
+      }
+    },
+    {
+      "id": "chicago-page-locator-no-comma",
+      "note": "Chicago writes the locator after a comma even though the year is not preceded by one, so the locator cut has to be independent of the author/year separator.",
+      "text": "The passage is discussed at length (Doe 2020, 45).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe 2020, 45)", "authors": "Doe", "year": "2020"}
+        ]
+      }
+    }
+  ]
+}

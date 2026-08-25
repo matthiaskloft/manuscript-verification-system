@@ -1,0 +1,33 @@
+
+\documentclass[twocolumn]{article}
+\usepackage[style=apa]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{corrupt_two_column.bib}
+
+\title{A Synthetic Manuscript for Reference-Extraction Benchmarking}
+\author{Synthetic Author}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This synthetic manuscript exists only to exercise the reference-extraction pipeline against a document with realistic structure and an exactly known bibliography, generated from the entries in entries.py.
+\end{abstract}
+
+\section{Introduction}
+This is placeholder body text standing in for a manuscript's real prose, repeated across several sections so the document has the length and structural shape (title, abstract, multiple sections, references) of an actual manuscript rather than a bibliography-only file. The extraction pipeline still has to isolate the reference list from this surrounding text, not just read it off a clean list.
+
+\section{Method}
+This is placeholder body text standing in for a manuscript's real prose, repeated across several sections so the document has the length and structural shape (title, abstract, multiple sections, references) of an actual manuscript rather than a bibliography-only file. The extraction pipeline still has to isolate the reference list from this surrounding text, not just read it off a clean list.
+
+\section{Results}
+This is placeholder body text standing in for a manuscript's real prose, repeated across several sections so the document has the length and structural shape (title, abstract, multiple sections, references) of an actual manuscript rather than a bibliography-only file. The extraction pipeline still has to isolate the reference list from this surrounding text, not just read it off a clean list.
+
+\section{Discussion}
+This is placeholder body text standing in for a manuscript's real prose, repeated across several sections so the document has the length and structural shape (title, abstract, multiple sections, references) of an actual manuscript rather than a bibliography-only file. The extraction pipeline still has to isolate the reference list from this surrounding text, not just read it off a clean list.
+
+\nocite{*}
+\printbibliography
+
+\end{document}

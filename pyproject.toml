@@ -1,0 +1,46 @@
+[project]
+name = "refcheck"
+version = "0.0.1"
+description = "Local reference-checking prototype (Phase A / Stufe 0-1) — see docs/project-plan.md"
+requires-python = ">=3.11"
+dependencies = [
+    "nicegui>=1.4",
+    "pymupdf>=1.24",
+    "pymupdf4llm>=1.24",
+    "python-docx>=1.1",
+    "pyalex>=0.15",
+    "habanero>=1.2",
+    "jinja2>=3.1",
+    "matplotlib>=3.9",
+    "requests>=2.31",
+    "google-auth>=2.28",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+benchmark = [
+    "requests>=2.31",
+]
+# Only needed for the desktop entry point (refcheck.app:main), which opens a
+# native pywebview window. The web entry point (refcheck.app_web:main) and the
+# Cloud Run container (docker/nicegui/Dockerfile) don't install this extra, so
+# they don't pull in pywebview/its OS-level webview backends at all.
+native = [
+    "nicegui[native]>=1.4",
+]
+
+[project.scripts]
+refcheck = "refcheck.app:main"
+refcheck-web = "refcheck.app_web:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+refcheck = ["assets/*.pdf", "assets/*.json"]

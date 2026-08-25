@@ -1,0 +1,399 @@
+{
+  "style": "apa7",
+  "display_name": "APA 7",
+  "applies_to": "APA 7th edition and near variants: author-initial entry starts, a parenthesised year, DOI-final entries.",
+  "confusable_with": [
+    "german_apa",
+    "elsevier",
+    "jss"
+  ],
+  "cases": [
+    {
+      "id": "apa-blank-line-intact",
+      "layer": "split",
+      "variant": "APA, blank-line separated",
+      "round": "round 1",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "inline-APA recovery reading an edited-book editor list ('In Smith, A. B., & Jones, C. D. (Eds.)') as the start of a new entry"
+      },
+      "note": "The plain case. An edited-book chapter's editor list must not read as a new entry.",
+      "text": "Doe, J. (2020). A first article title. Journal of Examples, 1(1), 1-10.\n\nRoe, R. (2019). A chapter about things. In Smith, A. B., & Jones, C. D. (Eds.), The handbook of examples (pp. 30-55). Academic Press.\n\nYoung, Y. (2021). A third article. Journal of Methods, 3(2), 100-120.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "1": "Roe, R.",
+          "2": "Young, Y."
+        },
+        "entry_contains": {
+          "1": "Academic Press."
+        }
+      }
+    },
+    {
+      "id": "apa-newline-separated-editor-list",
+      "layer": "split",
+      "variant": "APA, one entry per line",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "the line-start APA heuristic splitting a wrapped editor list away from its chapter entry"
+      },
+      "text": "Baker, S. U. (2020). A chapter on sleep. In Smith, A. B., Jones, C. D., & Brown, E. F. (Eds.), The handbook (pp. 1-20). Press.\nCarter, V. W. (2021). Another article. Journal, 2, 20-30.",
+      "expect": {
+        "count": 2,
+        "entry_contains": {
+          "0": "Jones, C. D."
+        },
+        "entry_starts": {
+          "1": "Carter, V. W."
+        }
+      }
+    },
+    {
+      "id": "apa-publisher-location",
+      "layer": "split",
+      "variant": "APA with publisher location",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "inline-APA recovery reading a publisher location ('Hillsdale, N.J.:') as an author-initial entry start"
+      },
+      "note": "\"Hillsdale, N.J.:\" has the Surname-comma-initial shape and sits after the entry's year.",
+      "text": "Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). Hillsdale, N.J.: Lawrence Erlbaum Associates.\nCarter, V. W. (2021). Another article. Journal, 2, 20-30.\nYoung, Y. (2022). A third article. Journal, 3, 30-40.",
+      "expect": {
+        "count": 3,
+        "entry_contains": {
+          "0": "Lawrence Erlbaum"
+        }
+      }
+    },
+    {
+      "id": "apa-reprint-notes",
+      "layer": "split",
+      "variant": "APA with reprint annotations",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "3daabf0",
+        "protects_against": "bare-year flattening evidence licensing recovery on an intact list that merely quotes several years"
+      },
+      "note": "Three unparenthesised years per entry: trips the flattening gate, later guards must still hold.",
+      "text": "Freud, S. (1955). The interpretation of dreams. Basic Books. (Original work published 1899, reprinted 1913)\n\nJung, C. (1960). The structure of the psyche. Princeton. (Original work published 1927, reprinted 1934)",
+      "expect": {
+        "count": 2,
+        "entry_starts": {
+          "1": "Jung, C."
+        }
+      }
+    },
+    {
+      "id": "apa-flattened-onto-one-line",
+      "layer": "split",
+      "variant": "APA, fully flattened",
+      "round": "#37 feature",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "1": null,
+            "2": null
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "The recovery this feature exists for.",
+      "text": "Doe, J. (2020). A first article. Journal, 1(1), 1-10. Roe, R. (2019). A second article. Journal, 2(2), 20-30. Young, Y. (2021). A third article. Journal, 3(2), 100-120.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "1": "Roe, R.",
+          "2": "Young, Y."
+        }
+      }
+    },
+    {
+      "id": "apa-flattened-doi-final",
+      "layer": "split",
+      "variant": "APA, flattened, DOI-final entries",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "1": null,
+            "2": null
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "APA closes a DOI with no period, so entry boundaries cannot require terminal punctuation.",
+      "text": "Doe, J. (2020). A first article. Journal, 1(1), 1-10. https://doi.org/10.1000/abc123 Roe, R. (2019). A second article. Journal, 2(2), 20-30. https://doi.org/10.1000/def456 Young, Y. (2021). A third article. Journal, 3(2), 100-120. https://doi.org/10.1000/ghi789",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "1": "Roe, R.",
+          "2": "Young, Y."
+        }
+      }
+    },
+    {
+      "id": "apa-flattened-editor-list",
+      "layer": "split",
+      "variant": "APA, flattened, edited-book chapter",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "1": null
+          },
+          "entry_contains": {
+            "0": true
+          }
+        }
+      },
+      "text": "Baker, S. U. (2020). A chapter on sleep. In Smith, A. B., Jones, C. D., & Brown, E. F. (Eds.), The handbook (pp. 1-20). Press. Carter, V. W. (2021). Another article. Journal, 2, 20-30. Young, Y. (2022). A third. Journal, 3, 3-9.",
+      "expect": {
+        "count": 3,
+        "entry_contains": {
+          "0": "Jones, C. D."
+        },
+        "entry_starts": {
+          "1": "Carter, V. W."
+        }
+      }
+    },
+    {
+      "id": "apa-flattened-publisher-location",
+      "layer": "split",
+      "variant": "APA, flattened, publisher location",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {},
+          "entry_contains": {
+            "0": true
+          }
+        }
+      },
+      "text": "Cohen, J. (1988). Statistical power analysis (2nd ed.). Hillsdale, N.J.: Lawrence Erlbaum Associates. Carter, V. W. (2021). Another article. Journal, 2, 20-30. Young, Y. (2022). A third. Journal, 3, 3-9.",
+      "expect": {
+        "count": 3,
+        "entry_contains": {
+          "0": "Lawrence Erlbaum"
+        }
+      }
+    },
+    {
+      "id": "apa-one-stuck-block",
+      "layer": "split",
+      "variant": "APA, blank-line separated, one merged block",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 3,
+          "entry_starts": {
+            "1": "Roe, R.",
+            "2": "Zane, Z. ",
+            "3": null
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "Partial flattening: recovery must re-split only the stuck block.",
+      "text": "Doe, J. (2020). A first. Journal, 1, 1-10.\n\nRoe, R. (2019). A second. Journal, 2, 2-20. Young, Y. (2021). A third. Journal, 3, 3-30.\n\nZane, Z. (2022). A fourth. Journal, 4, 4-40.",
+      "expect": {
+        "count": 4,
+        "entry_starts": {
+          "1": "Roe, R.",
+          "2": "Young, Y.",
+          "3": "Zane, Z."
+        }
+      }
+    },
+    {
+      "id": "apa-corporate-author-leading",
+      "layer": "split",
+      "variant": "APA, flattened, corporate author first",
+      "round": "round 2",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {
+            "0": "World Health Organization."
+          },
+          "entry_contains": {}
+        }
+      },
+      "note": "A corporate author opens with neither a surname pattern nor a number, so it precedes every detected start. Losing it drops a reference outright.",
+      "text": "World Health Organization. (2020). Global report on health. WHO. Doe, J. (2019). An article title. Journal, 1, 1-10. Roe, R. (2021). Another article title. Journal, 2, 11-20.",
+      "expect": {
+        "count": 3,
+        "entry_starts": {
+          "0": "World Health Organization."
+        }
+      }
+    },
+    {
+      "id": "apa-stray-digit-lines-rejected",
+      "layer": "split",
+      "variant": "APA with wrapped year lines",
+      "round": "round 1",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "count": 2,
+          "entry_starts": {},
+          "entry_contains": {}
+        }
+      },
+      "note": "Wrapped page ranges and years leave lines that look numbered. They must not hijack the split.",
+      "text": "Doe, J. (2020). A title. Journal, 1, 1-10.\n7. 2019.\n8. 2020.",
+      "expect": {
+        "count": 1
+      }
+    },
+    {
+      "id": "apa-nd-entries-flattened",
+      "layer": "split",
+      "variant": "APA, flattened, no years at all",
+      "round": "known limitation, resolved in review round 5 (C6)",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "29b91f9",
+        "observed_then": {
+          "count": 1,
+          "entry_starts": {},
+          "entry_contains": {}
+        }
+      },
+      "note": "Recorded as a known limitation while the year gate accepted only a literal year: with every entry carrying \"(n.d.)\" the gate never opened and the block stayed unsplit. Resolved by treating a no-date marker as filling the same slot a year fills. The case was written to be updated when that happened, and this is that update — the expectation moved from 1 entry to 2 because the new behaviour is correct, not to make a test pass.",
+      "text": "Doe, J. (n.d.). A first untitled resource. Example Press. Roe, R. (n.d.). A second untitled resource. Example Press.",
+      "expect": {
+        "count": 2,
+        "entry_starts": {
+          "0": "Doe, J.",
+          "1": "Roe, R."
+        }
+      }
+    },
+    {
+      "id": "apa-doi-final-then-corporate-author",
+      "layer": "normalize",
+      "variant": "APA, DOI-final entry followed by a corporate author",
+      "round": "review round 5 (C1)",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "0b86573",
+        "observed_then": {
+          "normalized_contains": {},
+          "normalized_excludes": {
+            "10.1000/xyz123 World Health Organization": true
+          },
+          "count": 2,
+          "entry_starts": {
+            "1": "Young, Y. (2019). A third ",
+            "2": null
+          }
+        }
+      },
+      "note": "Markdown cleanup collapsed a real blank line here: the previous entry ends in a bare DOI (APA adds no closing period) and the next starts with a corporate author, which matches none of the entry-start markers. The second reference was deleted before splitting ever saw it.",
+      "text": "References\n\nSmith, J. (2020). A first article title. Journal of Examples, 1(1), 1-10. https://doi.org/10.1000/xyz123\n\nWorld Health Organization. (2021). Global report on something measurable. WHO Press.\n\nYoung, Y. (2019). A third article. Journal of Methods, 3(2), 100-120.",
+      "expect": {
+        "normalized_excludes": [
+          "10.1000/xyz123 World Health Organization"
+        ],
+        "count": 3,
+        "entry_starts": {
+          "1": "World Health Organization.",
+          "2": "Young, Y."
+        }
+      }
+    },
+    {
+      "id": "title-apa-quoted-term-inside-title",
+      "layer": "title",
+      "variant": "APA title quoting a term after a comma",
+      "round": "review round 5 (C4)",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "ff84c17",
+        "observed_then": {
+          "title": "researcher degrees of freedom"
+        }
+      },
+      "note": "The quoted-title rule's lookbehind only rejected quotes not preceded by a comma. An APA title that quotes a term after a comma matched it, and because the quoted rule runs first it beat the year-parenthetical rule that would have been right.",
+      "raw": "Smith, J. (2020). Rethinking replication, \"researcher degrees of freedom\" and beyond. Psychological Science, 31(4), 400-415.",
+      "expect": {
+        "title": "Rethinking replication, \"researcher degrees of freedom\" and beyond"
+      }
+    },
+    {
+      "id": "apa-nd-entries-one-per-line",
+      "layer": "split",
+      "variant": "APA, one entry per line, no years at all",
+      "round": "review round 5 (C6)",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "29b91f9",
+        "observed_then": {
+          "count": 2,
+          "entry_starts": {
+            "0": "Author1,",
+            "11": null
+          }
+        }
+      },
+      "note": "Twelve complete one-line entries, none carrying a year. The author-start heuristic waits for a year before closing an entry, so it closed only when the line cap was hit and produced two arbitrary eight-line chunks. '(n.d.)' fills the same slot a year does and now counts as one.",
+      "text": "Author1, A. (n.d.). A title number 1 about things. Organisation 1.\nAuthor2, A. (n.d.). A title number 2 about things. Organisation 2.\nAuthor3, A. (n.d.). A title number 3 about things. Organisation 3.\nAuthor4, A. (n.d.). A title number 4 about things. Organisation 4.\nAuthor5, A. (n.d.). A title number 5 about things. Organisation 5.\nAuthor6, A. (n.d.). A title number 6 about things. Organisation 6.\nAuthor7, A. (n.d.). A title number 7 about things. Organisation 7.\nAuthor8, A. (n.d.). A title number 8 about things. Organisation 8.\nAuthor9, A. (n.d.). A title number 9 about things. Organisation 9.\nAuthor10, A. (n.d.). A title number 10 about things. Organisation 10.\nAuthor11, A. (n.d.). A title number 11 about things. Organisation 11.\nAuthor12, A. (n.d.). A title number 12 about things. Organisation 12.",
+      "expect": {
+        "count": 12,
+        "entry_starts": {
+          "0": "Author1,",
+          "11": "Author12,"
+        }
+      }
+    },
+    {
+      "id": "apa-period-final-then-corporate-author",
+      "layer": "normalize",
+      "variant": "APA, period-final entry followed by a corporate author",
+      "round": "review round 5 (G15)",
+      "reproduces": {
+        "kind": "guard",
+        "passed_at": "50d28f3",
+        "protects_against": "dropping the sentence-terminal half of entry_is_complete, which is the only thing keeping a period-final entry from being merged into the corporate-author entry after it (verified: 3 entries become 2 without it)"
+      },
+      "note": "The counterpart to apa-doi-final-then-corporate-author. That one covered the link-end half of entry_is_complete; this covers the sentence-end half, on the same shape of input, so neither half can be removed unnoticed.",
+      "text": "References\n\nSmith, J. (2020). A first article title. Journal of Examples, 1(1), 1-10.\n\nWorld Health Organization. (2021). Global report on something measurable. WHO Press.\n\nYoung, Y. (2019). A third article. Journal of Methods, 3(2), 100-120.",
+      "expect": {
+        "normalized_excludes": [
+          "1-10. World Health Organization"
+        ],
+        "count": 3,
+        "entry_starts": {
+          "1": "World Health Organization.",
+          "2": "Young, Y."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "style": "apa7",
+  "display_name": "APA 7",
+  "family": "author-date",
+  "applies_to": "APA 7th edition and near variants: a comma between the author component and the year, an ampersand between two authors, 'et al.' from three authors up.",
+  "cases": [
+    {
+      "id": "apa-parenthetical-single",
+      "note": "The plain case. Everything else in this file is a way this one can go wrong.",
+      "text": "Recent evidence supports this interpretation (Doe, 2020).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe, 2020)", "authors": "Doe", "year": "2020"}
+        ]
+      }
+    },
+    {
+      "id": "apa-parenthetical-two-authors",
+      "note": "The ampersand form. A connector between surnames is required for a multi-word author run — plain adjacency is what Title Case prose looks like.",
+      "text": "A replication reached the same conclusion (Doe & Roe, 2019).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe & Roe, 2019)", "authors": "Doe & Roe", "year": "2019"}
+        ]
+      }
+    },
+    {
+      "id": "apa-parenthetical-et-al",
+      "note": "'et al.' is part of the author component, not a separate token to be dropped: the matching engine needs to know the marker was abbreviated.",
+      "text": "The broader pattern holds across samples (Doe et al., 2021).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe et al., 2021)", "authors": "Doe et al.", "year": "2021"}
+        ]
+      }
+    },
+    {
+      "id": "apa-grouped-marker-splits-per-reference",
+      "note": "One marker, three references, one shared span. This is the shape the whole data model is built around — 'cited N times' and the unused/orphaned flags all count records, so a group has to arrive already split.",
+      "text": "Three independent groups agree (Doe, 2020; Roe & Fry, 2019; Nolan et al., 2018).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe, 2020; Roe & Fry, 2019; Nolan et al., 2018)", "authors": "Doe", "year": "2020"},
+          {"family": "author-date", "marker": "(Doe, 2020; Roe & Fry, 2019; Nolan et al., 2018)", "authors": "Roe & Fry", "year": "2019"},
+          {"family": "author-date", "marker": "(Doe, 2020; Roe & Fry, 2019; Nolan et al., 2018)", "authors": "Nolan et al.", "year": "2018"}
+        ]
+      }
+    },
+    {
+      "id": "apa-same-author-two-years",
+      "note": "Two works by one author in one chunk. The second year belongs to the same author component, so the author is carried over rather than the chunk being read as authorless.",
+      "text": "The same team reported both results (Doe, 2020a, 2020b).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe, 2020a, 2020b)", "authors": "Doe", "year": "2020a"},
+          {"family": "author-date", "marker": "(Doe, 2020a, 2020b)", "authors": "Doe", "year": "2020b"}
+        ]
+      }
+    },
+    {
+      "id": "apa-narrative",
+      "note": "The author is part of the sentence and only the year is parenthesised. The marker span covers the name too, so a reviewer sent to this position lands on the whole citation.",
+      "text": "Doe (2020) argued that the effect is context dependent.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe (2020)", "authors": "Doe", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "apa-narrative-two-authors",
+      "note": "'and' spelled out, which is what APA uses in narrative position where a parenthetical uses '&'.",
+      "text": "Doe and Roe (2019) reported a smaller estimate.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe and Roe (2019)", "authors": "Doe and Roe", "year": "2019", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "apa-sentence-connective-is-not-an-author",
+      "note": "'However,' is capitalised because it opens a sentence, and a comma is a legal author-run joiner — so without the stop-word guard the author component reads as 'However, Doe' and matches nothing.",
+      "text": "However, Doe (2020) found the opposite in older cohorts.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe (2020)", "authors": "Doe", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "apa-title-case-prose-is-not-an-author",
+      "note": "Two capitalised words with nothing between them are prose, not a two-word surname. Requiring a connector is what makes this decidable without a dictionary.",
+      "text": "Recent Work Doe (2020) describes the procedure.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe (2020)", "authors": "Doe", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "apa-page-locator-years-are-not-dates",
+      "note": "A page range in a journal with four-digit pagination is three year-shaped numbers in a row. Cutting the chunk at the locator is what keeps this one citation rather than three.",
+      "text": "Doe (2020, pp. 1990-1995) sets out the argument in full.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Doe (2020, pp. 1990-1995)", "authors": "Doe", "year": "2020", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "apa-no-date-marker",
+      "note": "'n.d.' fills the slot a year fills, and the vocabulary comes from signals.py so the bibliography and the body text agree on what an undated work looks like.",
+      "text": "The standard is still current (Doe, n.d.).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Doe, n.d.)", "authors": "Doe", "year": "n.d."}
+        ]
+      }
+    },
+    {
+      "id": "apa-lead-in-see-also",
+      "note": "'see also' introduces the citation from inside the parentheses; keeping it in the author component would leave the matching engine comparing 'see also Roe' to a surname.",
+      "text": "Further support exists elsewhere (see also Roe, 2019).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(see also Roe, 2019)", "authors": "Roe", "year": "2019"}
+        ]
+      }
+    },
+    {
+      "id": "apa-particle-surname",
+      "note": "A particle-prefixed surname is one name. Without the particle list the author component would start at 'Veen' and lose half the name.",
+      "text": "The instrument was validated by van der Veen and Smith (2018).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "van der Veen and Smith (2018)", "authors": "van der Veen and Smith", "year": "2018", "narrative": true}
+        ]
+      }
+    }
+  ]
+}

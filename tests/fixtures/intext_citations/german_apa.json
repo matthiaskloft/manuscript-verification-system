@@ -1,0 +1,105 @@
+{
+  "style": "german_apa",
+  "display_name": "German APA / DGPs",
+  "family": "author-date",
+  "applies_to": "The German author-date convention: 'und' rather than 'and', 'u. a.' rather than 'et al.', 'vgl.'/'siehe' lead-ins, 'o. J.' for an undated work, 'S.' for a page locator.",
+  "cases": [
+    {
+      "id": "de-parenthetical-single",
+      "note": "The plain German case. Present because the project deploys in German and an English-only detector would silently halve its recall there, with no error anywhere.",
+      "text": "Diese Befunde sind gut belegt (Müller, 2019).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Müller, 2019)", "authors": "Müller", "year": "2019"}
+        ]
+      }
+    },
+    {
+      "id": "de-und-connector",
+      "note": "'und' has to join an author run exactly as 'and' does, or a two-author German citation loses its second author.",
+      "text": "Eine Replikation bestätigt dies (Müller und Schmidt, 2021).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Müller und Schmidt, 2021)", "authors": "Müller und Schmidt", "year": "2021"}
+        ]
+      }
+    },
+    {
+      "id": "de-u-a-abbreviation",
+      "note": "'u. a.' is the German 'et al.', including the space inside the abbreviation that a typesetter may or may not have set.",
+      "text": "Der Effekt zeigt sich über Stichproben hinweg (Müller u. a., 2019).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Müller u. a., 2019)", "authors": "Müller u. a.", "year": "2019"}
+        ]
+      }
+    },
+    {
+      "id": "de-vgl-lead-in",
+      "note": "'vgl.' is the most common German lead-in and appears inside the parentheses, where it would otherwise be read as the first word of the author name.",
+      "text": "Ein ähnliches Muster ist bekannt (vgl. Schmidt, 2021).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(vgl. Schmidt, 2021)", "authors": "Schmidt", "year": "2021"}
+        ]
+      }
+    },
+    {
+      "id": "de-grouped-marker",
+      "note": "A German group, mixing the 'u. a.' and 'und' forms, to check the split is on the semicolon rather than on any comma.",
+      "text": "Mehrere Arbeiten kommen zum selben Schluss (Müller u. a., 2019; Weber und Braun, 2021).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Müller u. a., 2019; Weber und Braun, 2021)", "authors": "Müller u. a.", "year": "2019"},
+          {"family": "author-date", "marker": "(Müller u. a., 2019; Weber und Braun, 2021)", "authors": "Weber und Braun", "year": "2021"}
+        ]
+      }
+    },
+    {
+      "id": "de-narrative",
+      "note": "German narrative position. The verb follows the parenthesised year, so nothing in the sentence marks the citation except the name-then-year shape.",
+      "text": "Müller und Schmidt (2021) berichten einen kleineren Effekt.",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "Müller und Schmidt (2021)", "authors": "Müller und Schmidt", "year": "2021", "narrative": true}
+        ]
+      }
+    },
+    {
+      "id": "de-ohne-jahr",
+      "note": "'o. J.' is the German 'n.d.'. It reaches this module from signals.py, which is where the bibliography path already reads it.",
+      "text": "Die Empfehlung gilt weiterhin (Müller, o. J.).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Müller, o. J.)", "authors": "Müller", "year": "o. J."}
+        ]
+      }
+    },
+    {
+      "id": "de-seiten-locator",
+      "note": "'S. 15' is a page locator, not an initial. The locator cue requires a following digit precisely so that '(S. Fischer, 2020)' keeps its author.",
+      "text": "Das Verfahren wird dort beschrieben (Müller, 2019, S. 15).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(Müller, 2019, S. 15)", "authors": "Müller", "year": "2019"}
+        ]
+      }
+    },
+    {
+      "id": "de-initial-is-not-a-locator",
+      "note": "The counterpart of the case above: 'S.' followed by a surname is a disambiguating initial and must not truncate the chunk.",
+      "text": "Eine frühere Fassung stammt von anderer Stelle (S. Fischer, 2020).",
+      "expect": {
+        "citations": [
+          {"family": "author-date", "marker": "(S. Fischer, 2020)", "authors": "S. Fischer", "year": "2020"}
+        ]
+      }
+    },
+    {
+      "id": "de-monatsangabe-is-not-a-citation",
+      "note": "A German month plus a year satisfies every structural test for a one-word surname plus a year. Only the month vocabulary separates them.",
+      "text": "Die Erhebung lief bis (Oktober 2021) und wurde dann beendet.",
+      "expect": {"citations": []}
+    }
+  ]
+}

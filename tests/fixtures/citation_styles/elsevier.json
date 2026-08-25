@@ -1,0 +1,45 @@
+{
+  "style": "elsevier",
+  "display_name": "Elsevier author-year",
+  "applies_to": "Elsevier-family author-year: 'Surname, I., YYYY. Title.' with the year set off by commas rather than parentheses.",
+  "confusable_with": [
+    "apa7",
+    "vancouver"
+  ],
+  "cases": [
+    {
+      "id": "title-elsevier-comma-year",
+      "layer": "title",
+      "variant": "Elsevier author-year",
+      "round": "#37 feature",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "title": null
+        }
+      },
+      "raw": "Aitchison, J., Greenacre, M. J., 2002. Biplots for compositional data. Journal, 51, 375-392.",
+      "expect": {
+        "title": "Biplots for compositional data"
+      }
+    },
+    {
+      "id": "title-elsevier-corporate-author",
+      "layer": "title",
+      "variant": "Elsevier author-year, corporate author",
+      "round": "round 3",
+      "reproduces": {
+        "kind": "recovery",
+        "broken_at": "3daabf0",
+        "observed_then": {
+          "title": null
+        }
+      },
+      "raw": "World Health Organization, 2020. Global tuberculosis report 2020. WHO, Geneva.",
+      "expect": {
+        "title": "Global tuberculosis report 2020"
+      }
+    }
+  ]
+}
