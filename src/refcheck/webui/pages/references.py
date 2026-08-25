@@ -17,6 +17,7 @@ from refcheck.gui.metric_cards import FILTER_CARD_KEYS, compute_metrics
 from refcheck.gui.models import STATUS_KEYS, STATUS_LABELS, STATUS_LABELS_SHORT, ReferenceResult
 from refcheck.gui.reference_list_display import reference_list_note
 from refcheck.verification.openalex_crossref import openalex_refusal
+from refcheck.gui.real_pipeline import MAX_VERIFIED_REFERENCES
 from refcheck.webui import theme
 from refcheck.webui.components.citation_context import render_citation_context
 from refcheck.webui.components import work_details
@@ -70,6 +71,7 @@ def render(state: AppState, actions) -> None:
                 "border-radius:5px; padding:8px 12px; font-size:11.5px; width:100%;"
             )
 
+        _render_truncation_note(state)
         _render_reference_list_note(state)
 
         citations = citation_display.document_summary(
@@ -209,6 +211,31 @@ def _filtered_sorted(state: AppState) -> list[ReferenceResult]:
     }[state.ref_sort_key]
     rows.sort(key=key_fn, reverse=state.ref_sort_dir < 0)
     return rows
+
+
+def _render_truncation_note(state: AppState) -> None:
+    """Say so when the check stopped short of the document's full reference list.
+
+    Drawn above the audit note and in the same loud style, because it qualifies every
+    figure below it even harder: those entries were not checked and found fine, they were
+    not checked at all. A reader who sees "500 references, 3 unresolved" without this line
+    is being told something false about a manuscript that had more.
+    """
+    if state.truncated_from is None:
+        return
+    with ui.column().style(
+        "border:1px solid #d8a83c; background:#fdf4e2; color:#4a4843; border-radius:5px; "
+        "padding:8px 12px; width:100%; gap:3px; box-sizing:border-box;"
+    ):
+        ui.label(
+            f"Only the first {len(state.results)} of {state.truncated_from} references were checked."
+        ).style("font-size:11.5px; font-weight:600;")
+        ui.label(
+            "One check verifies at most "
+            f"{MAX_VERIFIED_REFERENCES} references against OpenAlex and Crossref. The "
+            "remaining entries were extracted but not looked up, and the figures below "
+            "describe only the ones that were."
+        ).style("font-size:11.5px;")
 
 
 def _render_reference_list_note(state: AppState) -> None:

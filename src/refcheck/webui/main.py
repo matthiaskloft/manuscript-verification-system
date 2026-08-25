@@ -5,11 +5,13 @@ Port of the PySide6 MainWindow (refcheck.gui.main_window) to a NiceGUI page.
 
 from __future__ import annotations
 
+import logging
 from collections.abc import Callable
 from dataclasses import dataclass
 
 from nicegui import ui
 
+from refcheck.gui.sidebar_copy import configured_mode, dev_mode_enabled
 from refcheck.webui import theme
 from refcheck.webui.components.sidebar import build_sidebar
 from refcheck.webui.pages import manual_review, references, report_export, summary, upload
@@ -22,6 +24,16 @@ SCREENS = {
     "summary": summary,
     "export": report_export,
 }
+
+
+def _show_internal_errors() -> bool:
+    """Whether a render traceback may be drawn on the page.
+
+    True only where the person looking at the screen is the person running the process:
+    the local desktop/`local` deployment, or an explicit REFCHECK_DEV opt-in. A `demo` or
+    `prod` deployment serves strangers, and a stack trace is server internals.
+    """
+    return dev_mode_enabled() or configured_mode() == "local"
 
 
 @dataclass
@@ -60,17 +72,28 @@ def build_page() -> None:
                 # signal of what broke (see reported "native window blank content area"
                 # issue) — surface it as plain text instead, since ui.label is already
                 # known to render fine (the sidebar uses it).
+                #
+                # The traceback goes to the log unconditionally, and onto the page only
+                # where the reader is the operator. On the desktop app they are the same
+                # person and the trace is the whole point. On a hosted instance they are
+                # not: an anonymous visitor would otherwise be handed absolute server
+                # paths, the package layout, dependency versions, and whatever the
+                # exception text happens to carry — from any render bug at all.
                 try:
                     SCREENS[state.screen].render(state, actions)
                 except Exception as exc:  # noqa: BLE001 - intentionally broad, see above
                     import traceback
 
+                    logging.getLogger(__name__).exception(
+                        "Error rendering %r screen", state.screen
+                    )
                     ui.label(f"Error rendering '{state.screen}' screen: {exc}").style(
                         "color:#8c2f10; font-weight:600; padding:16px;"
                     )
-                    ui.label(traceback.format_exc()).classes("rc-mono").style(
-                        "color:#8c2f10; font-size:11px; white-space:pre-wrap; padding:0 16px 16px;"
-                    )
+                    if _show_internal_errors():
+                        ui.label(traceback.format_exc()).classes("rc-mono").style(
+                            "color:#8c2f10; font-size:11px; white-space:pre-wrap; padding:0 16px 16px;"
+                        )
 
             def navigate(key: str) -> None:
                 state.screen = key

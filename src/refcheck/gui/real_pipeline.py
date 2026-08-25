@@ -76,6 +76,10 @@ HALLUCINATION_CEILING = 0.3
 CITATIONS_OK = "ok"
 CITATIONS_NONE_DETECTED = "none_detected"
 CITATIONS_NONE_MATCHED = "none_matched"
+# Ceiling on how many references one check will verify. See the truncation comment in
+# run_real_pipeline: this bounds outbound API amplification, not document size.
+MAX_VERIFIED_REFERENCES = 500
+
 CITATIONS_NOT_RUN = "not_run"
 CITATIONS_FAILED = "failed"
 
@@ -110,6 +114,11 @@ class CheckResult:
     artifact: DocumentArtifact | None = None
     citation_run_status: str = CITATIONS_NOT_RUN
     audit: ReferenceListAudit = NOT_AUDITED
+    # How many references the document actually had, when that exceeded
+    # MAX_VERIFIED_REFERENCES and the list below was cut to fit. None means no
+    # truncation — which is not the same as "the document had few references", and the
+    # screens must not conflate them: a truncated result is a partial verdict.
+    truncated_from: int | None = None
 
 
 def _status_for(result: VerificationResult) -> str:
@@ -192,6 +201,21 @@ def run_real_pipeline(
 
     citation_matches, citation_run_status = _match_citations(extracted)
 
+    # A check makes roughly one OpenAlex and one Crossref request per reference, under
+    # the operator's contact address and API key. Nothing about a 50 MB upload limit
+    # bounds how many reference-shaped lines fit inside it, so without a cap one hostile
+    # document turns into tens of thousands of third-party requests billed to the
+    # operator's polite-pool standing — the cost is being throttled or blocked by
+    # Crossref, which no instance cap prevents.
+    #
+    # 500 is far above any real manuscript (the largest review articles run to a few
+    # hundred) and far below a useful amplification factor. The overflow is reported
+    # rather than dropped silently: a reader must not read "38 verified" as a verdict on
+    # a list that was actually truncated.
+    truncated_from = len(entries) if len(entries) > MAX_VERIFIED_REFERENCES else None
+    if truncated_from is not None:
+        entries = entries[:MAX_VERIFIED_REFERENCES]
+
     total = len(entries)
     results: list[ReferenceResult] = []
     seen_dois: dict[str, int] = {}  # normalized DOI -> ref number of its first occurrence
@@ -203,6 +227,7 @@ def run_real_pipeline(
             artifact=extracted.artifact,
             citation_run_status=citation_run_status,
             audit=extracted.audit,
+            truncated_from=truncated_from,
         )
 
     for i, entry in enumerate(entries, start=1):

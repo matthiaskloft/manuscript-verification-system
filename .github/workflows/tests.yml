@@ -38,6 +38,7 @@ jobs:
           python -m pip install -e ".[dev]"
 
       - name: Run tests
-        # No test reaches the network: the extraction suite works on synthetic
-        # fixtures, and the API clients are stubbed. A failure here is a real one.
+        # No test contacts an external service: the extraction suite works on
+        # synthetic fixtures and the API clients are stubbed. The live-GROBID tests
+        # probe localhost and skip when nothing answers. A failure here is a real one.
         run: python -m pytest -q

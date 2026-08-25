@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import tempfile
 import time
+from uuid import uuid4
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, replace
 from pathlib import Path
@@ -84,6 +85,13 @@ def _upload_dir() -> Path:
     readable by every other account on the machine. `mkdir` does not widen an existing
     directory's mode, so a pre-existing looser one is corrected explicitly.
     """
+    # Refuse a symlink rather than following it. The parent is a world-writable shared
+    # temp directory, so on a multi-user host another account can pre-create this path as
+    # a link and receive every upload written through it — and the chmod below would
+    # follow the link too. Unreachable in the single-tenant container; the docs describe
+    # running this on a university server as well.
+    if _UPLOAD_DIR.is_symlink():
+        raise RuntimeError(f"{_UPLOAD_DIR} is a symlink; refusing to stage uploads there.")
     _UPLOAD_DIR.mkdir(parents=True, exist_ok=True, mode=0o700)
     try:
         _UPLOAD_DIR.chmod(0o700)
@@ -300,7 +308,13 @@ def _build_dropzone(state: AppState, actions) -> None:
                     type="warning",
                 )
                 return
-            dest = upload_dir / f"{id(e)}_{e.file.name}"
+            # The name is client-supplied. Traversal is blocked twice over already —
+            # NiceGUI strips path components, and the old `{id(e)}_` prefix fused onto
+            # the first one — but both are accidents of unrelated code, and the display
+            # name is carried separately anyway (`_set_file`, below). A generated name
+            # depends on neither, and cannot collide the way `id()` can once one upload
+            # is freed and the next reuses its address.
+            dest = upload_dir / f"{uuid4().hex}{suffix}"
             # `save` streams; `write_bytes(await read())` held the whole manuscript in
             # memory a second time, on a service sized at 512 MiB–1 GiB.
             await e.file.save(dest)
@@ -392,6 +406,7 @@ def _set_loaded(state: AppState, loaded: LoadedFile) -> None:
     # artifact or a run status left over from the previous document would be shown
     # against this one's references, and the artifact is raw manuscript text.
     state.citation_matches = ()
+    state.truncated_from = None
     state.citation_run_status = CITATIONS_NOT_RUN
     state.document_artifact = None
     state.audit = NOT_AUDITED
@@ -540,6 +555,7 @@ def _start_check(state: AppState, actions) -> None:
         state.citation_run_status = result.citation_run_status
         state.document_artifact = result.artifact
         state.audit = result.audit
+        state.truncated_from = result.truncated_from
         state.decisions = {}
         state.review_originals = {}
         # A status filter/sort/expansion left over from a previous check can otherwise

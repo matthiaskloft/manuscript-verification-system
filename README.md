@@ -182,8 +182,9 @@ session ends, and swept at process start if a crash left anything behind.
 pytest
 ```
 
-No test reaches the network: extraction runs against synthetic fixtures and the API
-clients are stubbed.
+No test contacts an external service: extraction runs against synthetic fixtures and
+the OpenAlex/Crossref clients are stubbed. The live-GROBID tests do probe `GROBID_URL`,
+which defaults to localhost and skips when nothing answers.
 
 ## Benchmark scripts
 

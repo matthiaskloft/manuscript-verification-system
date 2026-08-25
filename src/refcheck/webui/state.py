@@ -54,6 +54,10 @@ class AppState:
     # whole, and the note the screen draws from it distinguishes the two.
     audit: ReferenceListAudit = NOT_AUDITED
 
+    # Set when the manuscript had more references than one check will verify; carries the
+    # original count. A truncated result is a partial verdict and has to say so.
+    truncated_from: int | None = None
+
     # Citation passages are shown by default; the `show_citation_context` gate that used to
     # guard them was removed on request 2026-08-11 (see citation_context.py). The export
     # side keeps its own opt-in, off by default, because a file outlives the session.
