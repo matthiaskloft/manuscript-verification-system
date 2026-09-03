@@ -25,19 +25,16 @@ class TestTracebackVisibility:
 
     def test_local_deployment_shows_internals(self, monkeypatch):
         monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
         monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "local")
         assert webui_main._show_internal_errors() is True
 
     def test_demo_deployment_hides_internals(self, monkeypatch):
         monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
         monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "demo")
         assert webui_main._show_internal_errors() is False
 
     def test_prod_deployment_hides_internals(self, monkeypatch):
         monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
         monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "prod")
         assert webui_main._show_internal_errors() is False
 
@@ -52,7 +49,6 @@ class TestTracebackVisibility:
         turn a typo in a deploy script into a disclosure. Assert the real behaviour so a
         change to that fallback cannot pass silently."""
         monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
         monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "demoo")
         with pytest.warns(UserWarning):
             result = webui_main._show_internal_errors()
@@ -118,48 +114,57 @@ def test_no_contact_address_is_compiled_in():
     )
 
 
-class TestLegacyEnvNames:
-    """The variables were REFCHECK_* before the package was renamed.
+class TestServerDefaultsToServerCopy:
+    """A server must never serve the local-processing disclaimer.
 
-    The deployed demo is configured under the old names. If the code stopped reading
-    them, `configured_mode()` would find nothing and fall back to `local` — whose
-    disclaimer tells visitors "This document stays on your device" on a server that
-    just uploaded and processed their manuscript. A missing variable is not an invalid
-    one, so nothing would have warned. That is the failure this fallback exists for.
+    `configured_mode()` falls back to "local" when the variable is unset, and local copy
+    says "This document stays on your device" — false on a server, which uploaded and
+    processed the manuscript. An absent variable is not an invalid one, so nothing warns.
+    The web entry point therefore supplies its own default, because it is the thing that
+    knows this process is a server.
     """
 
-    def test_the_legacy_deployment_mode_still_selects_demo(self, monkeypatch):
+    def test_the_web_entry_point_defaults_to_demo(self, monkeypatch):
         monkeypatch.delenv("OPENREFCHECK_DEPLOYMENT_MODE", raising=False)
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "demo")
+        captured = {}
+        monkeypatch.setattr("openrefcheck.app_web.create_app", lambda: None)
+        monkeypatch.setattr(
+            "openrefcheck.app_web.ui.run",
+            lambda **kw: captured.update(mode=configured_mode()),
+        )
 
+        from openrefcheck.app_web import main
         from openrefcheck.gui.sidebar_copy import configured_mode
 
-        with pytest.warns(DeprecationWarning, match="OPENREFCHECK_DEPLOYMENT_MODE"):
-            assert configured_mode() == "demo"
+        main()
 
-    def test_the_new_name_wins_when_both_are_set(self, monkeypatch):
+        assert captured["mode"] == "demo", (
+            "an unset mode on the web entry point must not resolve to 'local' — that "
+            "copy claims the document never left the visitor's device"
+        )
+
+    def test_an_explicit_mode_still_wins(self, monkeypatch):
+        """A Phase B university deployment sets prod; the default must not override it."""
         monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "prod")
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "demo")
+        captured = {}
+        monkeypatch.setattr("openrefcheck.app_web.create_app", lambda: None)
+        monkeypatch.setattr(
+            "openrefcheck.app_web.ui.run",
+            lambda **kw: captured.update(mode=configured_mode()),
+        )
+
+        from openrefcheck.app_web import main
+        from openrefcheck.gui.sidebar_copy import configured_mode
+
+        main()
+
+        assert captured["mode"] == "prod"
+
+    def test_the_desktop_default_is_still_local(self, monkeypatch):
+        """The desktop app genuinely does keep the document on the device, and its
+        disclaimer should say so without needing configuration."""
+        monkeypatch.delenv("OPENREFCHECK_DEPLOYMENT_MODE", raising=False)
 
         from openrefcheck.gui.sidebar_copy import configured_mode
 
-        assert configured_mode() == "prod"
-
-    def test_an_explicitly_emptied_new_name_is_not_overridden_by_the_old_one(self, monkeypatch):
-        """Clearing a setting must mean cleared, not "fall back to whatever the old
-        name still says" — otherwise a stale variable silently outranks the operator."""
-        monkeypatch.setenv("OPENREFCHECK_CONTACT_EMAIL", "")
-        monkeypatch.setenv("REFCHECK_CONTACT_EMAIL", "stale@example.org")
-
-        from openrefcheck.contact import contact_email
-
-        assert contact_email() is None
-
-    def test_the_legacy_contact_address_is_still_read(self, monkeypatch):
-        monkeypatch.delenv("OPENREFCHECK_CONTACT_EMAIL", raising=False)
-        monkeypatch.setenv("REFCHECK_CONTACT_EMAIL", "ops@example.org")
-
-        from openrefcheck.contact import contact_email
-
-        with pytest.warns(DeprecationWarning):
-            assert contact_email() == "ops@example.org"
+        assert configured_mode() == "local"

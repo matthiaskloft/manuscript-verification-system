@@ -20,6 +20,24 @@ from openrefcheck.webui.main import create_app
 
 
 def main() -> None:
+    # A server is not a local install, and the disclaimer must not claim it is.
+    #
+    # `configured_mode()` falls back to "local" when OPENREFCHECK_DEPLOYMENT_MODE is
+    # unset, and local-mode copy tells the visitor "This document stays on your device."
+    # On a server that is false: their manuscript was uploaded and processed here. An
+    # operator who forgets the variable — a fresh deploy, a service whose env vars were
+    # not carried over, a container run by hand — would otherwise publish that claim
+    # with nothing failing and nothing warning, because an absent variable is not an
+    # invalid one.
+    #
+    # So the entry point supplies the default instead of the config layer, since it is
+    # the entry point that knows which kind of process this is. `demo` is the
+    # conservative choice: a Phase B university deployment should still set `prod`
+    # explicitly, but being told "processed on this server, don't upload confidential
+    # work" when it is in fact a managed server is a survivable overstatement, and the
+    # reverse is not. setdefault, so an explicit setting always wins.
+    os.environ.setdefault("OPENREFCHECK_DEPLOYMENT_MODE", "demo")
+
     # See openrefcheck.app:main's identical line — python-socketio's default
     # max_http_buffer_size (1,000,000 bytes) is too small for this app's larger
     # table/report updates. Must be set before any client connects.

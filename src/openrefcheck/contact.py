@@ -18,9 +18,9 @@ want the polite pool set OPENREFCHECK_CONTACT_EMAIL to an address they own (see 
 
 from __future__ import annotations
 
-from openrefcheck.env import env_name, read_env
+import os
 
-CONTACT_EMAIL_ENV = env_name("CONTACT_EMAIL")
+CONTACT_EMAIL_ENV = "OPENREFCHECK_CONTACT_EMAIL"
 
 
 def contact_email() -> str | None:
@@ -31,5 +31,5 @@ def contact_email() -> str | None:
     not an address that is the empty string, which would put a malformed `mailto:` in
     front of Crossref.
     """
-    value = read_env("CONTACT_EMAIL").strip()
+    value = os.environ.get(CONTACT_EMAIL_ENV, "").strip()
     return value or None

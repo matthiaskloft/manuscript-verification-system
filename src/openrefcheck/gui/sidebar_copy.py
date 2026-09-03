@@ -3,8 +3,11 @@
 
 from __future__ import annotations
 
-from openrefcheck.env import env_name, read_env
+import os
+
 from openrefcheck.gui.deployment import MODES, PRIVACY_STRIPE
+
+DEPLOYMENT_MODE_ENV = "OPENREFCHECK_DEPLOYMENT_MODE"
 
 NAV_ITEMS: list[tuple[str, str]] = [
     ("upload", "Upload & check"),
@@ -23,17 +26,17 @@ def dev_mode_enabled() -> bool:
     the switcher is a development aid for previewing all three disclaimer variants,
     not an end-user feature. Set OPENREFCHECK_DEV=1 to show it.
     """
-    return read_env("DEV").strip().lower() in {"1", "true", "yes"}
+    return os.environ.get("OPENREFCHECK_DEV", "").strip().lower() in {"1", "true", "yes"}
 
 
 def configured_mode() -> str:
     """The deployment mode this build/run is configured for (OPENREFCHECK_DEPLOYMENT_MODE)."""
-    raw = read_env("DEPLOYMENT_MODE", "local").strip().lower()
+    raw = os.environ.get(DEPLOYMENT_MODE_ENV, "local").strip().lower()
     if raw not in MODES:
         import warnings
 
         warnings.warn(
-            f"{env_name('DEPLOYMENT_MODE')}={raw!r} is not one of {sorted(MODES)}; falling back "
+            f"{DEPLOYMENT_MODE_ENV}={raw!r} is not one of {sorted(MODES)}; falling back "
             "to 'local'. A misconfigured deployment could otherwise ship the wrong disclaimer.",
             stacklevel=2,
         )

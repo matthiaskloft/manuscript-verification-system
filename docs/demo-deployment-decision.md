@@ -77,9 +77,11 @@ gcloud run deploy refcheck-web \
 > `OPENREFCHECK_RUN_SERVICE` / `OPENREFCHECK_AR_REPOSITORY`, to keep hitting the
 > existing deployment.
 >
-> The old `REFCHECK_*` environment variables still work and emit a DeprecationWarning
-> (`openrefcheck/env.py`), so a service configured under the old names keeps behaving
-> correctly rather than silently falling back to local-mode copy.
+> The `REFCHECK_*` variables are gone, not aliased. The currently deployed demo runs
+> an image built from the legacy repository, which has its own copy of the old code and
+> is unaffected. A service running *this* code and missing
+> `OPENREFCHECK_DEPLOYMENT_MODE` does not fall back to local-mode copy either: the web
+> entry point defaults to `demo` (`openrefcheck/app_web.py`).
 
 ## Proposed service configuration
 
@@ -217,14 +219,15 @@ Before deployment:
       the billing account's default admins; wiring one to Pub/Sub (and, if ever
       wanted, to a billing-disable function) is a separate decision with its own
       failure mode — it would take the demo offline mid-presentation.
-- [ ] set `OPENALEX_API_KEY` on the `refcheck-web` service. The deployed service
-      currently carries only `GROBID_URL` and `REFCHECK_DEPLOYMENT_MODE`, so every
+- [ ] set `OPENALEX_API_KEY` on the `refcheck-web` service. That service runs an
+      image built from the legacy repository and carries only `GROBID_URL` and the
+      old `REFCHECK_DEPLOYMENT_MODE`, so every
       OpenAlex lookup runs on the anonymous daily budget (~$0.10/day, about 1,000
       requests) rather than the free keyed one (~$1/day). `verification.
       openalex_crossref` already reads the variable and only sets
       `pyalex.config.api_key` when it is present, so this is deployment
       configuration, not code. Crossref needs no key, but it and OpenAlex share
-      the other half of this: `REFCHECK_CONTACT_EMAIL` supplies the `mailto` that
+      the other half of this: `OPENREFCHECK_CONTACT_EMAIL` supplies the `mailto` that
       puts both in the polite pool, and is unset by default because a compiled-in
       address would make every deployment announce whoever built it (see
       `openrefcheck/contact.py`). Set it, to an address whoever runs the service
@@ -289,9 +292,10 @@ gcloud run services delete refcheck-grobid --region=$REGION --project=$PROJECT
 gcloud artifacts repositories delete refcheck --location=$REGION --project=$PROJECT
 ```
 
-Step 5 is not optional. `OPENREFCHECK_DEPLOYMENT_MODE` missing means the app falls
-back to `local`, whose copy tells visitors their document never left their device —
-on a server that just processed it.
+Step 5 is worth doing even though the web entry point defaults to `demo` when the
+variable is missing: that default is a floor, not a substitute for setting the mode you
+actually intend. A Phase B institutional deployment wants `prod`, and only an explicit
+value gets it.
 
 ## Alternatives considered
 

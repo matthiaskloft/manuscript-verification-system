@@ -20,6 +20,6 @@ EXPOSE 8080
 # Cloud Run traffic never reaches GROBID directly (see demo-deployment-decision.md);
 # set GROBID_URL to the private Cloud Run service URL at deploy time, e.g.:
 #   --set-env-vars GROBID_URL=https://<your-grobid-service>-xxxxx.a.run.app
-ENV REFCHECK_DEPLOYMENT_MODE=demo
+ENV OPENREFCHECK_DEPLOYMENT_MODE=demo
 
 CMD ["openrefcheck-web"]
