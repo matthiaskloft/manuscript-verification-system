@@ -1,7 +1,7 @@
-from refcheck.benchmark.crossref_gold import GoldReferences
-from refcheck.benchmark.doi_utils import normalize_doi
-from refcheck.benchmark.grobid_client import parse_grobid_tei
-from refcheck.benchmark.score import score_document
+from openrefcheck.benchmark.crossref_gold import GoldReferences
+from openrefcheck.benchmark.doi_utils import normalize_doi
+from openrefcheck.benchmark.grobid_client import parse_grobid_tei
+from openrefcheck.benchmark.score import score_document
 
 _SAMPLE_TEI = """<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">

@@ -1,8 +1,8 @@
 import requests
 
-from refcheck.benchmark import grobid_client
-from refcheck.extraction import grobid
-from refcheck.extraction.grobid import GrobidUnavailableError, extract_references_via_grobid, is_grobid_available
+from openrefcheck.benchmark import grobid_client
+from openrefcheck.extraction import grobid
+from openrefcheck.extraction.grobid import GrobidUnavailableError, extract_references_via_grobid, is_grobid_available
 
 
 def test_grobid_url_defaults_to_local_container(monkeypatch):

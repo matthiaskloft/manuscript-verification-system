@@ -14,7 +14,7 @@ which would be brittle and beside the point of an evidence-gathering module.
 from __future__ import annotations
 
 from citation_style_corpus import load_styles
-from refcheck.extraction.style_profile import StyleProfile, compute_style_profile
+from openrefcheck.extraction.style_profile import StyleProfile, compute_style_profile
 
 STYLES = load_styles()
 

@@ -76,20 +76,20 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction.citation_matching import (
+from openrefcheck.extraction.citation_matching import (
     MatchStatus,
     match_citations,
     unused_reference_numbers,
 )
-from refcheck.extraction.document import (
+from openrefcheck.extraction.document import (
     extract_document,
     find_bibliography_section,
     normalize_markdown_text,
 )
-from refcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
-from refcheck.extraction.grobid import grobid_url, is_grobid_available
-from refcheck.extraction.intext_signals import detect_citations, expected_families
-from refcheck.extraction.style_profile import compute_style_profile
+from openrefcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
+from openrefcheck.extraction.grobid import grobid_url, is_grobid_available
+from openrefcheck.extraction.intext_signals import detect_citations, expected_families
+from openrefcheck.extraction.style_profile import compute_style_profile
 
 pytestmark = pytest.mark.skipif(
     not is_grobid_available(),

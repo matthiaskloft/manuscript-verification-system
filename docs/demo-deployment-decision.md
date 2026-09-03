@@ -64,6 +64,12 @@ gcloud run deploy refcheck-web \
   --max-instances=1
 ```
 
+> **Naming note:** the Python package and console scripts are `openrefcheck` /
+> `openrefcheck-web`. The Cloud Run *services* and the Artifact Registry repository
+> are still named `refcheck-web`, `refcheck-grobid` and `refcheck` — those are live
+> deployed resources, and renaming them would mean standing up new ones rather than
+> updating the existing deployment. The mismatch is deliberate.
+
 ## Proposed service configuration
 
 | Setting | NiceGUI | GROBID |
@@ -91,16 +97,16 @@ Before deployment:
 - [x] add a minimal web-only container image that does not install the
       desktop-only native/pywebview dependencies — see
       [docker/nicegui/Dockerfile](../docker/nicegui/Dockerfile) and
-      `refcheck.app_web:main` (the `refcheck-web` console script);
+      `openrefcheck.app_web:main` (the `openrefcheck-web` console script);
 - [x] make NiceGUI listen on `0.0.0.0` and the Cloud Run `PORT` value rather
       than the prototype's native-only `127.0.0.1` default — done in
-      `refcheck.app_web:main`;
+      `openrefcheck.app_web:main`;
 - [x] configure `GROBID_URL` with the separate Cloud Run service URL (set at
       deploy time; `GROBID_URL` support already exists in
-      `refcheck.extraction.grobid`);
+      `openrefcheck.extraction.grobid`);
 - [x] attach a Google identity token to GROBID calls so that the backend does
       not need unauthenticated public access — see
-      `refcheck.extraction.grobid._identity_token_header`, used by
+      `openrefcheck.extraction.grobid._identity_token_header`, used by
       `is_grobid_available` and `extract_references_via_grobid`. Skipped for
       `localhost`/`127.0.0.1` (local dev, the native app's default). Requires
       the `refcheck-web` service's runtime service account to hold
@@ -116,7 +122,7 @@ Before deployment:
       `gcloud run services describe refcheck-web --region=$REGION --format='value(spec.template.spec.serviceAccountName)'`);
 - [x] replace the current one-shot GROBID availability check with a visible
       starting state and retry behavior, because a scale-to-zero cold start can
-      outlast the health-check timeout — see `refcheck.extraction.grobid`'s
+      outlast the health-check timeout — see `openrefcheck.extraction.grobid`'s
       `wait_for_grobid` and `has_cold_start`, used by the Upload screen's engine
       status line. ("one-second" in the original wording was already stale: the
       health-check timeout has been 60s for a while. The defect was the *one
@@ -157,7 +163,7 @@ Before deployment:
         re-measure if the GROBID image or its memory allocation changes;
 - [x] limit upload size (50 MB) and hold uploads in temporary storage only,
       deleting them once they are no longer needed — see
-      `refcheck/webui/pages/upload.py`.
+      `openrefcheck/webui/pages/upload.py`.
 
       Both halves of this were weaker than an earlier version of this note
       claimed, and both are now as described.
@@ -174,12 +180,12 @@ Before deployment:
       on the instance with nothing left to remove it. A per-client disconnect
       handler now deletes it when the browser session ends, and a sweep at
       process start clears anything a crash left behind. The demo's retention
-      copy (`refcheck/gui/deployment.py`) states exactly those two events;
+      copy (`openrefcheck/gui/deployment.py`) states exactly those two events;
       "immediately after processing" was the overstatement it replaced;
 - [x] create a billing budget and alerts, and retain `max-instances=1` as a
       hard cost and abuse control.
 
-      Set a budget scoped **to the RefCheck project alone**, at a token amount
+      Set a budget scoped **to the OpenRefCheck project alone**, at a token amount
       (e.g. €0.01) with alerts at 50 / 90 / 100 % of spend. At that amount every
       threshold fires on the first cent, which is the intent: this deployment is
       meant to sit inside the free tier, so *any* spend is the signal, and a
@@ -188,7 +194,7 @@ Before deployment:
       The pitfall worth recording, because it is easy to miss and silently wrong:
       a budget created from the Cloud console's default flow has **no project
       filter at all**. It covers the whole billing account, so if that account
-      also bills other projects, their spend and RefCheck's are pooled under one
+      also bills other projects, their spend and OpenRefCheck's are pooled under one
       alert and neither figure means anything. Check the `projects` filter on any
       pre-existing budget before relying on it, and give each project its own.
 
@@ -210,7 +216,7 @@ Before deployment:
       the other half of this: `REFCHECK_CONTACT_EMAIL` supplies the `mailto` that
       puts both in the polite pool, and is unset by default because a compiled-in
       address would make every deployment announce whoever built it (see
-      `refcheck/contact.py`). Set it, to an address whoever runs the service
+      `openrefcheck/contact.py`). Set it, to an address whoever runs the service
       owns, alongside `OPENALEX_API_KEY`.
 
 NiceGUI uses Socket.IO. Cloud Run supports WebSockets, but each connection

@@ -1,6 +1,6 @@
-# RefCheck
+# OpenRefCheck
 
-RefCheck is a [NiceGUI](https://nicegui.io/) app that checks a manuscript's
+OpenRefCheck is a [NiceGUI](https://nicegui.io/) app that checks a manuscript's
 references. It extracts the reference list from a PDF or DOCX, verifies each entry
 against [OpenAlex](https://openalex.org/) and [Crossref](https://www.crossref.org/),
 and flags entries that cannot be found, are incomplete, are duplicated, or have been
@@ -40,23 +40,23 @@ entry point does not require it.
 ## Running the desktop app
 
 ```bash
-refcheck
+openrefcheck
 ```
 
-Opens a native desktop window. Equivalently: `python -m refcheck.app`.
+Opens a native desktop window. Equivalently: `python -m openrefcheck.app`.
 
 ## Running the web app
 
 ```bash
-refcheck-web
+openrefcheck-web
 ```
 
 Serves the same app over HTTP on `0.0.0.0` and the `PORT` env var (default `8080`).
 This is what [docker/nicegui/Dockerfile](docker/nicegui/Dockerfile) runs:
 
 ```bash
-docker build -f docker/nicegui/Dockerfile -t refcheck-web .
-docker run --rm -p 8080:8080 -e GROBID_URL=http://host.docker.internal:8070 refcheck-web
+docker build -f docker/nicegui/Dockerfile -t openrefcheck-web .
+docker run --rm -p 8080:8080 -e GROBID_URL=http://host.docker.internal:8070 openrefcheck-web
 ```
 
 The two entry points differ in one way that matters beyond the window: the desktop
@@ -81,7 +81,7 @@ All configuration is environment variables. None are required to run.
 ### Contact address
 
 OpenAlex and Crossref both run a "polite pool": callers who identify themselves with
-a contact address get faster and more reliable service than anonymous ones. RefCheck
+a contact address get faster and more reliable service than anonymous ones. OpenRefCheck
 sends one only if you set it:
 
 ```bash
@@ -132,7 +132,7 @@ AnyStyle CLI used by the extraction benchmarks.
 
 ## Deploying your own instance
 
-RefCheck is deployable by anyone; nothing in the repository is tied to a particular
+OpenRefCheck is deployable by anyone; nothing in the repository is tied to a particular
 cloud account. [docs/demo-deployment-decision.md](docs/demo-deployment-decision.md)
 records the reasoning behind the reference deployment (two Google Cloud Run services
 — the app, and a private GROBID backend it alone may invoke) along with the service
@@ -169,7 +169,7 @@ running a public instance, and at minimum:
   server-side processing, rather than the local-processing one.
 - **Check the retention copy still matches the code.** Demo mode tells visitors
   their upload is deleted when the check finishes and when they close the tab; that
-  is what `refcheck/webui/pages/upload.py` does today, and the promise is only as
+  is what `openrefcheck/webui/pages/upload.py` does today, and the promise is only as
   true as that module.
 
 Uploads are held in a private temporary directory, capped at 50 MB (enforced
@@ -207,7 +207,7 @@ To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 [GNU Affero General Public License v3.0](LICENSE).
 
-AGPL rather than a permissive license for one specific reason: RefCheck is meant to
+AGPL rather than a permissive license for one specific reason: OpenRefCheck is meant to
 be run as a service, and the AGPL is the license that carries the obligation across
 that boundary. Anyone who runs a modified version for other people to use has to
 offer those users its source. Fork it, deploy it, build on it — improvements to a

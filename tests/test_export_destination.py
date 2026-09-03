@@ -13,9 +13,9 @@ from types import SimpleNamespace
 
 import pytest
 
-from refcheck.gui.models import ReferenceResult
-from refcheck.webui.pages import report_export
-from refcheck.webui.state import AppState
+from openrefcheck.gui.models import ReferenceResult
+from openrefcheck.webui.pages import report_export
+from openrefcheck.webui.state import AppState
 
 
 def _state() -> AppState:

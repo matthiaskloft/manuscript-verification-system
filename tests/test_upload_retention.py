@@ -1,7 +1,7 @@
 """What happens to an uploaded manuscript that nobody comes back for.
 
 The demo tells a visitor their file is deleted when the check finishes or the tab
-closes (refcheck.gui.deployment). A finished check already deleted its own file; these
+closes (openrefcheck.gui.deployment). A finished check already deleted its own file; these
 cover the paths that previously left the manuscript sitting in the container — a crash,
 and the size limit that only existed in the browser.
 """
@@ -11,7 +11,7 @@ from __future__ import annotations
 import os
 import stat
 
-from refcheck.webui.pages import upload
+from openrefcheck.webui.pages import upload
 
 
 def test_a_file_left_by_a_crashed_run_is_swept_at_startup(tmp_path, monkeypatch):

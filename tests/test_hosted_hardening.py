@@ -9,10 +9,10 @@ from __future__ import annotations
 
 import pytest
 
-from refcheck.contact import CONTACT_EMAIL_ENV
-from refcheck.gui.real_pipeline import MAX_VERIFIED_REFERENCES, CheckResult
-from refcheck.webui import main as webui_main
-from refcheck.webui.pages import upload
+from openrefcheck.contact import CONTACT_EMAIL_ENV
+from openrefcheck.gui.real_pipeline import MAX_VERIFIED_REFERENCES, CheckResult
+from openrefcheck.webui import main as webui_main
+from openrefcheck.webui.pages import upload
 
 
 class TestTracebackVisibility:
@@ -106,9 +106,9 @@ class TestUploadStaging:
 def test_no_contact_address_is_compiled_in():
     """The address reaches OpenAlex and Crossref on every lookup. A fork that has not
     configured one must send nothing rather than whoever built the software."""
-    import refcheck.contact as contact_module
+    import openrefcheck.contact as contact_module
 
     source = __import__("inspect").getsource(contact_module)
     assert "@" not in source.replace(CONTACT_EMAIL_ENV, ""), (
-        "refcheck.contact should name no address at all"
+        "openrefcheck.contact should name no address at all"
     )

@@ -1,7 +1,7 @@
 # Web-only image for the hosted demo (see docs/demo-deployment-decision.md).
 # Deliberately does NOT install the "native" extra (pywebview) — the desktop
-# entry point (refcheck.app:main) never runs in this container, only the web
-# one (refcheck.app_web:main, registered as the "refcheck-web" console script).
+# entry point (openrefcheck.app:main) never runs in this container, only the web
+# one (openrefcheck.app_web:main, registered as the "openrefcheck-web" console script).
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -22,4 +22,4 @@ EXPOSE 8080
 #   --set-env-vars GROBID_URL=https://refcheck-grobid-xxxxx.a.run.app
 ENV REFCHECK_DEPLOYMENT_MODE=demo
 
-CMD ["refcheck-web"]
+CMD ["openrefcheck-web"]

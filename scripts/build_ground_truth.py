@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.benchmark.combined_gold import build_combined_gold_references
+from openrefcheck.benchmark.combined_gold import build_combined_gold_references
 
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "ground_truth.json"
 

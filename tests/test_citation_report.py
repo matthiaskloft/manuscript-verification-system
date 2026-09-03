@@ -9,11 +9,11 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
-from refcheck.extraction.citation_matching import CitationMatch, MatchStatus
-from refcheck.extraction.document_artifact import DocumentArtifact, SourceAnchor
-from refcheck.gui.models import ReferenceResult
-from refcheck.gui.real_pipeline import CITATIONS_NONE_DETECTED, CITATIONS_NOT_RUN, CITATIONS_OK
-from refcheck.gui.report_builder import (
+from openrefcheck.extraction.citation_matching import CitationMatch, MatchStatus
+from openrefcheck.extraction.document_artifact import DocumentArtifact, SourceAnchor
+from openrefcheck.gui.models import ReferenceResult
+from openrefcheck.gui.real_pipeline import CITATIONS_NONE_DETECTED, CITATIONS_NOT_RUN, CITATIONS_OK
+from openrefcheck.gui.report_builder import (
     DEFAULT_EXPORT_INCLUDED,
     ReportMeta,
     build_html_report,
@@ -92,8 +92,8 @@ def test_passages_on_screen_do_not_put_them_in_the_file(tmp_path, monkeypatch):
     prose in it."""
     from nicegui import ui
 
-    from refcheck.webui.pages import report_export
-    from refcheck.webui.state import AppState
+    from openrefcheck.webui.pages import report_export
+    from openrefcheck.webui.state import AppState
 
     monkeypatch.setattr(ui, "notify", lambda *a, **k: None)
     # Writing a caller-supplied path is the native desktop app's export; a server refuses
@@ -182,7 +182,7 @@ def test_a_passage_is_escaped_like_every_other_untrusted_string():
 def test_the_report_and_the_screen_use_the_same_wording():
     """One source for the sentences, so an exported report cannot contradict the screen
     it was generated from."""
-    from refcheck.gui import citation_display
+    from openrefcheck.gui import citation_display
 
     matches = [_match()]
     html = _report(citation_matches=matches, citation_run_status=CITATIONS_OK, artifact=_artifact())
@@ -195,7 +195,7 @@ def test_the_report_and_the_screen_use_the_same_wording():
 def test_the_default_settings_cover_every_checkbox_on_the_export_screen():
     """A key present on the screen and missing here falls back to a guess; for the passage
     toggle the guess would have been "on"."""
-    from refcheck.webui.pages.report_export import EXPORT_ITEMS
+    from openrefcheck.webui.pages.report_export import EXPORT_ITEMS
 
     assert {key for key, _, _ in EXPORT_ITEMS} == set(DEFAULT_EXPORT_INCLUDED)
 

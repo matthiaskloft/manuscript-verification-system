@@ -1,5 +1,5 @@
-from refcheck.gui.models import ReferenceResult
-from refcheck.gui.report_data import citation_bin_counts, outlet_breakdown, topic_breakdown
+from openrefcheck.gui.models import ReferenceResult
+from openrefcheck.gui.report_data import citation_bin_counts, outlet_breakdown, topic_breakdown
 
 
 def _result(n: int, doi: str, outlet: str, status: str = "verified") -> ReferenceResult:

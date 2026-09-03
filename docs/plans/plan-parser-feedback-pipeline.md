@@ -134,14 +134,14 @@ local paths, or source-document content outside the selected reference section.
 ### Phase 1: Local feedback capture and exact preview
 
 **Files to create:**
-- `src/refcheck/feedback/__init__.py`
-- `src/refcheck/feedback/models.py`
-- `src/refcheck/feedback/payload.py`
+- `src/openrefcheck/feedback/__init__.py`
+- `src/openrefcheck/feedback/models.py`
+- `src/openrefcheck/feedback/payload.py`
 - `tests/test_feedback_payload.py`
 
 **Files to modify:**
-- `src/refcheck/webui/pages/references.py`
-- `src/refcheck/webui/state.py`
+- `src/openrefcheck/webui/pages/references.py`
+- `src/openrefcheck/webui/state.py`
 - relevant existing UI tests or fixtures discovered during implementation
 
 **Steps:**
@@ -159,17 +159,17 @@ local paths, or source-document content outside the selected reference section.
 ### Phase 2: Private intake API and durable queue
 
 **Files to create:**
-- `src/refcheck/feedback/api.py`
-- `src/refcheck/feedback/repository.py`
-- `src/refcheck/feedback/migrations/001_feedback_cases.sql`
+- `src/openrefcheck/feedback/api.py`
+- `src/openrefcheck/feedback/repository.py`
+- `src/openrefcheck/feedback/migrations/001_feedback_cases.sql`
 - `tests/test_feedback_api.py`
 - `tests/test_feedback_repository.py`
 - `docker/feedback/Dockerfile`
 - deployment configuration documented in `docs/`
 
 **Files to modify:**
-- `src/refcheck/webui/pages/references.py`
-- `src/refcheck/webui/state.py`
+- `src/openrefcheck/webui/pages/references.py`
+- `src/openrefcheck/webui/state.py`
 - `pyproject.toml` or dependency manifest if an API/database client is required
 - `docker-compose.yml` if the repository has or adds a local development stack
 
@@ -187,15 +187,15 @@ local paths, or source-document content outside the selected reference section.
 ### Phase 3: Sanitization, retention, and human review
 
 **Files to create:**
-- `src/refcheck/feedback/sanitize.py`
-- `src/refcheck/feedback/review.py`
+- `src/openrefcheck/feedback/sanitize.py`
+- `src/openrefcheck/feedback/review.py`
 - `tests/test_feedback_sanitize.py`
 - `tests/test_feedback_review.py`
 - `docs/feedback-data-policy.md`
 
 **Files to modify:**
-- `src/refcheck/feedback/api.py`
-- `src/refcheck/feedback/repository.py`
+- `src/openrefcheck/feedback/api.py`
+- `src/openrefcheck/feedback/repository.py`
 - `docs/eu-data-privacy-compliance.md` if the policy belongs there
 
 **Steps:**
@@ -213,8 +213,8 @@ local paths, or source-document content outside the selected reference section.
 ### Phase 4: Isolated parser worker and draft PR
 
 **Files to create:**
-- `src/refcheck/feedback/worker.py`
-- `src/refcheck/feedback/github_app.py`
+- `src/openrefcheck/feedback/worker.py`
+- `src/openrefcheck/feedback/github_app.py`
 - `tests/test_feedback_worker.py`
 - `tests/test_github_app.py`
 - `docker/parser-feedback-worker/Dockerfile`
@@ -222,7 +222,7 @@ local paths, or source-document content outside the selected reference section.
 - `docs/parser-feedback-operations.md`
 
 **Files to modify:**
-- `src/refcheck/feedback/repository.py`
+- `src/openrefcheck/feedback/repository.py`
 - `pyproject.toml` or dependency manifest for worker/GitHub clients
 - CI configuration for fixture and parser regression checks
 

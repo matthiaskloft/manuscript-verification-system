@@ -18,8 +18,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.benchmark.grobid_client import call_grobid, parse_grobid_tei
-from refcheck.benchmark.runner import print_report, run_benchmark
+from openrefcheck.benchmark.grobid_client import call_grobid, parse_grobid_tei
+from openrefcheck.benchmark.runner import print_report, run_benchmark
 
 
 def extract(pdf_path: Path):

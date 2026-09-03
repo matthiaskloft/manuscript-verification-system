@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import pytest
 
-from refcheck.extraction.citation_matching import (
+from openrefcheck.extraction.citation_matching import (
     SURNAME_MATCH_THRESHOLD,
     CitationMatch,
     MatchStatus,
@@ -26,12 +26,12 @@ from refcheck.extraction.citation_matching import (
     match_citations,
     unused_reference_numbers,
 )
-from refcheck.extraction.document_artifact import DocumentArtifact
-from refcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
-from refcheck.extraction.grobid import CitationContext
-from refcheck.extraction.intext_signals import MarkerFamily, parse_marker
-from refcheck.extraction.style_profile import compute_style_profile
-from refcheck.extraction.tier0 import RawReferenceEntry
+from openrefcheck.extraction.document_artifact import DocumentArtifact
+from openrefcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
+from openrefcheck.extraction.grobid import CitationContext
+from openrefcheck.extraction.intext_signals import MarkerFamily, parse_marker
+from openrefcheck.extraction.style_profile import compute_style_profile
+from openrefcheck.extraction.tier0 import RawReferenceEntry
 
 
 def _artifact(*paragraphs: str) -> DocumentArtifact:

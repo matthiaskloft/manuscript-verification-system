@@ -14,10 +14,10 @@ from __future__ import annotations
 
 import pytest
 
-from refcheck.extraction.citation_matching import MatchStatus, match_citations
-from refcheck.extraction.document_artifact import DocumentArtifact
-from refcheck.extraction.reference_list_audit import NOT_AUDITED, audit_reference_list
-from refcheck.extraction.tier0 import RawReferenceEntry
+from openrefcheck.extraction.citation_matching import MatchStatus, match_citations
+from openrefcheck.extraction.document_artifact import DocumentArtifact
+from openrefcheck.extraction.reference_list_audit import NOT_AUDITED, audit_reference_list
+from openrefcheck.extraction.tier0 import RawReferenceEntry
 
 NUMBERED_BIBLIOGRAPHY = """\
 [1] C. E. Shannon, "A mathematical theory of communication," Bell System Technical Journal, vol. 27, 1948.

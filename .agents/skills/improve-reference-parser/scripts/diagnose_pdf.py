@@ -31,9 +31,9 @@ def parse_args() -> argparse.Namespace:
 
 def find_repo_root(start: Path) -> Path:
     for candidate in (start, *start.parents):
-        if (candidate / "pyproject.toml").is_file() and (candidate / "src" / "refcheck").is_dir():
+        if (candidate / "pyproject.toml").is_file() and (candidate / "src" / "openrefcheck").is_dir():
             return candidate
-    raise SystemExit("Could not locate a refcheck repository; pass --repo-root.")
+    raise SystemExit("Could not locate an openrefcheck repository; pass --repo-root.")
 
 
 def package_version(name: str) -> str | None:
@@ -107,16 +107,16 @@ def main() -> int:
 
     script_path = Path(__file__).resolve()
     repo_root = args.repo_root.resolve() if args.repo_root else find_repo_root(script_path.parent)
-    if not (repo_root / "src" / "refcheck").is_dir():
-        raise SystemExit(f"Not a refcheck repository: {repo_root}")
+    if not (repo_root / "src" / "openrefcheck").is_dir():
+        raise SystemExit(f"Not an openrefcheck repository: {repo_root}")
     sys.path.insert(0, str(repo_root / "src"))
 
     import pymupdf4llm
 
-    from refcheck.extraction.document import extract_full_text, extract_references, find_bibliography_section
-    from refcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_AUTO, ENGINE_GROBID
-    from refcheck.extraction.title import extract_title
-    from refcheck.verification.openalex_crossref import VerificationResult, verify_reference
+    from openrefcheck.extraction.document import extract_full_text, extract_references, find_bibliography_section
+    from openrefcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_AUTO, ENGINE_GROBID
+    from openrefcheck.extraction.title import extract_title
+    from openrefcheck.verification.openalex_crossref import VerificationResult, verify_reference
 
     engines = {"anchor": ENGINE_ANCHOR, "auto": ENGINE_AUTO, "grobid": ENGINE_GROBID}
     output_dir = (

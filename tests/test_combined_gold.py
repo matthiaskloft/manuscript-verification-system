@@ -1,4 +1,4 @@
-from refcheck.benchmark.combined_gold import CombinedGoldReferences
+from openrefcheck.benchmark.combined_gold import CombinedGoldReferences
 
 
 def _make(crossref: set[str], openalex: set[str]) -> CombinedGoldReferences:

@@ -1,5 +1,5 @@
-from refcheck.benchmark.ensemble import merge_extracted
-from refcheck.benchmark.grobid_client import ExtractedReference
+from openrefcheck.benchmark.ensemble import merge_extracted
+from openrefcheck.benchmark.grobid_client import ExtractedReference
 
 
 def test_merge_deduplicates_by_doi_filling_in_title_from_a_later_tier():

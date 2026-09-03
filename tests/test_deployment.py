@@ -4,7 +4,7 @@ See docs/pyside-mvp-mockup-spec.md "Open follow-up" — the retention policy for
 hosted demo server was undecided; this must not silently regress to a placeholder.
 """
 
-from refcheck.gui.deployment import MODES, PRIVACY_STRIPE, RETENTION_NOTICE
+from openrefcheck.gui.deployment import MODES, PRIVACY_STRIPE, RETENTION_NOTICE
 
 _PLACEHOLDER_MARKERS = ("TODO", "FIXME", "placeholder", "[TODO")
 

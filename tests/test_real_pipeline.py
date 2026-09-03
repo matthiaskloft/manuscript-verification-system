@@ -2,12 +2,12 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction.document import ExtractedDocument, NoBibliographySectionError
-from refcheck.extraction.document_artifact import DocumentArtifact
-from refcheck.extraction.tier0 import RawReferenceEntry
-from refcheck.gui import real_pipeline as pipe
-from refcheck.gui.file_info import LoadedFile
-from refcheck.verification.openalex_crossref import VerificationCandidate, VerificationResult
+from openrefcheck.extraction.document import ExtractedDocument, NoBibliographySectionError
+from openrefcheck.extraction.document_artifact import DocumentArtifact
+from openrefcheck.extraction.tier0 import RawReferenceEntry
+from openrefcheck.gui import real_pipeline as pipe
+from openrefcheck.gui.file_info import LoadedFile
+from openrefcheck.verification.openalex_crossref import VerificationCandidate, VerificationResult
 
 _LOADED = LoadedFile(path=Path("manuscript.pdf"), name="manuscript.pdf", size_label="1 KB", pages_label="1", origin="Local file")
 

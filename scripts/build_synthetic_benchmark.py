@@ -23,8 +23,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.synth.entries import BROAD_FIELDS, CURATED_ENTRIES
-from refcheck.synth.latex_builder import build_pdf, plan_citations
+from openrefcheck.synth.entries import BROAD_FIELDS, CURATED_ENTRIES
+from openrefcheck.synth.latex_builder import build_pdf, plan_citations
 
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "synthetic"
 MANIFEST_PATH = OUTPUT_DIR / "manifest.json"

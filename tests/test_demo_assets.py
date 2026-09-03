@@ -1,6 +1,6 @@
 """The bundled demo manuscripts are demos, not test fixtures.
 
-They were the same files until they were split apart: src/refcheck/assets held
+They were the same files until they were split apart: src/openrefcheck/assets held
 byte-identical copies of tests/fixtures/synthetic. That coupling pulled in two
 directions — a fixture wants a long, adversarial reference list and a frozen entry
 count, a demo wants to finish quickly on a public deployment where every reference is
@@ -16,9 +16,9 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.webui.pages.upload import DEMO_GROUPS
+from openrefcheck.webui.pages.upload import DEMO_GROUPS
 
-ASSETS = Path(__file__).resolve().parents[1] / "src" / "refcheck" / "assets"
+ASSETS = Path(__file__).resolve().parents[1] / "src" / "openrefcheck" / "assets"
 SYNTHETIC = Path(__file__).parent / "fixtures" / "synthetic"
 MANIFEST = json.loads((ASSETS / "demo_manifest.json").read_text(encoding="utf-8"))
 

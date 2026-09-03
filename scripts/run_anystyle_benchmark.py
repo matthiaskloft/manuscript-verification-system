@@ -13,8 +13,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.benchmark.anystyle_client import call_anystyle, parse_anystyle_references
-from refcheck.benchmark.runner import print_report, run_benchmark
+from openrefcheck.benchmark.anystyle_client import call_anystyle, parse_anystyle_references
+from openrefcheck.benchmark.runner import print_report, run_benchmark
 
 
 def extract(pdf_path: Path):

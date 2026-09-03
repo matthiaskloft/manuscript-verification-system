@@ -8,8 +8,8 @@ survives contact with a sentence or does not.
 
 from __future__ import annotations
 
-from refcheck.extraction.reference_list_audit import NOT_AUDITED, ReferenceListAudit
-from refcheck.gui.reference_list_display import reference_list_note
+from openrefcheck.extraction.reference_list_audit import NOT_AUDITED, ReferenceListAudit
+from openrefcheck.gui.reference_list_display import reference_list_note
 
 
 def test_an_unchecked_list_produces_no_note_at_all():

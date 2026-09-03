@@ -18,18 +18,18 @@ from types import SimpleNamespace
 import pytest
 from nicegui import ui
 
-from refcheck.extraction.citation_matching import CitationMatch, MatchStatus
-from refcheck.extraction.document_artifact import DocumentArtifact, SourceAnchor
-from refcheck.gui.models import ReferenceResult
-from refcheck.gui.real_pipeline import (
+from openrefcheck.extraction.citation_matching import CitationMatch, MatchStatus
+from openrefcheck.extraction.document_artifact import DocumentArtifact, SourceAnchor
+from openrefcheck.gui.models import ReferenceResult
+from openrefcheck.gui.real_pipeline import (
     CITATIONS_FAILED,
     CITATIONS_NONE_DETECTED,
     CITATIONS_NOT_RUN,
     CITATIONS_OK,
 )
-from refcheck.webui.components import citation_context
-from refcheck.webui.pages import manual_review, references
-from refcheck.webui.state import AppState
+from openrefcheck.webui.components import citation_context
+from openrefcheck.webui.pages import manual_review, references
+from openrefcheck.webui.state import AppState
 
 _ACTIONS = SimpleNamespace(refresh_content=lambda: None)
 
@@ -342,7 +342,7 @@ def test_only_the_first_few_passages_are_drawn():
 def test_the_export_keeps_its_own_gate_even_though_the_screen_lost_one():
     """Removing the on-screen gate did not remove the other one. A file outlives the
     session it came from, which is the distinction that survived the change."""
-    from refcheck.gui.report_builder import DEFAULT_EXPORT_INCLUDED
+    from openrefcheck.gui.report_builder import DEFAULT_EXPORT_INCLUDED
 
     assert DEFAULT_EXPORT_INCLUDED["citation_passages"] is False
 
@@ -487,7 +487,7 @@ def test_a_retracted_reference_is_marked_without_expanding_anything():
 
 
 def test_the_retraction_card_counts_only_confirmed_retractions():
-    from refcheck.gui.metric_cards import compute_metrics
+    from openrefcheck.gui.metric_cards import compute_metrics
 
     results = [
         ReferenceResult(n=1, raw="a", title="t", doi="d", status="verified", confidence=1.0, retracted=True),
@@ -529,7 +529,7 @@ def test_the_lookup_source_and_time_share_one_row():
 
 
 def _with_candidate(**overrides) -> list[str]:
-    from refcheck.gui.models import Candidate
+    from openrefcheck.gui.models import Candidate
 
     fields = dict(
         title="Plato's Heaven: A User's Guide", doi="10.5040/9781350878907",
@@ -607,9 +607,9 @@ def test_a_marker_split_across_a_block_boundary_is_shown_whole_at_both_depths():
     The marker below is a grouped parenthetical split across a block boundary, which is
     what PDF extraction produces when a citation group falls across a column or page break.
     """
-    from refcheck.extraction.document_artifact import DocumentArtifact
-    from refcheck.extraction.intext_signals import detect_citations
-    from refcheck.webui.components.citation_context import _passage_html, _passage_slice
+    from openrefcheck.extraction.document_artifact import DocumentArtifact
+    from openrefcheck.extraction.intext_signals import detect_citations
+    from openrefcheck.webui.components.citation_context import _passage_html, _passage_slice
 
     lines = ["As several have shown (Doe, 2020;", "", "Roe, 2019) the effect is robust."]
     artifact = DocumentArtifact.from_lines(lines, raw_text="\n".join(lines), parser="test")
@@ -638,9 +638,9 @@ def test_the_depth_label_says_how_much_the_expansion_actually_shows():
     Derived from the bounds rather than blurred to "context", so the ordinary case keeps the
     specific word: a reader is better told "paragraph" when a paragraph is what they get.
     """
-    from refcheck.extraction.document_artifact import DocumentArtifact
-    from refcheck.extraction.intext_signals import detect_citations
-    from refcheck.webui.components.citation_context import _depth_label
+    from openrefcheck.extraction.document_artifact import DocumentArtifact
+    from openrefcheck.extraction.intext_signals import detect_citations
+    from openrefcheck.webui.components.citation_context import _depth_label
 
     def label(lines, expanded):
         artifact = DocumentArtifact.from_lines(lines, raw_text="\n".join(lines), parser="test")

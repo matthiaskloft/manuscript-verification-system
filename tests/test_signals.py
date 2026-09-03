@@ -10,7 +10,7 @@ makes it a trap rather than a bug, and the thing worth pinning is the definition
 
 import pytest
 
-from refcheck.extraction.signals import BARE_YEAR_RE, YEAR_PAREN_RE, entry_is_complete
+from openrefcheck.extraction.signals import BARE_YEAR_RE, YEAR_PAREN_RE, entry_is_complete
 
 
 @pytest.mark.parametrize(

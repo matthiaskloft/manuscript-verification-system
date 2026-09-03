@@ -1,8 +1,8 @@
-from refcheck.benchmark.ensemble import merge_extracted
-from refcheck.benchmark.grobid_client import ExtractedReference
-from refcheck.extraction.tier0 import split_bibliography_block
-from refcheck.synth import corruption_generators as cg
-from refcheck.synth.entries import Author, SynthReferenceEntry
+from openrefcheck.benchmark.ensemble import merge_extracted
+from openrefcheck.benchmark.grobid_client import ExtractedReference
+from openrefcheck.extraction.tier0 import split_bibliography_block
+from openrefcheck.synth import corruption_generators as cg
+from openrefcheck.synth.entries import Author, SynthReferenceEntry
 
 _CLEAN_TEXT = (
     "Ainsworth, M. D. S. (1978). Patterns of attachment. Erlbaum.\n\n"

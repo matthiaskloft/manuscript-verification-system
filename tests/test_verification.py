@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from refcheck.contact import CONTACT_EMAIL_ENV
-from refcheck.verification import openalex_crossref as ver
+from openrefcheck.contact import CONTACT_EMAIL_ENV
+from openrefcheck.verification import openalex_crossref as ver
 
 
 def _patch(monkeypatch, crossref=None, openalex=None):
@@ -754,7 +754,7 @@ def test_an_api_key_is_used_when_one_is_configured(monkeypatch):
 
 def test_no_contact_address_is_sent_when_none_is_configured(monkeypatch):
     """The address reaches OpenAlex on every lookup, so a fork that has not set one must
-    send nothing rather than whoever built the code — see refcheck.contact."""
+    send nothing rather than whoever built the code — see openrefcheck.contact."""
     monkeypatch.delenv(CONTACT_EMAIL_ENV, raising=False)
     monkeypatch.setattr(ver.pyalex.config, "email", "stale@example.org", raising=False)
 

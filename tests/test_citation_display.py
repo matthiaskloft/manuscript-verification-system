@@ -9,10 +9,10 @@ from __future__ import annotations
 
 import pytest
 
-from refcheck.extraction.citation_matching import CitationMatch, MatchStatus
-from refcheck.extraction.document_artifact import SourceAnchor
-from refcheck.gui import citation_display as display
-from refcheck.gui.real_pipeline import (
+from openrefcheck.extraction.citation_matching import CitationMatch, MatchStatus
+from openrefcheck.extraction.document_artifact import SourceAnchor
+from openrefcheck.gui import citation_display as display
+from openrefcheck.gui.real_pipeline import (
     CITATIONS_FAILED,
     CITATIONS_NONE_DETECTED,
     CITATIONS_NONE_MATCHED,
@@ -159,7 +159,7 @@ def test_two_ambiguous_markers_are_counted_as_two():
 def test_the_unused_flag_agrees_with_citation_matching():
     """This module reads the rule from citation_matching rather than reimplementing it,
     and this is what pins that: a mapping of its own would be free to drift."""
-    from refcheck.extraction.citation_matching import unused_reference_numbers
+    from openrefcheck.extraction.citation_matching import unused_reference_numbers
 
     numbers = [1, 2, 3, 4]
     matches = [_resolved(1), _ambiguous(2, 3), _orphaned()]
