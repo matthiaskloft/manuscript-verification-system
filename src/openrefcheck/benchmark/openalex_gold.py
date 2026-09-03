@@ -34,7 +34,7 @@ def fetch_openalex_gold_references(
     """Look up a work's referenced_works graph.
 
     `contact_email` identifies the caller to OpenAlex's polite pool. It defaults to
-    REFCHECK_CONTACT_EMAIL, and to None (the anonymous pool) when that is unset — never
+    OPENREFCHECK_CONTACT_EMAIL, and to None (the anonymous pool) when that is unset — never
     to a compiled-in address, which a benchmark run from a fork would otherwise send to
     OpenAlex on the original author's behalf. See openrefcheck.contact.
     """

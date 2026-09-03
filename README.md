@@ -71,12 +71,12 @@ All configuration is environment variables. None are required to run.
 
 | Variable | Purpose | Default |
 | --- | --- | --- |
-| `REFCHECK_CONTACT_EMAIL` | Contact address sent to OpenAlex and Crossref to enter their "polite pool" (faster, more reliable service). See below. | unset (anonymous) |
+| `OPENREFCHECK_CONTACT_EMAIL` | Contact address sent to OpenAlex and Crossref to enter their "polite pool" (faster, more reliable service). See below. | unset (anonymous) |
 | `OPENALEX_API_KEY` | Free OpenAlex key; raises the daily budget from ~1,000 to ~10,000 requests (see below) | unset (anonymous) |
 | `GROBID_URL` | Base URL of a running GROBID instance | `http://localhost:8070` |
-| `REFCHECK_DEPLOYMENT_MODE` | Which disclaimer the UI shows: `local`, `demo`, or `prod` | `local` |
-| `REFCHECK_DEV` | Enables development-only UI affordances (`1`/`true`/`yes`) | unset |
-| `REFCHECK_NATIVE_DEBUG` | Opens the native window's devtools (right-click → Inspect, or F12) for diagnosing a native-only rendering issue | unset |
+| `OPENREFCHECK_DEPLOYMENT_MODE` | Which disclaimer the UI shows: `local`, `demo`, or `prod` | `local` |
+| `OPENREFCHECK_DEV` | Enables development-only UI affordances (`1`/`true`/`yes`) | unset |
+| `OPENREFCHECK_NATIVE_DEBUG` | Opens the native window's devtools (right-click → Inspect, or F12) for diagnosing a native-only rendering issue | unset |
 
 ### Contact address
 
@@ -85,7 +85,7 @@ a contact address get faster and more reliable service than anonymous ones. Open
 sends one only if you set it:
 
 ```bash
-export REFCHECK_CONTACT_EMAIL=you@example.org
+export OPENREFCHECK_CONTACT_EMAIL=you@example.org
 ```
 
 There is deliberately no default. The address is transmitted to a third party on
@@ -145,7 +145,7 @@ in one step against **your** project:
 .\scripts\deploy-web.ps1 -Project my-gcp-project -Region europe-west3
 ```
 
-or set `REFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
+or set `OPENREFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
 `gcloud` on PATH and authenticated.
 
 Nothing about the app requires Cloud Run — the container is an ordinary web server
@@ -165,7 +165,7 @@ running a public instance, and at minimum:
   reference deployment makes it invokable only by the app's service account.
 - **Cap the instance count.** `--max-instances=1` is the ceiling on what an abusive
   caller can spend. A billing budget alerts, it does not cap.
-- **Set `REFCHECK_DEPLOYMENT_MODE=demo`** so visitors see the disclaimer describing
+- **Set `OPENREFCHECK_DEPLOYMENT_MODE=demo`** so visitors see the disclaimer describing
   server-side processing, rather than the local-processing one.
 - **Check the retention copy still matches the code.** Demo mode tells visitors
   their upload is deleted when the check finishes and when they close the tab; that
@@ -196,8 +196,17 @@ extraction/verification quality (e.g. `run_grobid_benchmark.py`,
 pip install -e ".[benchmark]"
 ```
 
-Benchmarks that call OpenAlex or Crossref honour `REFCHECK_CONTACT_EMAIL` in the
+Benchmarks that call OpenAlex or Crossref honour `OPENREFCHECK_CONTACT_EMAIL` in the
 same way the app does.
+
+### Renamed from `REFCHECK_*`
+
+These variables were `REFCHECK_*` before the package was renamed. The old names still
+work and emit a `DeprecationWarning` naming the new one, so an existing deployment does
+not break the moment the code updates — which matters most for
+`OPENREFCHECK_DEPLOYMENT_MODE`: unset, it falls back to `local`, whose disclaimer tells
+visitors their document never left their device. Set the new names and the fallback
+becomes dead code.
 
 ## Security
 

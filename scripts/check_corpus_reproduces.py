@@ -121,7 +121,7 @@ def passes(case: dict, observed: dict) -> bool:
 
 def _run_at_ref(ref: str, cases: list[dict]) -> dict[str, dict]:
     """Evaluate cases against `ref`'s parser in a detached worktree."""
-    with tempfile.TemporaryDirectory(prefix="refcheck-corpus-replay-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="openrefcheck-corpus-replay-") as tmp:
         tree = Path(tmp) / "tree"
         subprocess.run(
             ["git", "worktree", "add", "-q", "--detach", str(tree), ref],

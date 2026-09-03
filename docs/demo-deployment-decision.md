@@ -64,11 +64,22 @@ gcloud run deploy refcheck-web \
   --max-instances=1
 ```
 
-> **Naming note:** the Python package and console scripts are `openrefcheck` /
-> `openrefcheck-web`. The Cloud Run *services* and the Artifact Registry repository
-> are still named `refcheck-web`, `refcheck-grobid` and `refcheck` — those are live
-> deployed resources, and renaming them would mean standing up new ones rather than
-> updating the existing deployment. The mismatch is deliberate.
+> **Naming migration.** Everything in the codebase is now `openrefcheck`: the
+> package, both console scripts, the environment variables (`OPENREFCHECK_*`), the
+> temp directories, and the local AnyStyle image tag. The deploy script's defaults
+> follow — it now targets the service `openrefcheck-web` and the Artifact Registry
+> repository `openrefcheck`.
+>
+> **Cloud Run services and Artifact Registry repositories cannot be renamed.** Getting
+> the deployed resources onto the new names means creating them and deleting the old
+> ones, which **changes the public URL** — see "Renaming the deployed services" below.
+> Until that is done, deploy with `-Service refcheck-web -Repository refcheck`, or set
+> `OPENREFCHECK_RUN_SERVICE` / `OPENREFCHECK_AR_REPOSITORY`, to keep hitting the
+> existing deployment.
+>
+> The old `REFCHECK_*` environment variables still work and emit a DeprecationWarning
+> (`openrefcheck/env.py`), so a service configured under the old names keeps behaving
+> correctly rather than silently falling back to local-mode copy.
 
 ## Proposed service configuration
 
@@ -223,6 +234,64 @@ NiceGUI uses Socket.IO. Cloud Run supports WebSockets, but each connection
 remains subject to the configured request timeout, currently up to 60 minutes.
 The client must therefore reconnect after a long session. Keeping the NiceGUI
 service at one instance avoids distributing its in-memory UI state.
+
+## Renaming the deployed services
+
+Neither a Cloud Run service nor an Artifact Registry repository can be renamed in
+place. Moving to `openrefcheck-web` / `openrefcheck-grobid` / `openrefcheck` means
+creating new resources and deleting the old ones.
+
+**This changes the public URL.** Cloud Run derives the hostname from the service name,
+so `refcheck-web-*.a.run.app` stops existing and a new hostname appears. Anywhere the
+old URL was published — a submission, a slide, a link someone saved — breaks. Decide
+that before starting.
+
+If a stable public URL matters, map a custom domain to the service instead and rename
+underneath it. The domain then survives any future service rename, which is the actual
+fix; the run.app hostname never was a stable address.
+
+```bash
+PROJECT=your-gcp-project
+REGION=europe-west3
+
+# 1. New Artifact Registry repository, then push the image to it.
+gcloud artifacts repositories create openrefcheck \
+  --repository-format=docker --location=$REGION --project=$PROJECT
+
+# 2. New GROBID service (same public image, private).
+gcloud run deploy openrefcheck-grobid \
+  --image=grobid/grobid:0.8.1 --region=$REGION --project=$PROJECT \
+  --memory=4Gi --port=8070 --max-instances=1 --no-allow-unauthenticated
+
+# 3. New web service, pointed at the new GROBID and using the new variable names.
+TAG=$(git rev-parse --short HEAD)
+docker build -f docker/nicegui/Dockerfile \
+  -t $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG .
+docker push $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG
+
+gcloud run deploy openrefcheck-web \
+  --image=$REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG \
+  --region=$REGION --project=$PROJECT --max-instances=1 \
+  --set-env-vars OPENREFCHECK_DEPLOYMENT_MODE=demo,GROBID_URL=https://<new-grobid-url>
+
+# 4. Re-grant the invoker binding — IAM does not follow a new service.
+gcloud run services add-iam-policy-binding openrefcheck-grobid \
+  --region=$REGION --project=$PROJECT \
+  --member="serviceAccount:PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
+  --role="roles/run.invoker"
+
+# 5. Verify the new URL serves, and that the sidebar shows the DEMO disclaimer —
+#    if it says the document stays on your device, the mode variable did not arrive.
+
+# 6. Only then delete the old ones.
+gcloud run services delete refcheck-web --region=$REGION --project=$PROJECT
+gcloud run services delete refcheck-grobid --region=$REGION --project=$PROJECT
+gcloud artifacts repositories delete refcheck --location=$REGION --project=$PROJECT
+```
+
+Step 5 is not optional. `OPENREFCHECK_DEPLOYMENT_MODE` missing means the app falls
+back to `local`, whose copy tells visitors their document never left their device —
+on a server that just processed it.
 
 ## Alternatives considered
 

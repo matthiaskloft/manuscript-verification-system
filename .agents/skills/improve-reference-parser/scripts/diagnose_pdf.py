@@ -122,7 +122,7 @@ def main() -> int:
     output_dir = (
         args.output_dir.resolve()
         if args.output_dir
-        else Path(tempfile.mkdtemp(prefix=f"refcheck-parser-{pdf.stem}-"))
+        else Path(tempfile.mkdtemp(prefix=f"openrefcheck-parser-{pdf.stem}-"))
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 

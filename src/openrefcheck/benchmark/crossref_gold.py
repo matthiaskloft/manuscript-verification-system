@@ -26,7 +26,7 @@ _USER_AGENT = "openrefcheck-benchmark"
 def _crossref_headers() -> dict[str, str]:
     """Identify the benchmark to Crossref, with a mailto only if one is configured.
 
-    Built per call rather than as a module constant so REFCHECK_CONTACT_EMAIL is read at
+    Built per call rather than as a module constant so OPENREFCHECK_CONTACT_EMAIL is read at
     request time, and so an unset variable yields a plain User-Agent instead of a
     compiled-in address — see openrefcheck.contact.
     """

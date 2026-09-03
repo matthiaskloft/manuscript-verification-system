@@ -30,7 +30,7 @@ def _show_internal_errors() -> bool:
     """Whether a render traceback may be drawn on the page.
 
     True only where the person looking at the screen is the person running the process:
-    the local desktop/`local` deployment, or an explicit REFCHECK_DEV opt-in. A `demo` or
+    the local desktop/`local` deployment, or an explicit OPENREFCHECK_DEV opt-in. A `demo` or
     `prod` deployment serves strangers, and a stack trace is server internals.
     """
     return dev_mode_enabled() or configured_mode() == "local"

@@ -57,7 +57,7 @@ def test_a_local_container_is_never_treated_as_starting(url):
     assert grobid.has_cold_start(url) is False
 
 
-@pytest.mark.parametrize("url", ["https://refcheck-grobid-abc.a.run.app", "http://grobid.internal"])
+@pytest.mark.parametrize("url", ["https://openrefcheck-grobid-abc.a.run.app", "http://grobid.internal"])
 def test_a_deployed_service_is_worth_waiting_on(url):
     assert grobid.has_cold_start(url) is True
 

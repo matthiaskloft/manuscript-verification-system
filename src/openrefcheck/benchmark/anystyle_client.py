@@ -3,7 +3,7 @@ built from docker/anystyle/Dockerfile — no official AnyStyle image exists, it'
 normally distributed as a Ruby gem, not a container.
 
 Build once with:
-    docker build -t refcheck-anystyle -f docker/anystyle/Dockerfile docker/anystyle
+    docker build -t openrefcheck-anystyle -f docker/anystyle/Dockerfile docker/anystyle
 """
 
 import json
@@ -13,7 +13,7 @@ from pathlib import Path
 from openrefcheck.benchmark.doi_utils import normalize_doi
 from openrefcheck.benchmark.grobid_client import ExtractedReference
 
-_DOCKER_IMAGE = "refcheck-anystyle"
+_DOCKER_IMAGE = "openrefcheck-anystyle"
 
 
 def call_anystyle(pdf_path: Path, docker_image: str = _DOCKER_IMAGE) -> list[dict]:

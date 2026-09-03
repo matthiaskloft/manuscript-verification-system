@@ -60,7 +60,14 @@ DEMO_GROUPS = (
     ),
 )
 
-_UPLOAD_DIR = Path(tempfile.gettempdir()) / "refcheck-uploads"
+_UPLOAD_DIR = Path(tempfile.gettempdir()) / "openrefcheck-uploads"
+
+# Where uploads were staged before the package was renamed. A machine that ran the old
+# build can still have manuscripts sitting here, and nothing else will ever remove them:
+# the sweep below only knows about the current directory. Swept too, so the rename does
+# not quietly turn "deleted when the check finishes or the tab closes" into "left on
+# disk forever". Delete this once no installation predating the rename remains.
+_LEGACY_UPLOAD_DIR = Path(tempfile.gettempdir()) / "refcheck-uploads"
 
 # Cloud Run's demo deployment has no auth in front of the upload endpoint (see
 # docs/demo-deployment-decision.md), so an unbounded upload is a cheap way to burn
@@ -110,10 +117,12 @@ def sweep_stale_uploads(now: float | None = None) -> int:
     """
     reference = time.time() if now is None else now
     removed = 0
-    try:
-        entries = list(_UPLOAD_DIR.iterdir())
-    except OSError:
-        return 0
+    entries: list[Path] = []
+    for directory in (_UPLOAD_DIR, _LEGACY_UPLOAD_DIR):
+        try:
+            entries.extend(directory.iterdir())
+        except OSError:
+            continue
     for entry in entries:
         try:
             if not entry.is_file() or reference - entry.stat().st_mtime <= _STALE_UPLOAD_SECONDS:

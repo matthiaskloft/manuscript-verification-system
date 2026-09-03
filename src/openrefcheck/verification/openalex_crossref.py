@@ -66,7 +66,7 @@ MAX_CANDIDATES = 3
 _LOOKUP_LIMIT = 3
 _TIMEOUT_SECONDS = 10
 
-# None unless the operator set REFCHECK_CONTACT_EMAIL — see openrefcheck.contact for why
+# None unless the operator set OPENREFCHECK_CONTACT_EMAIL — see openrefcheck.contact for why
 # there is no compiled-in default. habanero omits the `mailto` from its User-Agent when
 # this is None (habanero_utils.make_ua), which is the anonymous pool: slower, still
 # working, and the right behaviour for a deployment that has not chosen an address.

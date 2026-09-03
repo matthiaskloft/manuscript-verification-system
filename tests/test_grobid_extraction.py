@@ -66,14 +66,14 @@ def test_is_grobid_available_attaches_identity_token_for_remote_url(monkeypatch)
 
     monkeypatch.setattr(grobid.requests, "get", fake_get)
     monkeypatch.setattr(grobid, "_identity_token_header", lambda url: {"Authorization": "Bearer fake-token"})
-    assert is_grobid_available("https://refcheck-grobid-xyz.a.run.app") is True
+    assert is_grobid_available("https://openrefcheck-grobid-xyz.a.run.app") is True
     assert captured["headers"] == {"Authorization": "Bearer fake-token"}
 
 
 def test_identity_token_header_best_effort_on_fetch_failure(monkeypatch):
     """A remote URL with no usable Google credentials (e.g. running outside GCP) should
     degrade to no header rather than raise — GROBID is a best-effort upgrade."""
-    assert grobid._identity_token_header("https://refcheck-grobid-xyz.a.run.app") == {}
+    assert grobid._identity_token_header("https://openrefcheck-grobid-xyz.a.run.app") == {}
 
 
 def test_extract_references_via_grobid_converts_structured_fields(monkeypatch, tmp_path):

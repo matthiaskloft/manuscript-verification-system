@@ -203,7 +203,7 @@ def main() -> None:
         "documents": [],
     }
 
-    with tempfile.TemporaryDirectory(prefix="refcheck-demo-build-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="openrefcheck-demo-build-") as tmp:
         build_dir = Path(tmp)
         for spec in DEMO_DOCUMENTS:
             print(f"building {spec['asset']} ...")

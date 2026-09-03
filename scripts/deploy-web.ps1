@@ -11,33 +11,33 @@
 #   .\scripts\deploy-web.ps1 -Project my-project -Region europe-west3
 #
 # or:
-#   $env:REFCHECK_GCP_PROJECT = "my-project"
+#   $env:OPENREFCHECK_GCP_PROJECT = "my-project"
 #   .\scripts\deploy-web.ps1
 #
 # Assumes `docker` and `gcloud` are already on PATH and authenticated
 # (`gcloud auth login`, `gcloud auth configure-docker <region>-docker.pkg.dev`),
 # and that the Artifact Registry repository named by -Repository exists in the
-# project (`gcloud artifacts repositories create refcheck --repository-format=docker`).
+# project (`gcloud artifacts repositories create openrefcheck --repository-format=docker`).
 
 [CmdletBinding()]
 param(
     # The Google Cloud project to deploy into. Required — there is no default,
     # because a default would be somebody else's project.
-    [string]$Project = $env:REFCHECK_GCP_PROJECT,
+    [string]$Project = $env:OPENREFCHECK_GCP_PROJECT,
 
-    [string]$Region = $(if ($env:REFCHECK_GCP_REGION) { $env:REFCHECK_GCP_REGION } else { "europe-west3" }),
+    [string]$Region = $(if ($env:OPENREFCHECK_GCP_REGION) { $env:OPENREFCHECK_GCP_REGION } else { "europe-west3" }),
 
     # Artifact Registry repository name (not the full path — that is assembled below).
-    [string]$Repository = $(if ($env:REFCHECK_AR_REPOSITORY) { $env:REFCHECK_AR_REPOSITORY } else { "refcheck" }),
+    [string]$Repository = $(if ($env:OPENREFCHECK_AR_REPOSITORY) { $env:OPENREFCHECK_AR_REPOSITORY } else { "openrefcheck" }),
 
     # The Cloud Run service receiving the new revision.
-    [string]$Service = $(if ($env:REFCHECK_RUN_SERVICE) { $env:REFCHECK_RUN_SERVICE } else { "refcheck-web" })
+    [string]$Service = $(if ($env:OPENREFCHECK_RUN_SERVICE) { $env:OPENREFCHECK_RUN_SERVICE } else { "openrefcheck-web" })
 )
 
 $ErrorActionPreference = "Stop"
 
 if (-not $Project) {
-    throw "No Google Cloud project. Pass -Project <id> or set REFCHECK_GCP_PROJECT."
+    throw "No Google Cloud project. Pass -Project <id> or set OPENREFCHECK_GCP_PROJECT."
 }
 
 $Image = "$Region-docker.pkg.dev/$Project/$Repository/nicegui"

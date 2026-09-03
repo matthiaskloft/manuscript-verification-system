@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 import logging
-import os
 import sys
 
 from nicegui import app, core, ui
 
+from openrefcheck.env import read_env
 from openrefcheck.webui.main import create_app
 
 
@@ -47,10 +47,10 @@ def main() -> None:
     # the backend explicitly so a missing WebView2 Runtime raises a clear startup
     # error instead of degrading silently into that blank-window failure mode.
     app.native.start_args["gui"] = "edgechromium"
-    if os.environ.get("REFCHECK_NATIVE_DEBUG", "").strip().lower() in {"1", "true", "yes"}:
+    if read_env("NATIVE_DEBUG").strip().lower() in {"1", "true", "yes"}:
         # Opens the native window's devtools (right-click -> Inspect, or F12) so a
         # blank-content-area report can be diagnosed from the actual JS console
-        # instead of guessing — see REFCHECK_NATIVE_DEBUG in README.md.
+        # instead of guessing — see OPENREFCHECK_NATIVE_DEBUG in README.md.
         app.native.start_args["debug"] = True
     ui.run(
         title="Reference Checker (MVP)",

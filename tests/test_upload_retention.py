@@ -53,7 +53,7 @@ def test_the_upload_directory_is_private_to_its_owner(tmp_path, monkeypatch):
     """It lives inside a world-writable shared temp directory and holds unpublished
     manuscripts, so the default mode would expose one user's upload to every account on
     the machine."""
-    target = tmp_path / "refcheck-uploads"
+    target = tmp_path / "openrefcheck-uploads"
     monkeypatch.setattr(upload, "_UPLOAD_DIR", target)
 
     created = upload._upload_dir()
@@ -65,7 +65,7 @@ def test_the_upload_directory_is_private_to_its_owner(tmp_path, monkeypatch):
 def test_an_existing_world_readable_directory_is_tightened(tmp_path, monkeypatch):
     """mkdir(exist_ok=True) does not touch an existing directory's mode, so a directory
     left behind by an earlier version — or planted by another user — would keep it."""
-    target = tmp_path / "refcheck-uploads"
+    target = tmp_path / "openrefcheck-uploads"
     target.mkdir(mode=0o777)
     monkeypatch.setattr(upload, "_UPLOAD_DIR", target)
 

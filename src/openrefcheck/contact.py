@@ -13,14 +13,14 @@ someone with no control over it.
 So it comes from the environment, and there is no fallback. Unset means unset: the
 clients then call the anonymous pool, which works, is slower, and is the correct
 outcome for someone who has not chosen an address to be identified by. Operators who
-want the polite pool set REFCHECK_CONTACT_EMAIL to an address they own (see README).
+want the polite pool set OPENREFCHECK_CONTACT_EMAIL to an address they own (see README).
 """
 
 from __future__ import annotations
 
-import os
+from openrefcheck.env import env_name, read_env
 
-CONTACT_EMAIL_ENV = "REFCHECK_CONTACT_EMAIL"
+CONTACT_EMAIL_ENV = env_name("CONTACT_EMAIL")
 
 
 def contact_email() -> str | None:
@@ -31,5 +31,5 @@ def contact_email() -> str | None:
     not an address that is the empty string, which would put a malformed `mailto:` in
     front of Crossref.
     """
-    value = os.environ.get(CONTACT_EMAIL_ENV, "").strip()
+    value = read_env("CONTACT_EMAIL").strip()
     return value or None

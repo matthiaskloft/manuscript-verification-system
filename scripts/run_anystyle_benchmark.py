@@ -2,7 +2,7 @@
 
 Requires the local AnyStyle Docker image (see docs/project-plan.md and
 docker/anystyle/Dockerfile — no official AnyStyle image exists upstream):
-    docker build -t refcheck-anystyle -f docker/anystyle/Dockerfile docker/anystyle
+    docker build -t openrefcheck-anystyle -f docker/anystyle/Dockerfile docker/anystyle
 
 Usage:
     python scripts/run_anystyle_benchmark.py
