@@ -1,4 +1,4 @@
-"""The contact address OpenRefCheck identifies itself with to Crossref and OpenAlex.
+"""The contact address OpenRefCheck gives Crossref and OpenAlex to identify itself.
 
 Both APIs run a "polite pool": a caller that supplies a contact address gets faster,
 more reliable service than an anonymous one. Crossref takes it as a `mailto` in the
