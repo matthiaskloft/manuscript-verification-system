@@ -32,17 +32,17 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction import document
-from refcheck.extraction.document import (
+from openrefcheck.extraction import document
+from openrefcheck.extraction.document import (
     build_document_artifact,
     extract_references,
     find_bibliography_section,
     normalize_markdown_text,
 )
-from refcheck.extraction.intext_signals import MarkerFamily, detect_citations, expected_families
-from refcheck.extraction.style_profile import compute_style_profile
-from refcheck.synth.entries import SynthReferenceEntry
-from refcheck.synth.latex_builder import _KEYS_PER_FORM, plan_citations
+from openrefcheck.extraction.intext_signals import MarkerFamily, detect_citations, expected_families
+from openrefcheck.extraction.style_profile import compute_style_profile
+from openrefcheck.synth.entries import SynthReferenceEntry
+from openrefcheck.synth.latex_builder import _KEYS_PER_FORM, plan_citations
 
 SYNTHETIC = Path(__file__).parent / "fixtures" / "synthetic"
 MANIFEST = json.loads((SYNTHETIC / "manifest.json").read_text(encoding="utf-8"))

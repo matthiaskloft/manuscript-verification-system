@@ -1,6 +1,6 @@
-# RefCheck
+# OpenRefCheck
 
-RefCheck is a [NiceGUI](https://nicegui.io/) app that checks a manuscript's
+OpenRefCheck is a [NiceGUI](https://nicegui.io/) app that checks a manuscript's
 references. It extracts the reference list from a PDF or DOCX, verifies each entry
 against [OpenAlex](https://openalex.org/) and [Crossref](https://www.crossref.org/),
 and flags entries that cannot be found, are incomplete, are duplicated, or have been
@@ -40,23 +40,23 @@ entry point does not require it.
 ## Running the desktop app
 
 ```bash
-refcheck
+openrefcheck
 ```
 
-Opens a native desktop window. Equivalently: `python -m refcheck.app`.
+Opens a native desktop window. Equivalently: `python -m openrefcheck.app`.
 
 ## Running the web app
 
 ```bash
-refcheck-web
+openrefcheck-web
 ```
 
 Serves the same app over HTTP on `0.0.0.0` and the `PORT` env var (default `8080`).
 This is what [docker/nicegui/Dockerfile](docker/nicegui/Dockerfile) runs:
 
 ```bash
-docker build -f docker/nicegui/Dockerfile -t refcheck-web .
-docker run --rm -p 8080:8080 -e GROBID_URL=http://host.docker.internal:8070 refcheck-web
+docker build -f docker/nicegui/Dockerfile -t openrefcheck-web .
+docker run --rm -p 8080:8080 -e GROBID_URL=http://host.docker.internal:8070 openrefcheck-web
 ```
 
 The two entry points differ in one way that matters beyond the window: the desktop
@@ -71,21 +71,21 @@ All configuration is environment variables. None are required to run.
 
 | Variable | Purpose | Default |
 | --- | --- | --- |
-| `REFCHECK_CONTACT_EMAIL` | Contact address sent to OpenAlex and Crossref to enter their "polite pool" (faster, more reliable service). See below. | unset (anonymous) |
+| `OPENREFCHECK_CONTACT_EMAIL` | Contact address sent to OpenAlex and Crossref to enter their "polite pool" (faster, more reliable service). See below. | unset (anonymous) |
 | `OPENALEX_API_KEY` | Free OpenAlex key; raises the daily budget from ~1,000 to ~10,000 requests (see below) | unset (anonymous) |
 | `GROBID_URL` | Base URL of a running GROBID instance | `http://localhost:8070` |
-| `REFCHECK_DEPLOYMENT_MODE` | Which disclaimer the UI shows: `local`, `demo`, or `prod` | `local` |
-| `REFCHECK_DEV` | Enables development-only UI affordances (`1`/`true`/`yes`) | unset |
-| `REFCHECK_NATIVE_DEBUG` | Opens the native window's devtools (right-click → Inspect, or F12) for diagnosing a native-only rendering issue | unset |
+| `OPENREFCHECK_DEPLOYMENT_MODE` | Which disclaimer the UI shows: `local`, `demo`, or `prod` | `local` |
+| `OPENREFCHECK_DEV` | Enables development-only UI affordances (`1`/`true`/`yes`) | unset |
+| `OPENREFCHECK_NATIVE_DEBUG` | Opens the native window's devtools (right-click → Inspect, or F12) for diagnosing a native-only rendering issue | unset |
 
 ### Contact address
 
 OpenAlex and Crossref both run a "polite pool": callers who identify themselves with
-a contact address get faster and more reliable service than anonymous ones. RefCheck
+a contact address get faster and more reliable service than anonymous ones. OpenRefCheck
 sends one only if you set it:
 
 ```bash
-export REFCHECK_CONTACT_EMAIL=you@example.org
+export OPENREFCHECK_CONTACT_EMAIL=you@example.org
 ```
 
 There is deliberately no default. The address is transmitted to a third party on
@@ -132,7 +132,7 @@ AnyStyle CLI used by the extraction benchmarks.
 
 ## Deploying your own instance
 
-RefCheck is deployable by anyone; nothing in the repository is tied to a particular
+OpenRefCheck is deployable by anyone; nothing in the repository is tied to a particular
 cloud account. [docs/demo-deployment-decision.md](docs/demo-deployment-decision.md)
 records the reasoning behind the reference deployment (two Google Cloud Run services
 — the app, and a private GROBID backend it alone may invoke) along with the service
@@ -145,7 +145,7 @@ in one step against **your** project:
 .\scripts\deploy-web.ps1 -Project my-gcp-project -Region europe-west3
 ```
 
-or set `REFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
+or set `OPENREFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
 `gcloud` on PATH and authenticated.
 
 Nothing about the app requires Cloud Run — the container is an ordinary web server
@@ -165,11 +165,11 @@ running a public instance, and at minimum:
   reference deployment makes it invokable only by the app's service account.
 - **Cap the instance count.** `--max-instances=1` is the ceiling on what an abusive
   caller can spend. A billing budget alerts, it does not cap.
-- **Set `REFCHECK_DEPLOYMENT_MODE=demo`** so visitors see the disclaimer describing
+- **Set `OPENREFCHECK_DEPLOYMENT_MODE=demo`** so visitors see the disclaimer describing
   server-side processing, rather than the local-processing one.
 - **Check the retention copy still matches the code.** Demo mode tells visitors
   their upload is deleted when the check finishes and when they close the tab; that
-  is what `refcheck/webui/pages/upload.py` does today, and the promise is only as
+  is what `openrefcheck/webui/pages/upload.py` does today, and the promise is only as
   true as that module.
 
 Uploads are held in a private temporary directory, capped at 50 MB (enforced
@@ -196,7 +196,100 @@ extraction/verification quality (e.g. `run_grobid_benchmark.py`,
 pip install -e ".[benchmark]"
 ```
 
-Benchmarks that call OpenAlex or Crossref honour `REFCHECK_CONTACT_EMAIL` in the
+Benchmarks that call OpenAlex or Crossref honour `OPENREFCHECK_CONTACT_EMAIL` in the
+same way the app does.
+
+### Deployment mode
+
+`OPENREFCHECK_DEPLOYMENT_MODE` chooses which disclaimer the UI shows. The desktop app
+defaults to `local`, which is true of it: the document never leaves the machine.
+
+**The web entry point defaults to `demo` instead**, and does so deliberately. Local-mode
+copy tells the visitor "This document stays on your device", which is false on a server.
+An operator who forgets the variable would otherwise publish that claim with nothing
+failing and nothing warning. Set `prod` explicitly for a managed institutional
+deployment; an explicit value always wins.
+
+## Optional: running GROBID locally
+
+Reference extraction falls back to a built-in extractor when GROBID is unavailable.
+To enable GROBID-based extraction:
+
+```bash
+docker run --rm -p 8070:8070 grobid/grobid:0.8.1
+```
+
+The app looks for GROBID at `http://localhost:8070` by default; override with
+`GROBID_URL`. [docker/anystyle/Dockerfile](docker/anystyle/Dockerfile) packages the
+AnyStyle CLI used by the extraction benchmarks.
+
+## Deploying your own instance
+
+OpenRefCheck is deployable by anyone; nothing in the repository is tied to a particular
+cloud account. [docs/demo-deployment-decision.md](docs/demo-deployment-decision.md)
+records the reasoning behind the reference deployment (two Google Cloud Run services
+— the app, and a private GROBID backend it alone may invoke) along with the service
+sizing, cold-start measurements, and cost controls.
+
+[scripts/deploy-web.ps1](scripts/deploy-web.ps1) builds, tags, pushes, and redeploys
+in one step against **your** project:
+
+```powershell
+.\scripts\deploy-web.ps1 -Project my-gcp-project -Region europe-west3
+```
+
+or set `OPENREFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
+`gcloud` on PATH and authenticated.
+
+Nothing about the app requires Cloud Run — the container is an ordinary web server
+and will run on any host that can serve one.
+
+### Before you expose it to other people
+
+The hosted configuration processes other people's manuscripts, which raises
+questions a local install does not. Read
+[docs/eu-data-privacy-compliance.md](docs/eu-data-privacy-compliance.md) before
+running a public instance, and at minimum:
+
+- **Decide whether it should be public at all.** There is no authentication in
+  front of the app. Put one there, or restrict access at the network level, if the
+  instance is not meant for anyone who finds the URL.
+- **Keep GROBID private.** It is compute-heavy and unauthenticated by default; the
+  reference deployment makes it invokable only by the app's service account.
+- **Cap the instance count.** `--max-instances=1` is the ceiling on what an abusive
+  caller can spend. A billing budget alerts, it does not cap.
+- **Set `OPENREFCHECK_DEPLOYMENT_MODE=demo`** so visitors see the disclaimer describing
+  server-side processing, rather than the local-processing one.
+- **Check the retention copy still matches the code.** Demo mode tells visitors
+  their upload is deleted when the check finishes and when they close the tab; that
+  is what `openrefcheck/webui/pages/upload.py` does today, and the promise is only as
+  true as that module.
+
+Uploads are held in a private temporary directory, capped at 50 MB (enforced
+server-side, not only in the browser), deleted when a check completes or the browser
+session ends, and swept at process start if a crash left anything behind.
+
+## Tests
+
+```bash
+pytest
+```
+
+No test contacts an external service: extraction runs against synthetic fixtures and
+the OpenAlex/Crossref clients are stubbed. The live-GROBID tests do probe `GROBID_URL`,
+which defaults to localhost and skips when nothing answers.
+
+## Benchmark scripts
+
+Scripts under [scripts/](scripts) build synthetic benchmarks and evaluate
+extraction/verification quality (e.g. `run_grobid_benchmark.py`,
+`run_ensemble_benchmark.py`). Install the `benchmark` extra if needed:
+
+```bash
+pip install -e ".[benchmark]"
+```
+
+Benchmarks that call OpenAlex or Crossref honour `OPENREFCHECK_CONTACT_EMAIL` in the
 same way the app does.
 
 ## Security
@@ -207,7 +300,7 @@ To report a vulnerability, see [SECURITY.md](SECURITY.md).
 
 [GNU Affero General Public License v3.0](LICENSE).
 
-AGPL rather than a permissive license for one specific reason: RefCheck is meant to
+AGPL rather than a permissive license for one specific reason: OpenRefCheck is meant to
 be run as a service, and the AGPL is the license that carries the obligation across
 that boundary. Anyone who runs a modified version for other people to use has to
 offer those users its source. Fork it, deploy it, build on it — improvements to a

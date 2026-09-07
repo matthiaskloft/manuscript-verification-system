@@ -1,6 +1,6 @@
-from refcheck.benchmark.crossref_gold import GoldReferenceEntry
-from refcheck.benchmark.grobid_client import ExtractedReference
-from refcheck.benchmark.parsing_match import score_parsing
+from openrefcheck.benchmark.crossref_gold import GoldReferenceEntry
+from openrefcheck.benchmark.grobid_client import ExtractedReference
+from openrefcheck.benchmark.parsing_match import score_parsing
 
 
 def test_score_parsing_matches_clean_titles():

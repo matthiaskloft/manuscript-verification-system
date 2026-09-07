@@ -3,8 +3,8 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction import document
-from refcheck.extraction.document import (
+from openrefcheck.extraction import document
+from openrefcheck.extraction.document import (
     NoBibliographySectionError,
     _drop_isolated_decorative_list_markers,
     _drop_repeated_isolated_lines,
@@ -15,9 +15,9 @@ from refcheck.extraction.document import (
     find_bibliography_section,
     normalize_markdown_text,
 )
-from refcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
-from refcheck.extraction.grobid import GrobidDocument, GrobidUnavailableError
-from refcheck.extraction.tier0 import RawReferenceEntry
+from openrefcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
+from openrefcheck.extraction.grobid import GrobidDocument, GrobidUnavailableError
+from openrefcheck.extraction.tier0 import RawReferenceEntry
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synthetic"
 MANIFEST = json.loads((FIXTURES / "manifest.json").read_text(encoding="utf-8"))

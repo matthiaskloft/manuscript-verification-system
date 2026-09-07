@@ -17,14 +17,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import fitz
 
-from refcheck.benchmark.crossref_gold import GoldReferenceEntry, GoldReferences
-from refcheck.benchmark.doi_utils import normalize_doi
-from refcheck.benchmark.grobid_client import call_grobid, parse_grobid_tei
-from refcheck.benchmark.parsing_match import score_parsing
-from refcheck.benchmark.score import score_document
-from refcheck.extraction.tier0 import split_bibliography_block
-from refcheck.synth import corruption_generators as cg
-from refcheck.synth.entries import CURATED_ENTRIES
+from openrefcheck.benchmark.crossref_gold import GoldReferenceEntry, GoldReferences
+from openrefcheck.benchmark.doi_utils import normalize_doi
+from openrefcheck.benchmark.grobid_client import call_grobid, parse_grobid_tei
+from openrefcheck.benchmark.parsing_match import score_parsing
+from openrefcheck.benchmark.score import score_document
+from openrefcheck.extraction.tier0 import split_bibliography_block
+from openrefcheck.synth import corruption_generators as cg
+from openrefcheck.synth.entries import CURATED_ENTRIES
 
 FIXTURES_DIR = Path(__file__).resolve().parent.parent / "tests" / "fixtures" / "synthetic"
 CORRUPTION_BUILD_DIR = FIXTURES_DIR / "corruption_variants"
@@ -95,8 +95,8 @@ def run_merge_stage_report() -> None:
     print("\n=== MERGE-stage (ensemble.py dedup behavior) ===")
     from dataclasses import replace as dc_replace
 
-    from refcheck.benchmark.ensemble import merge_extracted
-    from refcheck.benchmark.grobid_client import ExtractedReference
+    from openrefcheck.benchmark.ensemble import merge_extracted
+    from openrefcheck.benchmark.grobid_client import ExtractedReference
 
     ref = ExtractedReference(index="a", doi="10.1/x", title="Some paper", author_surnames=["Smith"])
     dup_scenario = cg.duplicate_reference_scenario(ref)
@@ -152,7 +152,7 @@ def run_text_stage_report() -> None:
 
 def run_doi_url_variants_report() -> None:
     print("\n=== CONTENT-stage (doi_url_variants) ===")
-    from refcheck.benchmark.doi_utils import normalize_doi
+    from openrefcheck.benchmark.doi_utils import normalize_doi
 
     variants = cg.doi_url_variants("10.1234/Example.5678")
     canonical = variants["bare"]

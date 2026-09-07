@@ -20,10 +20,10 @@ from pathlib import Path
 import pytest
 
 from citation_style_corpus import LAYERS, load_cases, load_meta, load_styles
-from refcheck.extraction import document
-from refcheck.extraction.document import extract_references, find_bibliography_section, normalize_markdown_text
-from refcheck.extraction.tier0 import split_bibliography_block
-from refcheck.extraction.title import extract_title
+from openrefcheck.extraction import document
+from openrefcheck.extraction.document import extract_references, find_bibliography_section, normalize_markdown_text
+from openrefcheck.extraction.tier0 import split_bibliography_block
+from openrefcheck.extraction.title import extract_title
 
 FIXTURES = Path(__file__).parent / "fixtures"
 META = load_meta()

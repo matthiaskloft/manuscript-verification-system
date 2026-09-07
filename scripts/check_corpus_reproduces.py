@@ -36,15 +36,15 @@ from citation_style_corpus import load_cases  # noqa: E402
 
 
 def evaluate(case: dict) -> dict:
-    """Run one case against whatever refcheck is importable, and report what happened.
+    """Run one case against whatever openrefcheck is importable, and report what happened.
 
     Imports inside the function because in worker mode this module is executed with a
     *different* checkout's src/ on sys.path than the one it was read from.
     """
-    from refcheck.extraction import document
-    from refcheck.extraction.document import find_bibliography_section
-    from refcheck.extraction.tier0 import split_bibliography_block
-    from refcheck.extraction.title import extract_title
+    from openrefcheck.extraction import document
+    from openrefcheck.extraction.document import find_bibliography_section
+    from openrefcheck.extraction.tier0 import split_bibliography_block
+    from openrefcheck.extraction.title import extract_title
 
     expect = case["expect"]
     try:
@@ -121,7 +121,7 @@ def passes(case: dict, observed: dict) -> bool:
 
 def _run_at_ref(ref: str, cases: list[dict]) -> dict[str, dict]:
     """Evaluate cases against `ref`'s parser in a detached worktree."""
-    with tempfile.TemporaryDirectory(prefix="refcheck-corpus-replay-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="openrefcheck-corpus-replay-") as tmp:
         tree = Path(tmp) / "tree"
         subprocess.run(
             ["git", "worktree", "add", "-q", "--detach", str(tree), ref],

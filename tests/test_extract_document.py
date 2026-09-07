@@ -19,16 +19,16 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction import document
-from refcheck.extraction.document import (
+from openrefcheck.extraction import document
+from openrefcheck.extraction.document import (
     NoBibliographySectionError,
     build_document_artifact,
     extract_document,
     extract_references,
 )
-from refcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
-from refcheck.extraction.grobid import CitationContext, GrobidDocument, GrobidUnavailableError
-from refcheck.extraction.tier0 import RawReferenceEntry
+from openrefcheck.extraction.engine_status import ENGINE_ANCHOR, ENGINE_GROBID
+from openrefcheck.extraction.grobid import CitationContext, GrobidDocument, GrobidUnavailableError
+from openrefcheck.extraction.tier0 import RawReferenceEntry
 
 FIXTURES = Path(__file__).parent / "fixtures" / "synthetic"
 MANIFEST = json.loads((FIXTURES / "manifest.json").read_text(encoding="utf-8"))

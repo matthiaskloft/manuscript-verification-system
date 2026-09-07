@@ -35,29 +35,29 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction import citation_matching, document
-from refcheck.extraction.citation_matching import (
+from openrefcheck.extraction import citation_matching, document
+from openrefcheck.extraction.citation_matching import (
     SURNAME_MATCH_THRESHOLD,
     MatchStatus,
     citation_counts,
     match_citations,
     unused_reference_numbers,
 )
-from refcheck.extraction.citation_matching import (
+from openrefcheck.extraction.citation_matching import (
     _inherit_repeated_authors,
     _marker_surnames,
     _name_similarity,
     _year_agreement,
     _year_key,
 )
-from refcheck.extraction.document import (
+from openrefcheck.extraction.document import (
     build_document_artifact,
     extract_references,
     find_bibliography_section,
     normalize_markdown_text,
 )
-from refcheck.extraction.intext_signals import MarkerFamily, detect_citations, expected_families
-from refcheck.extraction.style_profile import compute_style_profile
+from openrefcheck.extraction.intext_signals import MarkerFamily, detect_citations, expected_families
+from openrefcheck.extraction.style_profile import compute_style_profile
 
 SYNTHETIC = Path(__file__).parent / "fixtures" / "synthetic"
 MANIFEST = json.loads((SYNTHETIC / "manifest.json").read_text(encoding="utf-8"))

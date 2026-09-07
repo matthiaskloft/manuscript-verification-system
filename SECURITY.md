@@ -7,19 +7,19 @@ Please report security issues privately, through GitHub's
 on this repository (Security → Report a vulnerability), rather than by opening a
 public issue.
 
-RefCheck is a research prototype maintained by one person, without a paid support
+OpenRefCheck is a research prototype maintained by one person, without a paid support
 arrangement or a guaranteed response time. Expect a considered reply rather than a
 fast one, and no bug bounty.
 
 ## Scope
 
-The interesting boundary is the difference between the two ways RefCheck runs.
+The interesting boundary is the difference between the two ways OpenRefCheck runs.
 
-**The desktop app** (`refcheck`) treats the person at the keyboard as trusted. It
+**The desktop app** (`openrefcheck`) treats the person at the keyboard as trusted. It
 writes reports to filesystem paths they choose, and reads documents they point it
 at. That is the intended behaviour and not a vulnerability.
 
-**A hosted instance** (`refcheck-web`) treats every visitor as untrusted. There it
+**A hosted instance** (`openrefcheck-web`) treats every visitor as untrusted. There it
 accepts uploaded manuscripts, and the report is downloaded through the browser
 rather than written to a server path. Anything that lets a visitor read another
 visitor's manuscript, read or write server-side files, run code on the host, or

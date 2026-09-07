@@ -3,8 +3,8 @@ ground truth manifest.
 
 Unlike regex_doi_extractor.py (a bare whole-document DOI scan, used as Tier 0's
 contribution to the ensemble in run_ensemble_benchmark.py), this exercises the actual
-structured Tier-0 pipeline a real check uses: refcheck.extraction.document
-(bibliography isolation + tier0 splitting) and refcheck.extraction.title (title
+structured Tier-0 pipeline a real check uses: openrefcheck.extraction.document
+(bibliography isolation + tier0 splitting) and openrefcheck.extraction.title (title
 heuristics) — the same code real_pipeline.py drives for the GUI's live checks. The
 whole-document DOI regex scores DOI recall/precision only and can't be scored on
 parsing recall/precision at all (it never produces a title). This script fills that
@@ -23,11 +23,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.benchmark.doi_utils import normalize_doi
-from refcheck.benchmark.grobid_client import ExtractedReference
-from refcheck.benchmark.runner import print_report, run_benchmark
-from refcheck.extraction.document import NoBibliographySectionError, extract_references
-from refcheck.extraction.title import extract_title
+from openrefcheck.benchmark.doi_utils import normalize_doi
+from openrefcheck.benchmark.grobid_client import ExtractedReference
+from openrefcheck.benchmark.runner import print_report, run_benchmark
+from openrefcheck.extraction.document import NoBibliographySectionError, extract_references
+from openrefcheck.extraction.title import extract_title
 
 _DOI_RE = re.compile(r"10\.\d{4,9}/[-._;()/:A-Za-z0-9]+")
 

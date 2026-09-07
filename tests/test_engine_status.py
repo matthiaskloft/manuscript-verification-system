@@ -1,4 +1,4 @@
-from refcheck.extraction import engine_status
+from openrefcheck.extraction import engine_status
 
 
 def test_reports_grobid_when_reachable(monkeypatch):

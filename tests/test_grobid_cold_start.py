@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import pytest
 
-from refcheck.extraction import grobid
+from openrefcheck.extraction import grobid
 
 
 @pytest.fixture
@@ -57,7 +57,7 @@ def test_a_local_container_is_never_treated_as_starting(url):
     assert grobid.has_cold_start(url) is False
 
 
-@pytest.mark.parametrize("url", ["https://refcheck-grobid-abc.a.run.app", "http://grobid.internal"])
+@pytest.mark.parametrize("url", ["https://openrefcheck-grobid-abc.a.run.app", "http://grobid.internal"])
 def test_a_deployed_service_is_worth_waiting_on(url):
     assert grobid.has_cold_start(url) is True
 
@@ -139,7 +139,7 @@ def test_the_engine_status_asks_whichever_probe_it_was_given(monkeypatch):
     """The Upload screen runs the fast probe first and the waiting one only if that
     fails, so the parameter is what keeps a three-minute wait out of every other caller
     of `current_engine_status`."""
-    from refcheck.extraction import engine_status
+    from openrefcheck.extraction import engine_status
 
     monkeypatch.setattr(engine_status, "grobid_url", lambda: "https://grobid.example")
     monkeypatch.setattr(

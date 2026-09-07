@@ -14,9 +14,9 @@ import sys
 import pytest
 import requests
 
-from refcheck.benchmark.grobid_client import parse_grobid_citation_contexts, parse_tei_root
-from refcheck.extraction import grobid
-from refcheck.extraction.grobid import (
+from openrefcheck.benchmark.grobid_client import parse_grobid_citation_contexts, parse_tei_root
+from openrefcheck.extraction import grobid
+from openrefcheck.extraction.grobid import (
     GrobidUnavailableError,
     extract_document_via_grobid,
     extract_references_via_grobid,

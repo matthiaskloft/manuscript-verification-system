@@ -97,7 +97,7 @@ already-gated Phase B step in `project-plan.md` and is not authorized by this pl
 | GROBID target-identity preservation | Assume `RawReferenceEntry.index` order coincides with TEI target ids; explicitly map TEI `xml:id` → final `ReferenceResult.n` | Explicitly map TEI `xml:id` → `RawReferenceEntry.index` → `ReferenceResult.n`, with tests for non-sequential and missing/unmatched ids | Resolved 2026-08-05, per review: nothing today guarantees a body `<ref target="#bXX">`'s id coincides with the sequential position `extract_references_via_grobid` currently assigns. Must be built and tested explicitly, not assumed. |
 | Pipeline output contract | Bare `list[ReferenceResult]` return value (current); explicit result bundle | New result bundle (`references`, `citation_matches`, the document artifact, `citation_run_status`) replacing the bare list `run_real_pipeline` returns today | Resolved 2026-08-05, per review: `run_real_pipeline` today returns only `list[ReferenceResult]`; `CheckRunner.on_finished` and `webui/pages/upload.py`'s handler forward exactly that into `state.results`. Nothing carries citation matches, the document artifact, or a citation-run status through that channel today — required to satisfy this plan's own Success Criteria distinguishing "no citations found" from "search failed/didn't run." |
 | Activation | Always-on; opt-in per run, off by default | Detection/matching always-on; raw context-passage visibility gated separately (see above) | Resolved 2026-08-04: neither original reason for gating the whole feature held up — Tier 1 adds no new data recipient, and the structured `CitationMatch` record carries no sensitive text by itself. The opt-in boundary moved to exactly where the sensitive content lives instead of sitting in front of the whole feature. |
-| Detection/matching trigger | Eager, inside the existing check pipeline; separate on-demand action after the check finishes | Eager, inside the existing check pipeline (same pass as extraction/verification) | Resolved 2026-08-04: the cost asymmetry is in artifact-building (GROBID's response is already fully fetched in one call), not in matching itself, which is cheap in-memory computation regardless of timing. Running it automatically mirrors how reference verification already runs automatically today, and avoids inventing a new "recheck"-style action this app doesn't currently have (checked directly against [check_runner.py](../../src/refcheck/webui/check_runner.py) — no such mechanism exists yet). |
+| Detection/matching trigger | Eager, inside the existing check pipeline; separate on-demand action after the check finishes | Eager, inside the existing check pipeline (same pass as extraction/verification) | Resolved 2026-08-04: the cost asymmetry is in artifact-building (GROBID's response is already fully fetched in one call), not in matching itself, which is cheap in-memory computation regardless of timing. Running it automatically mirrors how reference verification already runs automatically today, and avoids inventing a new "recheck"-style action this app doesn't currently have (checked directly against [check_runner.py](../../src/openrefcheck/webui/check_runner.py) — no such mechanism exists yet). |
 
 ### Scope
 
@@ -289,11 +289,11 @@ above, and the GROBID TEI structure verified directly against a primary source
 ### Phase 1: Structured document artifact & source anchors
 
 **Files to create:**
-- `src/refcheck/extraction/document_artifact.py`
+- `src/openrefcheck/extraction/document_artifact.py`
 - `tests/test_document_artifact.py`
 
 **Files to modify:**
-- `src/refcheck/extraction/document.py` — retain body text alongside the existing
+- `src/openrefcheck/extraction/document.py` — retain body text alongside the existing
   bibliography-only extraction path, without changing `extract_references`'s
   current return type for existing callers.
 
@@ -315,7 +315,7 @@ above, and the GROBID TEI structure verified directly against a primary source
 ### Phase 2: Tier-0 marker detection (regex)
 
 **Files to create:**
-- `src/refcheck/extraction/intext_signals.py`
+- `src/openrefcheck/extraction/intext_signals.py`
 - `tests/test_intext_signals.py`
 - `tests/fixtures/intext_citations/*.json` + a loader mirroring
   `tests/citation_style_corpus.py`
@@ -341,12 +341,12 @@ above, and the GROBID TEI structure verified directly against a primary source
 - `tests/test_grobid_citation_context.py`
 
 **Files to modify:**
-- `src/refcheck/benchmark/grobid_client.py` — parse `<body>` inline
+- `src/openrefcheck/benchmark/grobid_client.py` — parse `<body>` inline
   `<ref type="bibr">` elements alongside the existing `<biblStruct>` walk.
   (Production TEI parsing living under `benchmark/` is a pre-existing layering
   quirk — `extraction/grobid.py` already wraps this module — which this phase
   extends rather than introduces; relocating it is out of scope here.)
-- `src/refcheck/extraction/grobid.py` — surface citation-context results alongside
+- `src/openrefcheck/extraction/grobid.py` — surface citation-context results alongside
   the existing `RawReferenceEntry` output, and stop discarding each entry's TEI
   `xml:id` when building `RawReferenceEntry` (see Design Decisions, GROBID
   target-identity preservation).
@@ -376,18 +376,18 @@ above, and the GROBID TEI structure verified directly against a primary source
 ### Phase 4: Matching engine
 
 **Files to create:**
-- `src/refcheck/extraction/citation_matching.py`
+- `src/openrefcheck/extraction/citation_matching.py`
 - `tests/test_citation_matching.py`
 
 **Files to modify:**
-- `src/refcheck/gui/real_pipeline.py` — invoke detection/matching automatically in
+- `src/openrefcheck/gui/real_pipeline.py` — invoke detection/matching automatically in
   the same pass as extraction/verification, and return the new result bundle
   below instead of a bare `list[ReferenceResult]` (see Design Decisions, Pipeline
   output contract).
-- `src/refcheck/webui/check_runner.py` — change `CheckRunner.__init__`'s
+- `src/openrefcheck/webui/check_runner.py` — change `CheckRunner.__init__`'s
   `on_finished` type from `Callable[[list[ReferenceResult]], None]` to accept the
   new result bundle, and forward it unchanged from `_run_real`.
-- `src/refcheck/webui/pages/upload.py` — its `on_finished` handler (the one that
+- `src/openrefcheck/webui/pages/upload.py` — its `on_finished` handler (the one that
   currently does `state.results = results` and cleans up the uploaded file)
   unpacks the bundle into `state.results`, `state.citation_matches`, the
   document-artifact field, and a citation-run-status field.
@@ -429,12 +429,12 @@ verification pipeline's `ReferenceResult` list.
   `webui/components/` conventions discovered during implementation.
 
 **Files to modify:**
-- `src/refcheck/webui/state.py` — add session-scoped `citation_matches` and
+- `src/openrefcheck/webui/state.py` — add session-scoped `citation_matches` and
   `show_citation_context` (bool, default `False`) fields to `AppState`.
-- `src/refcheck/webui/pages/references.py`, `src/refcheck/webui/pages/manual_review.py`
+- `src/openrefcheck/webui/pages/references.py`, `src/openrefcheck/webui/pages/manual_review.py`
   — surface unused/orphaned flags and the "cited N times in this manuscript" figure
   unconditionally; gate the context viewer behind `show_citation_context`.
-- `src/refcheck/gui/report_builder.py`, `src/refcheck/gui/report_data.py` — opt-in
+- `src/openrefcheck/gui/report_builder.py`, `src/openrefcheck/gui/report_data.py` — opt-in
   passage export, independent of `show_citation_context`.
 
 **Steps:**
@@ -650,7 +650,7 @@ verification pipeline's `ReferenceResult` list.
     decision rather than an oversight. Recorded, with the measured evidence pinned in
     `test_the_style_evidence_each_bibliography_offers_is_the_one_recorded`, rather than
     silently fixed.
-  - The demo assets under `src/refcheck/assets/` were regenerated from the same builder,
+  - The demo assets under `src/openrefcheck/assets/` were regenerated from the same builder,
     so the bundled demos now contain in-text citations for Phase 5 to surface.
   What was established while scoping it, and held:
   - The cause was one line. `synth/latex_builder.py`'s template ended with
@@ -1124,7 +1124,7 @@ verification pipeline's `ReferenceResult` list.
     report.
 - **Phase 5 shipped 2026-08-11**, and departed from its own file list twice, both recorded
   here rather than folded in silently:
-  - **`src/refcheck/gui/citation_display.py` is new**, against the phase's "none
+  - **`src/openrefcheck/gui/citation_display.py` is new**, against the phase's "none
     anticipated". Two callers need the same answers — the screens and the exported report
     — and a wording that drifts between them is a wording the reader cannot trust. It is
     also the only way the layer gets tested: the NiceGUI pages had no harness at all, so a

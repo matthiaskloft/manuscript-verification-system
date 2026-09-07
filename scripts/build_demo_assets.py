@@ -1,4 +1,4 @@
-"""Build the bundled demo manuscripts shipped under src/refcheck/assets/.
+"""Build the bundled demo manuscripts shipped under src/openrefcheck/assets/.
 
 Deliberately separate from scripts/build_synthetic_benchmark.py, which builds the
 *test* fixtures under tests/fixtures/synthetic/. The two used to be the same PDFs —
@@ -18,7 +18,7 @@ are now independently generated from the same curated entry pool, so a demo can 
 resized freely and a fixture baseline can only move when a test says so.
 
 Demo documents are capped at DEMO_ENTRY_LIMIT references. Requires the LaTeX toolchain
-described in refcheck.synth.latex_builder (pdflatex + biber + biblatex style packages).
+described in openrefcheck.synth.latex_builder (pdflatex + biber + biblatex style packages).
 
 Usage:
     python scripts/build_demo_assets.py
@@ -32,12 +32,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.synth import corruption_generators as cg
-from refcheck.synth.entries import CURATED_ENTRIES
-from refcheck.synth.latex_builder import build_pdf
+from openrefcheck.synth import corruption_generators as cg
+from openrefcheck.synth.entries import CURATED_ENTRIES
+from openrefcheck.synth.latex_builder import build_pdf
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-ASSETS_DIR = REPO_ROOT / "src" / "refcheck" / "assets"
+ASSETS_DIR = REPO_ROOT / "src" / "openrefcheck" / "assets"
 MANIFEST_PATH = ASSETS_DIR / "demo_manifest.json"
 
 # Small enough that a demo run is a handful of lookups rather than a benchmark, large
@@ -95,7 +95,7 @@ Demonstrations}, 11(1), 44--59.
 
 
 def _build_page_break_pdf(build_dir: Path, doc_name: str) -> Path:
-    from refcheck.synth.latex_builder import _run
+    from openrefcheck.synth.latex_builder import _run
 
     tex_path = build_dir / f"{doc_name}.tex"
     tex_path.write_text(_PAGE_BREAK_TEX, encoding="utf-8")
@@ -191,7 +191,7 @@ def main() -> None:
     manifest = {
         "purpose": (
             "Demo manuscripts bundled with the application, generated from the curated "
-            "synthetic entry pool in refcheck.synth.entries. Not test fixtures: nothing "
+            "synthetic entry pool in openrefcheck.synth.entries. Not test fixtures: nothing "
             "under tests/ reads these files, and no parser baseline depends on them."
         ),
         "provenance": (
@@ -203,7 +203,7 @@ def main() -> None:
         "documents": [],
     }
 
-    with tempfile.TemporaryDirectory(prefix="refcheck-demo-build-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="openrefcheck-demo-build-") as tmp:
         build_dir = Path(tmp)
         for spec in DEMO_DOCUMENTS:
             print(f"building {spec['asset']} ...")

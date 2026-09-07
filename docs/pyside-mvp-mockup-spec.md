@@ -114,8 +114,8 @@ Summary/References/Manual Review/Report are shared across modes):
 ## Open follow-up (tracked separately)
 - **Resolved (2026-07-29):** retention policy for files uploaded to the hosted demo server —
   delete immediately after processing, nothing persists past the request. Disclaimer copy and
-  sidebar blocker styling updated accordingly (`src/refcheck/gui/deployment.py`,
-  `src/refcheck/gui/sidebar.py`).
+  sidebar blocker styling updated accordingly (`src/openrefcheck/gui/deployment.py`,
+  `src/openrefcheck/gui/sidebar.py`).
 - **Still open:** no server-side upload-handling or deletion-enforcement code exists yet — the
   app is currently local-only, and "demo" mode is only a GUI copy variant. Whoever builds the
   actual hosted demo backend must implement immediate deletion to match this disclaimer, not

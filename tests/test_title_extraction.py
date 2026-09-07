@@ -1,4 +1,4 @@
-from refcheck.extraction.title import extract_title
+from openrefcheck.extraction.title import extract_title
 
 
 def test_apa_style_year_parenthetical():

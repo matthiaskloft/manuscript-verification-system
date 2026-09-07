@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from refcheck.webui.pages.report_export import _validated_export_path
+from openrefcheck.webui.pages.report_export import _validated_export_path
 
 
 def test_export_path_requires_absolute_path() -> None:

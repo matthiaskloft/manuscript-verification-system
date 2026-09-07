@@ -1,6 +1,6 @@
-from refcheck.synth.bib_writer import format_bib_entry
-from refcheck.synth.corruptions import DEFECT_CATALOGUE
-from refcheck.synth.entries import BROAD_FIELDS, CURATED_ENTRIES, Author, SynthReferenceEntry
+from openrefcheck.synth.bib_writer import format_bib_entry
+from openrefcheck.synth.corruptions import DEFECT_CATALOGUE
+from openrefcheck.synth.entries import BROAD_FIELDS, CURATED_ENTRIES, Author, SynthReferenceEntry
 
 
 def test_defect_catalogue_has_unique_names_and_valid_stages():

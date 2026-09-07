@@ -14,15 +14,15 @@ import time
 import pytest
 
 from intext_citation_corpus import expected_citations, load_cases, load_meta, load_styles
-from refcheck.extraction.document_artifact import DocumentArtifact
-from refcheck.extraction.intext_signals import (
+from openrefcheck.extraction.document_artifact import DocumentArtifact
+from openrefcheck.extraction.intext_signals import (
     DetectedCitation,
     MarkerFamily,
     detect_citations,
     expected_families,
 )
-from refcheck.extraction.signals import NO_DATE, NO_DATE_RE
-from refcheck.extraction.style_profile import StyleProfile, compute_style_profile
+from openrefcheck.extraction.signals import NO_DATE, NO_DATE_RE
+from openrefcheck.extraction.style_profile import StyleProfile, compute_style_profile
 
 CASES = load_cases()
 STYLES = load_styles()

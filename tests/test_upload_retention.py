@@ -1,7 +1,7 @@
 """What happens to an uploaded manuscript that nobody comes back for.
 
 The demo tells a visitor their file is deleted when the check finishes or the tab
-closes (refcheck.gui.deployment). A finished check already deleted its own file; these
+closes (openrefcheck.gui.deployment). A finished check already deleted its own file; these
 cover the paths that previously left the manuscript sitting in the container — a crash,
 and the size limit that only existed in the browser.
 """
@@ -11,7 +11,7 @@ from __future__ import annotations
 import os
 import stat
 
-from refcheck.webui.pages import upload
+from openrefcheck.webui.pages import upload
 
 
 def test_a_file_left_by_a_crashed_run_is_swept_at_startup(tmp_path, monkeypatch):
@@ -53,7 +53,7 @@ def test_the_upload_directory_is_private_to_its_owner(tmp_path, monkeypatch):
     """It lives inside a world-writable shared temp directory and holds unpublished
     manuscripts, so the default mode would expose one user's upload to every account on
     the machine."""
-    target = tmp_path / "refcheck-uploads"
+    target = tmp_path / "openrefcheck-uploads"
     monkeypatch.setattr(upload, "_UPLOAD_DIR", target)
 
     created = upload._upload_dir()
@@ -65,7 +65,7 @@ def test_the_upload_directory_is_private_to_its_owner(tmp_path, monkeypatch):
 def test_an_existing_world_readable_directory_is_tightened(tmp_path, monkeypatch):
     """mkdir(exist_ok=True) does not touch an existing directory's mode, so a directory
     left behind by an earlier version — or planted by another user — would keep it."""
-    target = tmp_path / "refcheck-uploads"
+    target = tmp_path / "openrefcheck-uploads"
     target.mkdir(mode=0o777)
     monkeypatch.setattr(upload, "_UPLOAD_DIR", target)
 

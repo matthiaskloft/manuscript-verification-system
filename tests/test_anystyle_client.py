@@ -1,4 +1,4 @@
-from refcheck.benchmark.anystyle_client import parse_anystyle_references
+from openrefcheck.benchmark.anystyle_client import parse_anystyle_references
 
 _SAMPLE_RAW = [
     {

@@ -12,11 +12,11 @@ from types import SimpleNamespace
 
 from nicegui import ui
 
-from refcheck.extraction.reference_list_audit import NOT_AUDITED, ReferenceListAudit
-from refcheck.gui.models import ReferenceResult
-from refcheck.gui.report_builder import DEFAULT_EXPORT_INCLUDED, ReportMeta, build_html_report
-from refcheck.webui.pages import references
-from refcheck.webui.state import AppState
+from openrefcheck.extraction.reference_list_audit import NOT_AUDITED, ReferenceListAudit
+from openrefcheck.gui.models import ReferenceResult
+from openrefcheck.gui.report_builder import DEFAULT_EXPORT_INCLUDED, ReportMeta, build_html_report
+from openrefcheck.webui.pages import references
+from openrefcheck.webui.state import AppState
 
 from test_citation_screens import _texts
 

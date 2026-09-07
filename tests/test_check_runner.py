@@ -1,11 +1,11 @@
 import asyncio
 
-from refcheck.extraction.citation_matching import CitationMatch, MatchStatus
-from refcheck.extraction.engine_status import ENGINE_AUTO
-from refcheck.gui.models import ReferenceResult
-from refcheck.gui.real_pipeline import CITATIONS_OK, BibliographyNotFoundError, CheckResult
-from refcheck.webui import check_runner
-from refcheck.webui.check_runner import CheckRunner
+from openrefcheck.extraction.citation_matching import CitationMatch, MatchStatus
+from openrefcheck.extraction.engine_status import ENGINE_AUTO
+from openrefcheck.gui.models import ReferenceResult
+from openrefcheck.gui.real_pipeline import CITATIONS_OK, BibliographyNotFoundError, CheckResult
+from openrefcheck.webui import check_runner
+from openrefcheck.webui.check_runner import CheckRunner
 
 
 class _PendingTask:

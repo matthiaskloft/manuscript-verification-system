@@ -45,4 +45,4 @@ it in `tests/test_citation_styles.py`. Observed instances:
 
 When a PDF-only fixture is required, generate it from project-owned synthetic source (`scripts/build_synthetic_benchmark.py`, writing to `tests/fixtures/synthetic/`). Do not derive a fixture by copying a real or competitor reference list.
 
-The demo manuscripts under `src/refcheck/assets/` are not fixtures and carry no parser baseline: they are built separately by `scripts/build_demo_assets.py` and kept small because every reference in them becomes a live lookup on the public deployment. Never add a regression test that reads them, and never regenerate the test fixtures to change what the demo shows.
+The demo manuscripts under `src/openrefcheck/assets/` are not fixtures and carry no parser baseline: they are built separately by `scripts/build_demo_assets.py` and kept small because every reference in them becomes a live lookup on the public deployment. Never add a regression test that reads them, and never regenerate the test fixtures to change what the demo shows.

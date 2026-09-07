@@ -64,6 +64,25 @@ gcloud run deploy refcheck-web \
   --max-instances=1
 ```
 
+> **Naming migration.** Everything in the codebase is now `openrefcheck`: the
+> package, both console scripts, the environment variables (`OPENREFCHECK_*`), the
+> temp directories, and the local AnyStyle image tag. The deploy script's defaults
+> follow — it now targets the service `openrefcheck-web` and the Artifact Registry
+> repository `openrefcheck`.
+>
+> **Cloud Run services and Artifact Registry repositories cannot be renamed.** Getting
+> the deployed resources onto the new names means creating them and deleting the old
+> ones, which **changes the public URL** — see "Renaming the deployed services" below.
+> Until that is done, deploy with `-Service refcheck-web -Repository refcheck`, or set
+> `OPENREFCHECK_RUN_SERVICE` / `OPENREFCHECK_AR_REPOSITORY`, to keep hitting the
+> existing deployment.
+>
+> The `REFCHECK_*` variables are gone, not aliased. The currently deployed demo runs
+> an image built from the legacy repository, which has its own copy of the old code and
+> is unaffected. A service running *this* code and missing
+> `OPENREFCHECK_DEPLOYMENT_MODE` does not fall back to local-mode copy either: the web
+> entry point defaults to `demo` (`openrefcheck/app_web.py`).
+
 ## Proposed service configuration
 
 | Setting | NiceGUI | GROBID |
@@ -91,16 +110,16 @@ Before deployment:
 - [x] add a minimal web-only container image that does not install the
       desktop-only native/pywebview dependencies — see
       [docker/nicegui/Dockerfile](../docker/nicegui/Dockerfile) and
-      `refcheck.app_web:main` (the `refcheck-web` console script);
+      `openrefcheck.app_web:main` (the `openrefcheck-web` console script);
 - [x] make NiceGUI listen on `0.0.0.0` and the Cloud Run `PORT` value rather
       than the prototype's native-only `127.0.0.1` default — done in
-      `refcheck.app_web:main`;
+      `openrefcheck.app_web:main`;
 - [x] configure `GROBID_URL` with the separate Cloud Run service URL (set at
       deploy time; `GROBID_URL` support already exists in
-      `refcheck.extraction.grobid`);
+      `openrefcheck.extraction.grobid`);
 - [x] attach a Google identity token to GROBID calls so that the backend does
       not need unauthenticated public access — see
-      `refcheck.extraction.grobid._identity_token_header`, used by
+      `openrefcheck.extraction.grobid._identity_token_header`, used by
       `is_grobid_available` and `extract_references_via_grobid`. Skipped for
       `localhost`/`127.0.0.1` (local dev, the native app's default). Requires
       the `refcheck-web` service's runtime service account to hold
@@ -116,7 +135,7 @@ Before deployment:
       `gcloud run services describe refcheck-web --region=$REGION --format='value(spec.template.spec.serviceAccountName)'`);
 - [x] replace the current one-shot GROBID availability check with a visible
       starting state and retry behavior, because a scale-to-zero cold start can
-      outlast the health-check timeout — see `refcheck.extraction.grobid`'s
+      outlast the health-check timeout — see `openrefcheck.extraction.grobid`'s
       `wait_for_grobid` and `has_cold_start`, used by the Upload screen's engine
       status line. ("one-second" in the original wording was already stale: the
       health-check timeout has been 60s for a while. The defect was the *one
@@ -157,7 +176,7 @@ Before deployment:
         re-measure if the GROBID image or its memory allocation changes;
 - [x] limit upload size (50 MB) and hold uploads in temporary storage only,
       deleting them once they are no longer needed — see
-      `refcheck/webui/pages/upload.py`.
+      `openrefcheck/webui/pages/upload.py`.
 
       Both halves of this were weaker than an earlier version of this note
       claimed, and both are now as described.
@@ -174,12 +193,12 @@ Before deployment:
       on the instance with nothing left to remove it. A per-client disconnect
       handler now deletes it when the browser session ends, and a sweep at
       process start clears anything a crash left behind. The demo's retention
-      copy (`refcheck/gui/deployment.py`) states exactly those two events;
+      copy (`openrefcheck/gui/deployment.py`) states exactly those two events;
       "immediately after processing" was the overstatement it replaced;
 - [x] create a billing budget and alerts, and retain `max-instances=1` as a
       hard cost and abuse control.
 
-      Set a budget scoped **to the RefCheck project alone**, at a token amount
+      Set a budget scoped **to the OpenRefCheck project alone**, at a token amount
       (e.g. €0.01) with alerts at 50 / 90 / 100 % of spend. At that amount every
       threshold fires on the first cent, which is the intent: this deployment is
       meant to sit inside the free tier, so *any* spend is the signal, and a
@@ -188,7 +207,7 @@ Before deployment:
       The pitfall worth recording, because it is easy to miss and silently wrong:
       a budget created from the Cloud console's default flow has **no project
       filter at all**. It covers the whole billing account, so if that account
-      also bills other projects, their spend and RefCheck's are pooled under one
+      also bills other projects, their spend and OpenRefCheck's are pooled under one
       alert and neither figure means anything. Check the `projects` filter on any
       pre-existing budget before relying on it, and give each project its own.
 
@@ -200,23 +219,83 @@ Before deployment:
       the billing account's default admins; wiring one to Pub/Sub (and, if ever
       wanted, to a billing-disable function) is a separate decision with its own
       failure mode — it would take the demo offline mid-presentation.
-- [ ] set `OPENALEX_API_KEY` on the `refcheck-web` service. The deployed service
-      currently carries only `GROBID_URL` and `REFCHECK_DEPLOYMENT_MODE`, so every
+- [ ] set `OPENALEX_API_KEY` on the `refcheck-web` service. That service runs an
+      image built from the legacy repository and carries only `GROBID_URL` and the
+      old `REFCHECK_DEPLOYMENT_MODE`, so every
       OpenAlex lookup runs on the anonymous daily budget (~$0.10/day, about 1,000
       requests) rather than the free keyed one (~$1/day). `verification.
       openalex_crossref` already reads the variable and only sets
       `pyalex.config.api_key` when it is present, so this is deployment
       configuration, not code. Crossref needs no key, but it and OpenAlex share
-      the other half of this: `REFCHECK_CONTACT_EMAIL` supplies the `mailto` that
+      the other half of this: `OPENREFCHECK_CONTACT_EMAIL` supplies the `mailto` that
       puts both in the polite pool, and is unset by default because a compiled-in
       address would make every deployment announce whoever built it (see
-      `refcheck/contact.py`). Set it, to an address whoever runs the service
+      `openrefcheck/contact.py`). Set it, to an address whoever runs the service
       owns, alongside `OPENALEX_API_KEY`.
 
 NiceGUI uses Socket.IO. Cloud Run supports WebSockets, but each connection
 remains subject to the configured request timeout, currently up to 60 minutes.
 The client must therefore reconnect after a long session. Keeping the NiceGUI
 service at one instance avoids distributing its in-memory UI state.
+
+## Renaming the deployed services
+
+Neither a Cloud Run service nor an Artifact Registry repository can be renamed in
+place. Moving to `openrefcheck-web` / `openrefcheck-grobid` / `openrefcheck` means
+creating new resources and deleting the old ones.
+
+**This changes the public URL.** Cloud Run derives the hostname from the service name,
+so `refcheck-web-*.a.run.app` stops existing and a new hostname appears. Anywhere the
+old URL was published — a submission, a slide, a link someone saved — breaks. Decide
+that before starting.
+
+If a stable public URL matters, map a custom domain to the service instead and rename
+underneath it. The domain then survives any future service rename, which is the actual
+fix; the run.app hostname never was a stable address.
+
+```bash
+PROJECT=your-gcp-project
+REGION=europe-west3
+
+# 1. New Artifact Registry repository, then push the image to it.
+gcloud artifacts repositories create openrefcheck \
+  --repository-format=docker --location=$REGION --project=$PROJECT
+
+# 2. New GROBID service (same public image, private).
+gcloud run deploy openrefcheck-grobid \
+  --image=grobid/grobid:0.8.1 --region=$REGION --project=$PROJECT \
+  --memory=4Gi --port=8070 --max-instances=1 --no-allow-unauthenticated
+
+# 3. New web service, pointed at the new GROBID and using the new variable names.
+TAG=$(git rev-parse --short HEAD)
+docker build -f docker/nicegui/Dockerfile \
+  -t $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG .
+docker push $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG
+
+gcloud run deploy openrefcheck-web \
+  --image=$REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG \
+  --region=$REGION --project=$PROJECT --max-instances=1 \
+  --set-env-vars OPENREFCHECK_DEPLOYMENT_MODE=demo,GROBID_URL=https://<new-grobid-url>
+
+# 4. Re-grant the invoker binding — IAM does not follow a new service.
+gcloud run services add-iam-policy-binding openrefcheck-grobid \
+  --region=$REGION --project=$PROJECT \
+  --member="serviceAccount:PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
+  --role="roles/run.invoker"
+
+# 5. Verify the new URL serves, and that the sidebar shows the DEMO disclaimer —
+#    if it says the document stays on your device, the mode variable did not arrive.
+
+# 6. Only then delete the old ones.
+gcloud run services delete refcheck-web --region=$REGION --project=$PROJECT
+gcloud run services delete refcheck-grobid --region=$REGION --project=$PROJECT
+gcloud artifacts repositories delete refcheck --location=$REGION --project=$PROJECT
+```
+
+Step 5 is worth doing even though the web entry point defaults to `demo` when the
+variable is missing: that default is a floor, not a substitute for setting the mode you
+actually intend. A Phase B institutional deployment wants `prod`, and only an explicit
+value gets it.
 
 ## Alternatives considered
 

@@ -19,13 +19,13 @@ from __future__ import annotations
 
 import asyncio
 
-from refcheck.extraction.engine_status import (
+from openrefcheck.extraction.engine_status import (
     ANCHOR_ENGINE_NAME,
     GROBID_ENGINE_NAME,
     EngineStatus,
 )
-from refcheck.webui.pages import upload
-from refcheck.webui.pages.upload import EngineStatusView
+from openrefcheck.webui.pages import upload
+from openrefcheck.webui.pages.upload import EngineStatusView
 
 GROBID_UP = EngineStatus(GROBID_ENGINE_NAME, "reachable", reachable=True)
 GROBID_DOWN = EngineStatus(ANCHOR_ENGINE_NAME, "GROBID not reachable — falling back", reachable=False)

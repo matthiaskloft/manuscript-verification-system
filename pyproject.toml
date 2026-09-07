@@ -1,7 +1,7 @@
 [project]
-name = "refcheck"
+name = "openrefcheck"
 version = "0.0.1"
-description = "RefCheck — reference and citation checking for scientific manuscripts. First module of the Manuscript Verification System."
+description = "OpenRefCheck — reference and citation checking for scientific manuscripts. First module of the Manuscript Verification System."
 requires-python = ">=3.11"
 dependencies = [
     "nicegui>=1.4",
@@ -23,8 +23,8 @@ dev = [
 benchmark = [
     "requests>=2.31",
 ]
-# Only needed for the desktop entry point (refcheck.app:main), which opens a
-# native pywebview window. The web entry point (refcheck.app_web:main) and the
+# Only needed for the desktop entry point (openrefcheck.app:main), which opens a
+# native pywebview window. The web entry point (openrefcheck.app_web:main) and the
 # Cloud Run container (docker/nicegui/Dockerfile) don't install this extra, so
 # they don't pull in pywebview/its OS-level webview backends at all.
 native = [
@@ -32,8 +32,8 @@ native = [
 ]
 
 [project.scripts]
-refcheck = "refcheck.app:main"
-refcheck-web = "refcheck.app_web:main"
+openrefcheck = "openrefcheck.app:main"
+openrefcheck-web = "openrefcheck.app_web:main"
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -43,4 +43,4 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-refcheck = ["assets/*.pdf", "assets/*.json"]
+openrefcheck = ["assets/*.pdf", "assets/*.json"]

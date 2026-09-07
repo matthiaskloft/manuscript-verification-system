@@ -9,10 +9,10 @@ from __future__ import annotations
 
 import pytest
 
-from refcheck.contact import CONTACT_EMAIL_ENV
-from refcheck.gui.real_pipeline import MAX_VERIFIED_REFERENCES, CheckResult
-from refcheck.webui import main as webui_main
-from refcheck.webui.pages import upload
+from openrefcheck.contact import CONTACT_EMAIL_ENV
+from openrefcheck.gui.real_pipeline import MAX_VERIFIED_REFERENCES, CheckResult
+from openrefcheck.webui import main as webui_main
+from openrefcheck.webui.pages import upload
 
 
 class TestTracebackVisibility:
@@ -24,32 +24,32 @@ class TestTracebackVisibility:
     """
 
     def test_local_deployment_shows_internals(self, monkeypatch):
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "local")
+        monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
+        monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "local")
         assert webui_main._show_internal_errors() is True
 
     def test_demo_deployment_hides_internals(self, monkeypatch):
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "demo")
+        monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
+        monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "demo")
         assert webui_main._show_internal_errors() is False
 
     def test_prod_deployment_hides_internals(self, monkeypatch):
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "prod")
+        monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
+        monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "prod")
         assert webui_main._show_internal_errors() is False
 
     def test_an_explicit_dev_opt_in_wins(self, monkeypatch):
         """Diagnosing the deployed service is a real need; it just has to be deliberate."""
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "demo")
-        monkeypatch.setenv("REFCHECK_DEV", "1")
+        monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "demo")
+        monkeypatch.setenv("OPENREFCHECK_DEV", "1")
         assert webui_main._show_internal_errors() is True
 
     def test_an_unrecognised_mode_hides_internals(self, monkeypatch):
         """configured_mode falls back to 'local' on a bad value, which would otherwise
         turn a typo in a deploy script into a disclosure. Assert the real behaviour so a
         change to that fallback cannot pass silently."""
-        monkeypatch.delenv("REFCHECK_DEV", raising=False)
-        monkeypatch.setenv("REFCHECK_DEPLOYMENT_MODE", "demoo")
+        monkeypatch.delenv("OPENREFCHECK_DEV", raising=False)
+        monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "demoo")
         with pytest.warns(UserWarning):
             result = webui_main._show_internal_errors()
         assert result is True, (
@@ -84,7 +84,7 @@ class TestUploadStaging:
         every upload to whoever planted it, and the chmod would follow it too."""
         real = tmp_path / "elsewhere"
         real.mkdir()
-        link = tmp_path / "refcheck-uploads"
+        link = tmp_path / "openrefcheck-uploads"
         link.symlink_to(real, target_is_directory=True)
         monkeypatch.setattr(upload, "_UPLOAD_DIR", link)
 
@@ -94,7 +94,7 @@ class TestUploadStaging:
     def test_a_normal_directory_is_created_private(self, tmp_path, monkeypatch):
         import stat
 
-        target = tmp_path / "refcheck-uploads"
+        target = tmp_path / "openrefcheck-uploads"
         monkeypatch.setattr(upload, "_UPLOAD_DIR", target)
 
         created = upload._upload_dir()
@@ -106,9 +106,65 @@ class TestUploadStaging:
 def test_no_contact_address_is_compiled_in():
     """The address reaches OpenAlex and Crossref on every lookup. A fork that has not
     configured one must send nothing rather than whoever built the software."""
-    import refcheck.contact as contact_module
+    import openrefcheck.contact as contact_module
 
     source = __import__("inspect").getsource(contact_module)
     assert "@" not in source.replace(CONTACT_EMAIL_ENV, ""), (
-        "refcheck.contact should name no address at all"
+        "openrefcheck.contact should name no address at all"
     )
+
+
+class TestServerDefaultsToServerCopy:
+    """A server must never serve the local-processing disclaimer.
+
+    `configured_mode()` falls back to "local" when the variable is unset, and local copy
+    says "This document stays on your device" — false on a server, which uploaded and
+    processed the manuscript. An absent variable is not an invalid one, so nothing warns.
+    The web entry point therefore supplies its own default, because it is the thing that
+    knows this process is a server.
+    """
+
+    def test_the_web_entry_point_defaults_to_demo(self, monkeypatch):
+        monkeypatch.delenv("OPENREFCHECK_DEPLOYMENT_MODE", raising=False)
+        captured = {}
+        monkeypatch.setattr("openrefcheck.app_web.create_app", lambda: None)
+        monkeypatch.setattr(
+            "openrefcheck.app_web.ui.run",
+            lambda **kw: captured.update(mode=configured_mode()),
+        )
+
+        from openrefcheck.app_web import main
+        from openrefcheck.gui.sidebar_copy import configured_mode
+
+        main()
+
+        assert captured["mode"] == "demo", (
+            "an unset mode on the web entry point must not resolve to 'local' — that "
+            "copy claims the document never left the visitor's device"
+        )
+
+    def test_an_explicit_mode_still_wins(self, monkeypatch):
+        """A Phase B university deployment sets prod; the default must not override it."""
+        monkeypatch.setenv("OPENREFCHECK_DEPLOYMENT_MODE", "prod")
+        captured = {}
+        monkeypatch.setattr("openrefcheck.app_web.create_app", lambda: None)
+        monkeypatch.setattr(
+            "openrefcheck.app_web.ui.run",
+            lambda **kw: captured.update(mode=configured_mode()),
+        )
+
+        from openrefcheck.app_web import main
+        from openrefcheck.gui.sidebar_copy import configured_mode
+
+        main()
+
+        assert captured["mode"] == "prod"
+
+    def test_the_desktop_default_is_still_local(self, monkeypatch):
+        """The desktop app genuinely does keep the document on the device, and its
+        disclaimer should say so without needing configuration."""
+        monkeypatch.delenv("OPENREFCHECK_DEPLOYMENT_MODE", raising=False)
+
+        from openrefcheck.gui.sidebar_copy import configured_mode
+
+        assert configured_mode() == "local"

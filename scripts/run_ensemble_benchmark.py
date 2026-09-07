@@ -12,8 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from refcheck.benchmark.ensemble import extract_ensemble
-from refcheck.benchmark.runner import print_report, run_benchmark
+from openrefcheck.benchmark.ensemble import extract_ensemble
+from openrefcheck.benchmark.runner import print_report, run_benchmark
 
 if __name__ == "__main__":
     print_report(run_benchmark(extract_ensemble))

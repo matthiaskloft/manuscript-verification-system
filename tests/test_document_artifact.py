@@ -12,14 +12,14 @@ from pathlib import Path
 
 import pytest
 
-from refcheck.extraction.document import (
+from openrefcheck.extraction.document import (
     build_document_artifact,
     extract_full_text,
     normalize_markdown_text,
     _normalize_markdown_line,
     _normalize_markdown_lines,
 )
-from refcheck.extraction.document_artifact import (
+from openrefcheck.extraction.document_artifact import (
     DocumentArtifact,
     SourceLine,
     concat_tag,
@@ -27,7 +27,7 @@ from refcheck.extraction.document_artifact import (
     origin_of,
     retag,
 )
-from refcheck.extraction.intext_signals import detect_citations
+from openrefcheck.extraction.intext_signals import detect_citations
 
 
 def artifact_from_text(text: str, *, raw_text: str | None = None) -> DocumentArtifact:
