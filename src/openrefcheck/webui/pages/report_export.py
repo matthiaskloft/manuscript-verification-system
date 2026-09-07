@@ -219,6 +219,7 @@ def _render_report(state: AppState) -> str:
         citation_run_status=state.citation_run_status,
         artifact=state.document_artifact,
         audit=state.audit,
+        truncated_from=state.truncated_from,
     )
 
 

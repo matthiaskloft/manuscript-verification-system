@@ -82,6 +82,14 @@ img.chart { max-width:100%; border:1px solid #cdcac3; border-radius:5px; margin-
 
 {% if include.confidence %}
 <h2>References</h2>
+{% if truncated_from %}
+<p style="border:1px solid #d8a83c;background:#fdf4e2;color:#4a4843;border-radius:5px;padding:8px 12px; font-size:12.5px;">
+  <strong>Only the first {{ n_checked }} of {{ truncated_from }} references were checked.</strong>
+  One check verifies at most {{ n_checked }} references against OpenAlex and Crossref. The
+  remaining entries were extracted but never looked up, and every figure in this report
+  describes only the ones that were.
+</p>
+{% endif %}
 {% if reference_list.headline %}
 <p style="{{ 'color:#5c594f;' if reference_list.complete else 'border:1px solid #d8a83c;background:#fdf4e2;color:#4a4843;border-radius:5px;padding:8px 12px;' }} font-size:12.5px;">
   <strong>{{ reference_list.headline }}</strong>{% if reference_list.detail %} {{ reference_list.detail }}{% endif %}
@@ -213,6 +221,7 @@ def build_html_report(
     citation_run_status: str = CITATIONS_NOT_RUN,
     artifact: DocumentArtifact | None = None,
     audit: ReferenceListAudit = NOT_AUDITED,
+    truncated_from: int | None = None,
 ) -> str:
     """Render the report. The citation arguments are keyword-only and default to "the
     search did not run", so a caller that knows nothing about citations produces a report
@@ -295,7 +304,16 @@ def build_html_report(
     return _TEMPLATE.render(
         meta=meta,
         include=included,
-        reference_list=reference_list_note(audit, len(results)),
+        # A truncated check never looked at the rest of the list, so it cannot say the
+        # list matches: `audit` was computed over the full pre-truncation entries, and
+        # `reference_list_note` would emit "All N references match the list this document
+        # prints." about a document with more. The file outlives the session and gets
+        # forwarded, so this is the copy most worth getting right.
+        reference_list=(
+            None if truncated_from else reference_list_note(audit, len(results))
+        ),
+        truncated_from=truncated_from,
+        n_checked=len(results),
         scores=scores,
         charts=charts,
         references=ref_rows,

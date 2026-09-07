@@ -16,6 +16,8 @@ import os
 
 from nicegui import core, ui
 
+from openrefcheck.gui.deployment import MODES
+from openrefcheck.gui.sidebar_copy import DEPLOYMENT_MODE_ENV
 from openrefcheck.webui.main import create_app
 
 
@@ -35,8 +37,15 @@ def main() -> None:
     # conservative choice: a Phase B university deployment should still set `prod`
     # explicitly, but being told "processed on this server, don't upload confidential
     # work" when it is in fact a managed server is a survivable overstatement, and the
-    # reverse is not. setdefault, so an explicit setting always wins.
-    os.environ.setdefault("OPENREFCHECK_DEPLOYMENT_MODE", "demo")
+    # Validated rather than `setdefault`: setdefault only fires when the variable is
+    # *absent*, and the realistic deploy accident is an empty one — `--set-env-vars
+    # MODE=`, a Compose entry with a blank value, a template that rendered to nothing.
+    # An empty string is present, so setdefault would leave it, and an unrecognised value
+    # is what `configured_mode` then has to interpret. Anything this process would not
+    # accept is replaced here, so the server floor holds for empty and misspelled alike;
+    # an explicit valid mode still wins.
+    if os.environ.get(DEPLOYMENT_MODE_ENV, "").strip().lower() not in MODES:
+        os.environ[DEPLOYMENT_MODE_ENV] = "demo"
 
     # See openrefcheck.app:main's identical line — python-socketio's default
     # max_http_buffer_size (1,000,000 bytes) is too small for this app's larger

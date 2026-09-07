@@ -87,9 +87,18 @@ def build_page() -> None:
                     logging.getLogger(__name__).exception(
                         "Error rendering %r screen", state.screen
                     )
-                    ui.label(f"Error rendering '{state.screen}' screen: {exc}").style(
+                    # `str(exc)` is not neutral either: the exceptions this app actually
+                    # raises carry absolute paths — FileNotFoundError on a staging path,
+                    # ImportError naming a site-packages location, the staging directory's
+                    # own refusal messages. Gate the text on the same signal as the trace.
+                    detail = f": {exc}" if _show_internal_errors() else ""
+                    ui.label(f"Error rendering '{state.screen}' screen{detail}").style(
                         "color:#8c2f10; font-weight:600; padding:16px;"
                     )
+                    if not _show_internal_errors():
+                        ui.label(
+                            "The details are in the server log."
+                        ).style("color:#8c2f10; font-size:12px; padding:0 16px 16px;")
                     if _show_internal_errors():
                         ui.label(traceback.format_exc()).classes("rc-mono").style(
                             "color:#8c2f10; font-size:11px; white-space:pre-wrap; padding:0 16px 16px;"
