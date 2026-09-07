@@ -65,6 +65,22 @@ DEMO_GROUPS = (
 
 _LOG = logging.getLogger(__name__)
 
+
+def _user_facing_error(summary: str, detail: object) -> str:
+    """`summary`, plus `detail` only where the reader is the operator.
+
+    The detail here is `str(exc)`, which for this app's exceptions routinely carries
+    absolute paths — a staging path from FileNotFoundError, a site-packages path from
+    ImportError. On the desktop app the reader is the person running the process and
+    withholding it just makes their own failure harder to diagnose; on a server they are
+    a stranger. Same signal as the render handler in webui.main, so the two cannot drift.
+    """
+    from openrefcheck.webui.main import _show_internal_errors
+
+    if _show_internal_errors():
+        return f"{summary}: {detail}"
+    return f"{summary}. The details are in the server log."
+
 _UPLOAD_DIR = Path(tempfile.gettempdir()) / "openrefcheck-uploads"
 
 # Where uploads were staged before the package was renamed. A machine that ran the old
@@ -114,17 +130,24 @@ def _upload_dir() -> Path:
         # raises EPERM and every subsequent unpublished manuscript would be written
         # somewhere that account can read. Verified below instead of assumed.
         pass
-    info = _UPLOAD_DIR.lstat()
-    if info.st_uid != os.getuid():
-        raise RuntimeError(
-            f"{_UPLOAD_DIR} is owned by uid {info.st_uid}, not {os.getuid()}; "
-            "refusing to stage uploads there."
-        )
-    if stat.S_IMODE(info.st_mode) != 0o700:
-        raise RuntimeError(
-            f"{_UPLOAD_DIR} is mode {stat.S_IMODE(info.st_mode):o}, not 700, and could "
-            "not be corrected; refusing to stage uploads there."
-        )
+    # POSIX only, and not merely because `os.getuid` is absent on Windows (it is —
+    # this raised AttributeError there, breaking uploads on the platform the README
+    # documents for setup). The hazard itself is POSIX-shaped: it needs a temp directory
+    # shared between accounts. Windows gives each user their own under
+    # %LOCALAPPDATA%\Temp, so there is no other account to pre-create the path, and
+    # st_uid/st_mode do not carry meaningful values to check anyway.
+    if hasattr(os, "getuid"):
+        info = _UPLOAD_DIR.lstat()
+        if info.st_uid != os.getuid():
+            raise RuntimeError(
+                f"{_UPLOAD_DIR} is owned by uid {info.st_uid}, not {os.getuid()}; "
+                "refusing to stage uploads there."
+            )
+        if stat.S_IMODE(info.st_mode) != 0o700:
+            raise RuntimeError(
+                f"{_UPLOAD_DIR} is mode {stat.S_IMODE(info.st_mode):o}, not 700, and "
+                "could not be corrected; refusing to stage uploads there."
+            )
     return _UPLOAD_DIR
 
 
@@ -504,7 +527,7 @@ def _set_file(
         loaded = load_file(path)
     except OSError as exc:
         _LOG.warning("Could not read upload %s: %s", path, exc)
-        ui.notify("Could not read that file.", type="negative")
+        ui.notify(_user_facing_error("Could not read that file", exc), type="negative")
         return False
     if display_name is not None:
         loaded = replace(loaded, name=display_name)
@@ -522,7 +545,9 @@ def _load_demo(state: AppState, actions, path: Path) -> None:
         loaded = load_file(path, origin=DEMO_MANUSCRIPT_ORIGIN)
     except OSError as exc:
         _LOG.warning("Could not read demo manuscript %s: %s", path, exc)
-        ui.notify("Could not read that demo manuscript.", type="negative")
+        ui.notify(
+            _user_facing_error("Could not read that demo manuscript", exc), type="negative"
+        )
         return
     _set_loaded(state, loaded)
 
@@ -665,17 +690,11 @@ def _start_check(state: AppState, actions) -> None:
     def on_failed(message: str) -> None:
         state.running = False
         _refresh_doc_panel(state)
-        # Same reasoning as webui.main's render handler: `message` is `str(exc)` from
-        # anywhere in the pipeline and routinely names a staging path.
-        from openrefcheck.webui.main import _show_internal_errors
-
         _LOG.error("Reference check failed: %s", message)
-        shown = (
-            f"Reference check failed: {message}"
-            if _show_internal_errors()
-            else "Reference check failed. The details are in the server log."
+        ui.notify(
+            _user_facing_error("Reference check failed", message),
+            type="negative", multi_line=True, close_button=True,
         )
-        ui.notify(shown, type="negative", multi_line=True, close_button=True)
 
     runner = CheckRunner(
         state.loaded,

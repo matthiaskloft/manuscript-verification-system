@@ -324,6 +324,19 @@ class TestUploadLifecycleGuards:
         assert removed == 0
         assert victim.exists(), "the sweep must not delete through a planted symlink"
 
+    def test_the_ownership_check_is_skipped_where_getuid_does_not_exist(self, tmp_path, monkeypatch):
+        """`os.getuid` is POSIX-only. Calling it unguarded raised AttributeError on
+        Windows and stopped uploads working at all there — a harder break than the
+        multi-user hazard the check exists for, on the platform the README documents for
+        setup. The hazard is POSIX-shaped anyway: Windows gives each user their own temp
+        directory, so there is no other account to plant anything."""
+        target = tmp_path / "openrefcheck-uploads"
+        monkeypatch.setattr(upload, "_UPLOAD_DIR", target)
+        monkeypatch.delattr(upload.os, "getuid", raising=False)
+
+        assert upload._upload_dir().is_dir()
+
+    @pytest.mark.skipif(not hasattr(os, "getuid"), reason="POSIX-only ownership check")
     def test_a_staging_directory_owned_by_someone_else_is_refused(self, tmp_path, monkeypatch):
         """mkdir(exist_ok=True) does not touch an existing directory's owner or mode, and
         the chmod that would fix it raises EPERM for a foreign owner. That used to be

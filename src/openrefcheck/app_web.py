@@ -37,6 +37,8 @@ def main() -> None:
     # conservative choice: a Phase B university deployment should still set `prod`
     # explicitly, but being told "processed on this server, don't upload confidential
     # work" when it is in fact a managed server is a survivable overstatement, and the
+    # reverse — telling a visitor their document never left their device — is not.
+    #
     # Validated rather than `setdefault`: setdefault only fires when the variable is
     # *absent*, and the realistic deploy accident is an empty one — `--set-env-vars
     # MODE=`, a Compose entry with a blank value, a template that rendered to nothing.
