@@ -41,7 +41,7 @@ Artifact Registry repository.
 
 ## Image tagging
 
-Tag each `refcheck-web` image build with the short git commit SHA it was built
+Tag each `mvs-app` image build with the short git commit SHA it was built
 from, not just `:latest` — a mutable `:latest` gives no way to tell what code a
 running revision actually has, and made an early deploy look "stuck" on a
 pre-merge build. Push both tags; `:latest` stays a floating pointer to the
@@ -53,29 +53,33 @@ PROJECT=your-gcp-project     # scripts/deploy-web.ps1 takes these as parameters
 REGION=europe-west3
 TAG=$(git rev-parse --short HEAD)
 docker build -f docker/nicegui/Dockerfile \
-  -t $REGION-docker.pkg.dev/$PROJECT/refcheck/nicegui:$TAG \
-  -t $REGION-docker.pkg.dev/$PROJECT/refcheck/nicegui:latest .
-docker push $REGION-docker.pkg.dev/$PROJECT/refcheck/nicegui:$TAG
-docker push $REGION-docker.pkg.dev/$PROJECT/refcheck/nicegui:latest
+  -t $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG \
+  -t $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:latest .
+docker push $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG
+docker push $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:latest
 
-gcloud run deploy refcheck-web \
-  --image=$REGION-docker.pkg.dev/$PROJECT/refcheck/nicegui:$TAG \
+gcloud run deploy mvs-app \
+  --image=$REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG \
   --region=$REGION \
   --max-instances=1
 ```
 
 > **Naming migration.** Everything in the codebase is now `openrefcheck`: the
 > package, both console scripts, the environment variables (`OPENREFCHECK_*`), the
-> temp directories, and the local AnyStyle image tag. The deploy script's defaults
-> follow — it now targets the service `openrefcheck-web` and the Artifact Registry
-> repository `openrefcheck`.
+> temp directories, and the local AnyStyle image tag.
 >
-> **Cloud Run services and Artifact Registry repositories cannot be renamed.** Getting
-> the deployed resources onto the new names means creating them and deleting the old
-> ones, which **changes the public URL** — see "Renaming the deployed services" below.
-> Until that is done, deploy with `-Service refcheck-web -Repository refcheck`, or set
-> `OPENREFCHECK_RUN_SERVICE` / `OPENREFCHECK_AR_REPOSITORY`, to keep hitting the
-> existing deployment.
+> The *deployed resources* are named for the system instead. Two namespaces, each
+> internally consistent, and they are deliberately not the same:
+>
+> | Namespace | Names | Why these |
+> | --- | --- | --- |
+> | Python distribution | `openrefcheck`; console scripts `openrefcheck` and `openrefcheck-web` | Follows the package and moves with it when this module is extracted to its own repository. `pip install openrefcheck` should not install a command named after something else. |
+> | Google Cloud resources | Cloud Run `mvs-app` and `grobid`; Artifact Registry `openrefcheck` | A service name is permanent — Cloud Run derives the hostname from it and cannot rename in place — so it must not encode the part that is expected to move. The service also runs whatever this repository builds, and reference checking is the first module of several, not the whole of it. |
+>
+> Everything below names the resources you are creating. `refcheck-web` and
+> `refcheck-grobid` survive in three places only: where this document records what was
+> actually deployed and measured, where the migration describes the URL that goes away,
+> and in the teardown that deletes them.
 >
 > The `REFCHECK_*` variables are gone, not aliased. The currently deployed demo runs
 > an image built from the legacy repository, which has its own copy of the old code and
@@ -122,17 +126,17 @@ Before deployment:
       `openrefcheck.extraction.grobid._identity_token_header`, used by
       `is_grobid_available` and `extract_references_via_grobid`. Skipped for
       `localhost`/`127.0.0.1` (local dev, the native app's default). Requires
-      the `refcheck-web` service's runtime service account to hold
-      `roles/run.invoker` on `refcheck-grobid`:
+      the `mvs-app` service's runtime service account to hold
+      `roles/run.invoker` on `grobid`:
       ```bash
-      gcloud run services add-iam-policy-binding refcheck-grobid \
+      gcloud run services add-iam-policy-binding grobid \
         --region=$REGION \
         --member="serviceAccount:PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
         --role="roles/run.invoker"
       ```
-      (substitute `refcheck-web`'s actual runtime service account if it's not
+      (substitute `mvs-app`'s actual runtime service account if it's not
       the default compute one; find it with
-      `gcloud run services describe refcheck-web --region=$REGION --format='value(spec.template.spec.serviceAccountName)'`);
+      `gcloud run services describe mvs-app --region=$REGION --format='value(spec.template.spec.serviceAccountName)'`);
 - [x] replace the current one-shot GROBID availability check with a visible
       starting state and retry behavior, because a scale-to-zero cold start can
       outlast the health-check timeout — see `openrefcheck.extraction.grobid`'s
@@ -150,8 +154,10 @@ Before deployment:
       service.
 
       **Measured on the real deployment, 2026-08-16**, on the first request to
-      `refcheck-web` revision `refcheck-web-00010-wrt` with `refcheck-grobid`
-      scaled to zero:
+      revision `refcheck-web-00010-wrt` with its GROBID backend scaled to zero.
+      (Those were the service names at the time; they are `mvs-app` and `grobid`
+      now. The names are kept here because the measurement was taken against
+      those services, and the figures below are the record of that run.)
 
       | T | Status line |
       | --- | --- |
@@ -219,9 +225,9 @@ Before deployment:
       the billing account's default admins; wiring one to Pub/Sub (and, if ever
       wanted, to a billing-disable function) is a separate decision with its own
       failure mode — it would take the demo offline mid-presentation.
-- [ ] set `OPENALEX_API_KEY` on the `refcheck-web` service. That service runs an
-      image built from the legacy repository and carries only `GROBID_URL` and the
-      old `REFCHECK_DEPLOYMENT_MODE`, so every
+- [ ] set `OPENALEX_API_KEY` on the `mvs-app` service when it is created. The
+      demo that ran before the rename carried only `GROBID_URL` and the old
+      `REFCHECK_DEPLOYMENT_MODE`, so every
       OpenAlex lookup runs on the anonymous daily budget (~$0.10/day, about 1,000
       requests) rather than the free keyed one (~$1/day). `verification.
       openalex_crossref` already reads the variable and only sets
@@ -241,8 +247,10 @@ service at one instance avoids distributing its in-memory UI state.
 ## Renaming the deployed services
 
 Neither a Cloud Run service nor an Artifact Registry repository can be renamed in
-place. Moving to `openrefcheck-web` / `openrefcheck-grobid` / `openrefcheck` means
-creating new resources and deleting the old ones.
+place. Moving to `mvs-app` / `grobid` / `openrefcheck` means creating new resources
+and deleting the old ones. The same steps apply whether the new resources go into the
+existing project or a fresh one; a fresh project additionally needs billing linked and
+any budget alert re-created, since neither follows a new project.
 
 **This changes the public URL.** Cloud Run derives the hostname from the service name,
 so `refcheck-web-*.a.run.app` stops existing and a new hostname appears. Anywhere the
@@ -262,7 +270,7 @@ gcloud artifacts repositories create openrefcheck \
   --repository-format=docker --location=$REGION --project=$PROJECT
 
 # 2. New GROBID service (same public image, private).
-gcloud run deploy openrefcheck-grobid \
+gcloud run deploy grobid \
   --image=grobid/grobid:0.8.1 --region=$REGION --project=$PROJECT \
   --memory=4Gi --port=8070 --max-instances=1 --no-allow-unauthenticated
 
@@ -272,13 +280,13 @@ docker build -f docker/nicegui/Dockerfile \
   -t $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG .
 docker push $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG
 
-gcloud run deploy openrefcheck-web \
+gcloud run deploy mvs-app \
   --image=$REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG \
   --region=$REGION --project=$PROJECT --max-instances=1 \
   --set-env-vars OPENREFCHECK_DEPLOYMENT_MODE=demo,GROBID_URL=https://<new-grobid-url>
 
 # 4. Re-grant the invoker binding — IAM does not follow a new service.
-gcloud run services add-iam-policy-binding openrefcheck-grobid \
+gcloud run services add-iam-policy-binding grobid \
   --region=$REGION --project=$PROJECT \
   --member="serviceAccount:PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
   --role="roles/run.invoker"

@@ -5,6 +5,9 @@ Port of the PySide6 UploadScreen (openrefcheck.gui.screens.upload).
 
 from __future__ import annotations
 
+import logging
+import os
+import stat
 import tempfile
 import time
 from uuid import uuid4
@@ -60,6 +63,24 @@ DEMO_GROUPS = (
     ),
 )
 
+_LOG = logging.getLogger(__name__)
+
+
+def _user_facing_error(summary: str, detail: object) -> str:
+    """`summary`, plus `detail` only where the reader is the operator.
+
+    The detail here is `str(exc)`, which for this app's exceptions routinely carries
+    absolute paths — a staging path from FileNotFoundError, a site-packages path from
+    ImportError. On the desktop app the reader is the person running the process and
+    withholding it just makes their own failure harder to diagnose; on a server they are
+    a stranger. Same signal as the render handler in webui.main, so the two cannot drift.
+    """
+    from openrefcheck.webui.main import _show_internal_errors
+
+    if _show_internal_errors():
+        return f"{summary}: {detail}"
+    return f"{summary}. The details are in the server log."
+
 _UPLOAD_DIR = Path(tempfile.gettempdir()) / "openrefcheck-uploads"
 
 # Where uploads were staged before the package was renamed. A machine that ran the old
@@ -103,7 +124,30 @@ def _upload_dir() -> Path:
     try:
         _UPLOAD_DIR.chmod(0o700)
     except OSError:
+        # Swallowing this used to let the function return a directory it had failed to
+        # secure. `mkdir(exist_ok=True)` does not touch an existing directory's mode or
+        # owner, so the path can already exist owned by another account — chmod then
+        # raises EPERM and every subsequent unpublished manuscript would be written
+        # somewhere that account can read. Verified below instead of assumed.
         pass
+    # POSIX only, and not merely because `os.getuid` is absent on Windows (it is —
+    # this raised AttributeError there, breaking uploads on the platform the README
+    # documents for setup). The hazard itself is POSIX-shaped: it needs a temp directory
+    # shared between accounts. Windows gives each user their own under
+    # %LOCALAPPDATA%\Temp, so there is no other account to pre-create the path, and
+    # st_uid/st_mode do not carry meaningful values to check anyway.
+    if hasattr(os, "getuid"):
+        info = _UPLOAD_DIR.lstat()
+        if info.st_uid != os.getuid():
+            raise RuntimeError(
+                f"{_UPLOAD_DIR} is owned by uid {info.st_uid}, not {os.getuid()}; "
+                "refusing to stage uploads there."
+            )
+        if stat.S_IMODE(info.st_mode) != 0o700:
+            raise RuntimeError(
+                f"{_UPLOAD_DIR} is mode {stat.S_IMODE(info.st_mode):o}, not 700, and "
+                "could not be corrected; refusing to stage uploads there."
+            )
     return _UPLOAD_DIR
 
 
@@ -119,13 +163,24 @@ def sweep_stale_uploads(now: float | None = None) -> int:
     removed = 0
     entries: list[Path] = []
     for directory in (_UPLOAD_DIR, _LEGACY_UPLOAD_DIR):
+        # The same refusal `_upload_dir` makes, and it matters more here: this runs at
+        # process start, before `_upload_dir` has ever been called, so it is the first
+        # thing to touch these paths. Following a planted link would make the sweep
+        # delete someone else's files, under our uid — the legacy path especially, since
+        # nothing defends a name the current build never creates.
         try:
+            if directory.is_symlink():
+                continue
             entries.extend(directory.iterdir())
         except OSError:
             continue
     for entry in entries:
         try:
-            if not entry.is_file() or reference - entry.stat().st_mtime <= _STALE_UPLOAD_SECONDS:
+            # follow_symlinks=False throughout: a symlink inside the directory is not a
+            # file we staged, and its age is not the age of what it points at.
+            if entry.is_symlink() or not entry.is_file():
+                continue
+            if reference - entry.lstat().st_mtime <= _STALE_UPLOAD_SECONDS:
                 continue
             entry.unlink()
             removed += 1
@@ -309,8 +364,16 @@ def _build_dropzone(state: AppState, actions) -> None:
                 return
             # `max_file_size` on ui.upload is a Quasar prop — a browser-side constraint on
             # the file picker, and nothing at all to a direct POST to the upload endpoint,
-            # which on the demo is public and unauthenticated. The limit has to be applied
-            # again here, where the bytes actually arrive, or it is not a limit.
+            # which on the demo is public and unauthenticated. So the size is re-checked
+            # here.
+            #
+            # Note what this does and does not bound. NiceGUI parses the whole multipart
+            # body before any handler runs, spooling it to a temp file of its own, so by
+            # the time `size()` can be asked the bytes are already on the instance. This
+            # prevents an oversized upload from being *staged* and processed; it does not
+            # prevent it from being *received*. Bounding that needs a Content-Length or
+            # streaming check on the route itself, ahead of the body — worth doing if the
+            # demo is ever exposed without an instance cap in front of it.
             if e.file.size() > MAX_UPLOAD_BYTES:
                 ui.notify(
                     f"File too large — the limit is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB.",
@@ -327,7 +390,18 @@ def _build_dropzone(state: AppState, actions) -> None:
             # `save` streams; `write_bytes(await read())` held the whole manuscript in
             # memory a second time, on a service sized at 512 MiB–1 GiB.
             await e.file.save(dest)
-            _set_file(state, actions, dest, display_name=e.file.name)
+            # Anything that stops this file from becoming `state.loaded` also stops
+            # anything from ever deleting it: the disconnect handler reads
+            # `state.loaded`, and no check will run. An unreadable or malformed upload
+            # would otherwise sit in the staging directory until the next process start,
+            # which on a long-lived instance is days — against a disclaimer that promises
+            # the visitor it goes when the check finishes or the tab closes.
+            staged = False
+            try:
+                staged = _set_file(state, actions, dest, display_name=e.file.name)
+            finally:
+                if not staged:
+                    _cleanup_upload(dest)
 
         def handle_rejected(_e: events.UiEventArguments) -> None:
             ui.notify(
@@ -400,6 +474,20 @@ def register_session_cleanup(state: AppState) -> None:
         return
 
     def _drop() -> None:
+        # NiceGUI invokes disconnect handlers synchronously the moment a websocket
+        # drops (client.handle_disconnect), *before* the reconnect grace period that
+        # guards its own client deletion. So this fires on a laptop sleeping, a mobile
+        # network changing, a throttled background tab — not only on a closed tab, and
+        # the AppState survives the reconnect.
+        #
+        # Deleting the file underneath a running check is therefore a live hazard rather
+        # than a theoretical one: a GROBID cold start alone is documented here at up to
+        # three minutes. Whether it breaks depends on whether the pipeline had already
+        # opened the path, so the failure would be intermittent and timing-dependent.
+        # The check's own terminal callbacks delete the file, so skipping here loses
+        # nothing except the race.
+        if state.running:
+            return
         if state.loaded is not None:
             _cleanup_upload(state.loaded.path)
 
@@ -426,15 +514,25 @@ def _set_loaded(state: AppState, loaded: LoadedFile) -> None:
     _refresh_doc_panel(state)
 
 
-def _set_file(state: AppState, actions, path: Path, *, display_name: str | None = None) -> None:
+def _set_file(
+    state: AppState, actions, path: Path, *, display_name: str | None = None
+) -> bool:
+    """Load `path` into the session. True when the session took ownership of the file.
+
+    The return value is what tells the caller whether anything will ever delete this
+    file: only a load that reaches `_set_loaded` puts it somewhere the disconnect
+    handler and the check's own cleanup can see.
+    """
     try:
         loaded = load_file(path)
     except OSError as exc:
-        ui.notify(f"Could not read file: {exc}", type="negative")
-        return
+        _LOG.warning("Could not read upload %s: %s", path, exc)
+        ui.notify(_user_facing_error("Could not read that file", exc), type="negative")
+        return False
     if display_name is not None:
         loaded = replace(loaded, name=display_name)
     _set_loaded(state, loaded)
+    return True
 
 
 def _load_demo(state: AppState, actions, path: Path) -> None:
@@ -446,7 +544,10 @@ def _load_demo(state: AppState, actions, path: Path) -> None:
     try:
         loaded = load_file(path, origin=DEMO_MANUSCRIPT_ORIGIN)
     except OSError as exc:
-        ui.notify(f"Could not read demo manuscript: {exc}", type="negative")
+        _LOG.warning("Could not read demo manuscript %s: %s", path, exc)
+        ui.notify(
+            _user_facing_error("Could not read that demo manuscript", exc), type="negative"
+        )
         return
     _set_loaded(state, loaded)
 
@@ -589,7 +690,11 @@ def _start_check(state: AppState, actions) -> None:
     def on_failed(message: str) -> None:
         state.running = False
         _refresh_doc_panel(state)
-        ui.notify(f"Reference check failed: {message}", type="negative", multi_line=True, close_button=True)
+        _LOG.error("Reference check failed: %s", message)
+        ui.notify(
+            _user_facing_error("Reference check failed", message),
+            type="negative", multi_line=True, close_button=True,
+        )
 
     runner = CheckRunner(
         state.loaded,

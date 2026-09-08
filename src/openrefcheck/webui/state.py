@@ -94,11 +94,22 @@ class AppState:
     export_status: str = "Not exported yet."
 
     def subline(self) -> str:
+        """The header line under the document name, on every screen that shows one.
+
+        Says "500 of 900" when the check stopped short, because "500 references" would
+        otherwise be read as the document's reference count on three screens that never
+        mention truncation.
+        """
         if not self.results:
             return ""
+        count = (
+            f"{len(self.results)} of {self.truncated_from}"
+            if self.truncated_from
+            else f"{len(self.results)}"
+        )
         if self.loaded:
-            return f"{self.loaded.name} · {len(self.results)} references"
-        return f"{len(self.results)} references"
+            return f"{self.loaded.name} · {count} references"
+        return f"{count} references"
 
     def watermark(self) -> bool:
         from openrefcheck.gui.file_info import DEMO_MANUSCRIPT_ORIGIN

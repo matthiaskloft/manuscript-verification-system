@@ -117,88 +117,6 @@ export OPENALEX_API_KEY=your-key-here
 
 Recommended for any real use. There is no paid tier involved and no account cost.
 
-## Optional: running GROBID locally
-
-Reference extraction falls back to a built-in extractor when GROBID is unavailable.
-To enable GROBID-based extraction:
-
-```bash
-docker run --rm -p 8070:8070 grobid/grobid:0.8.1
-```
-
-The app looks for GROBID at `http://localhost:8070` by default; override with
-`GROBID_URL`. [docker/anystyle/Dockerfile](docker/anystyle/Dockerfile) packages the
-AnyStyle CLI used by the extraction benchmarks.
-
-## Deploying your own instance
-
-OpenRefCheck is deployable by anyone; nothing in the repository is tied to a particular
-cloud account. [docs/demo-deployment-decision.md](docs/demo-deployment-decision.md)
-records the reasoning behind the reference deployment (two Google Cloud Run services
-— the app, and a private GROBID backend it alone may invoke) along with the service
-sizing, cold-start measurements, and cost controls.
-
-[scripts/deploy-web.ps1](scripts/deploy-web.ps1) builds, tags, pushes, and redeploys
-in one step against **your** project:
-
-```powershell
-.\scripts\deploy-web.ps1 -Project my-gcp-project -Region europe-west3
-```
-
-or set `OPENREFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
-`gcloud` on PATH and authenticated.
-
-Nothing about the app requires Cloud Run — the container is an ordinary web server
-and will run on any host that can serve one.
-
-### Before you expose it to other people
-
-The hosted configuration processes other people's manuscripts, which raises
-questions a local install does not. Read
-[docs/eu-data-privacy-compliance.md](docs/eu-data-privacy-compliance.md) before
-running a public instance, and at minimum:
-
-- **Decide whether it should be public at all.** There is no authentication in
-  front of the app. Put one there, or restrict access at the network level, if the
-  instance is not meant for anyone who finds the URL.
-- **Keep GROBID private.** It is compute-heavy and unauthenticated by default; the
-  reference deployment makes it invokable only by the app's service account.
-- **Cap the instance count.** `--max-instances=1` is the ceiling on what an abusive
-  caller can spend. A billing budget alerts, it does not cap.
-- **Set `OPENREFCHECK_DEPLOYMENT_MODE=demo`** so visitors see the disclaimer describing
-  server-side processing, rather than the local-processing one.
-- **Check the retention copy still matches the code.** Demo mode tells visitors
-  their upload is deleted when the check finishes and when they close the tab; that
-  is what `openrefcheck/webui/pages/upload.py` does today, and the promise is only as
-  true as that module.
-
-Uploads are held in a private temporary directory, capped at 50 MB (enforced
-server-side, not only in the browser), deleted when a check completes or the browser
-session ends, and swept at process start if a crash left anything behind.
-
-## Tests
-
-```bash
-pytest
-```
-
-No test contacts an external service: extraction runs against synthetic fixtures and
-the OpenAlex/Crossref clients are stubbed. The live-GROBID tests do probe `GROBID_URL`,
-which defaults to localhost and skips when nothing answers.
-
-## Benchmark scripts
-
-Scripts under [scripts/](scripts) build synthetic benchmarks and evaluate
-extraction/verification quality (e.g. `run_grobid_benchmark.py`,
-`run_ensemble_benchmark.py`). Install the `benchmark` extra if needed:
-
-```bash
-pip install -e ".[benchmark]"
-```
-
-Benchmarks that call OpenAlex or Crossref honour `OPENREFCHECK_CONTACT_EMAIL` in the
-same way the app does.
-
 ### Deployment mode
 
 `OPENREFCHECK_DEPLOYMENT_MODE` chooses which disclaimer the UI shows. The desktop app
@@ -240,6 +158,13 @@ in one step against **your** project:
 
 or set `OPENREFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
 `gcloud` on PATH and authenticated.
+
+It deploys to a Cloud Run service named `mvs-app` by default, which is this project's
+name rather than a sensible one for your fork. Pass `-Service` or set
+`OPENREFCHECK_RUN_SERVICE` to choose your own — the service name becomes part of the
+public hostname and a Cloud Run service cannot be renamed later, so it is worth picking
+before the first deploy rather than after. `-Repository` / `OPENREFCHECK_AR_REPOSITORY`
+does the same for the Artifact Registry repository, which also cannot be renamed.
 
 Nothing about the app requires Cloud Run — the container is an ordinary web server
 and will run on any host that can serve one.
