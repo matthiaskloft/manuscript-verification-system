@@ -30,8 +30,12 @@ param(
     # Artifact Registry repository name (not the full path — that is assembled below).
     [string]$Repository = $(if ($env:OPENREFCHECK_AR_REPOSITORY) { $env:OPENREFCHECK_AR_REPOSITORY } else { "openrefcheck" }),
 
-    # The Cloud Run service receiving the new revision.
-    [string]$Service = $(if ($env:OPENREFCHECK_RUN_SERVICE) { $env:OPENREFCHECK_RUN_SERVICE } else { "openrefcheck-web" })
+    # The Cloud Run service receiving the new revision. Named for the system
+    # rather than for this module: the service runs whatever the repository
+    # builds, and reference checking is the first module of several. A service
+    # name is also permanent — Cloud Run derives the hostname from it and cannot
+    # rename in place — so it should not encode a part that is expected to move.
+    [string]$Service = $(if ($env:OPENREFCHECK_RUN_SERVICE) { $env:OPENREFCHECK_RUN_SERVICE } else { "mvs-app" })
 )
 
 $ErrorActionPreference = "Stop"

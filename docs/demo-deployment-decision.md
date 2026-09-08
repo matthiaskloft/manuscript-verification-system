@@ -66,9 +66,16 @@ gcloud run deploy refcheck-web \
 
 > **Naming migration.** Everything in the codebase is now `openrefcheck`: the
 > package, both console scripts, the environment variables (`OPENREFCHECK_*`), the
-> temp directories, and the local AnyStyle image tag. The deploy script's defaults
-> follow — it now targets the service `openrefcheck-web` and the Artifact Registry
-> repository `openrefcheck`.
+> temp directories, and the local AnyStyle image tag.
+>
+> The *deployed resources* are named for the system instead — the deploy script
+> defaults to the Cloud Run service `mvs-app`, with GROBID alongside it as `grobid`.
+> That split is deliberate. A package name describes the module and is expected to
+> move; this repository holds the first module of a manuscript verification system,
+> and the service runs whatever the repository builds rather than the reference
+> checker specifically. A Cloud Run service name is also permanent in a way a package
+> name is not: the hostname is derived from it and the service cannot be renamed in
+> place, so encoding a part that is expected to move buys a URL change later.
 >
 > **Cloud Run services and Artifact Registry repositories cannot be renamed.** Getting
 > the deployed resources onto the new names means creating them and deleting the old
@@ -241,8 +248,10 @@ service at one instance avoids distributing its in-memory UI state.
 ## Renaming the deployed services
 
 Neither a Cloud Run service nor an Artifact Registry repository can be renamed in
-place. Moving to `openrefcheck-web` / `openrefcheck-grobid` / `openrefcheck` means
-creating new resources and deleting the old ones.
+place. Moving to `mvs-app` / `grobid` / `openrefcheck` means creating new resources
+and deleting the old ones. The same steps apply whether the new resources go into the
+existing project or a fresh one; a fresh project additionally needs billing linked and
+any budget alert re-created, since neither follows a new project.
 
 **This changes the public URL.** Cloud Run derives the hostname from the service name,
 so `refcheck-web-*.a.run.app` stops existing and a new hostname appears. Anywhere the
@@ -262,7 +271,7 @@ gcloud artifacts repositories create openrefcheck \
   --repository-format=docker --location=$REGION --project=$PROJECT
 
 # 2. New GROBID service (same public image, private).
-gcloud run deploy openrefcheck-grobid \
+gcloud run deploy grobid \
   --image=grobid/grobid:0.8.1 --region=$REGION --project=$PROJECT \
   --memory=4Gi --port=8070 --max-instances=1 --no-allow-unauthenticated
 
@@ -272,13 +281,13 @@ docker build -f docker/nicegui/Dockerfile \
   -t $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG .
 docker push $REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG
 
-gcloud run deploy openrefcheck-web \
+gcloud run deploy mvs-app \
   --image=$REGION-docker.pkg.dev/$PROJECT/openrefcheck/nicegui:$TAG \
   --region=$REGION --project=$PROJECT --max-instances=1 \
   --set-env-vars OPENREFCHECK_DEPLOYMENT_MODE=demo,GROBID_URL=https://<new-grobid-url>
 
 # 4. Re-grant the invoker binding — IAM does not follow a new service.
-gcloud run services add-iam-policy-binding openrefcheck-grobid \
+gcloud run services add-iam-policy-binding grobid \
   --region=$REGION --project=$PROJECT \
   --member="serviceAccount:PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
   --role="roles/run.invoker"
