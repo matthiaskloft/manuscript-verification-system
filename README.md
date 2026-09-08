@@ -159,6 +159,13 @@ in one step against **your** project:
 or set `OPENREFCHECK_GCP_PROJECT` and run it with no arguments. It needs `docker` and
 `gcloud` on PATH and authenticated.
 
+It deploys to a Cloud Run service named `mvs-app` by default, which is this project's
+name rather than a sensible one for your fork. Pass `-Service` or set
+`OPENREFCHECK_RUN_SERVICE` to choose your own — the service name becomes part of the
+public hostname and a Cloud Run service cannot be renamed later, so it is worth picking
+before the first deploy rather than after. `-Repository` / `OPENREFCHECK_AR_REPOSITORY`
+does the same for the Artifact Registry repository, which also cannot be renamed.
+
 Nothing about the app requires Cloud Run — the container is an ordinary web server
 and will run on any host that can serve one.
 
